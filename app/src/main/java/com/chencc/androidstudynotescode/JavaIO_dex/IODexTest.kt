@@ -2,6 +2,8 @@ package com.chencc.androidstudynotescode.JavaIO_dex
 
 import android.util.Log
 import com.chencc.androidstudynotescode.utils.AESUtils
+import com.chencc.androidstudynotescode.utils.Dx
+import com.chencc.androidstudynotescode.utils.DxJ
 import com.chencc.androidstudynotescode.utils.Zip
 import org.jetbrains.annotations.TestOnly
 import java.io.File
@@ -18,42 +20,70 @@ import java.util.zip.ZipOutputStream
 fun main() {
     var TAG = "Java-IO-dex"
 
-        Zip.unZip(File("app/src/main/source/test.apk"), File("app/src/main/source/apk"))
+//        Zip.unZip(File("app/src/main/source/app-release.apk"), File("app/src/main/source/apk"))
 //    Zip.zip(File("app/src/main/test"), File("app/src/main/source/test.apk"))
 
 
-//
-//    var tempFileApk =  File("source/apk/temp")
+
+//    val tempFileApk =  File("app/src/main/source/apk/temp")
 //    if (tempFileApk.exists()){
-//        var files = tempFileApk.listFiles()
-//        for (file in files){
-//            if (file.isFile){
-//                file.delete()
+//        val files = tempFileApk.listFiles()
+//        files?.forEach {
+//            if (it.isFile){
+//                it.delete()
 //            }
 //        }
 //    }
 //
-//    var tempFileAar =  File("source/aar/temp")
+//    var tempFileAar =  File("app/src/main/source/aar/temp")
 //    if (tempFileAar.exists()){
-//        var files = tempFileAar.listFiles()
-//        for (file in files){
-//            if (file.isFile){
-//                file.delete()
+//        val files = tempFileAar.listFiles()
+//        files?.forEach {
+//            if (it.isFile){
+//                it.delete()
 //            }
 //        }
 //    }
 //
 //    /**
-//     * 第一部，处理原始apk  加密dex
+//     * 第一步，处理原始apk  加密dex
 //     */
 //    AESUtils.init(AESUtils.DEFAULT_PWD)
 //    //解压 apk
-//    var apkFile = File("source/apk/")
-//    var newApkFile = File(apkFile.parent + File.separator + "temp")
+//    val apkFile = File("app/src/main/source/app-release.apk")
+//    val newApkFile = File(apkFile.parent + File.separator + "temp")
+//
 //    if (newApkFile.exists()){
 //        newApkFile.mkdirs()
 //    }
+//    //加密后的dex
+//    var mainDexFile = AESUtils.encryptAPKFile(apkFile, newApkFile)
+//
+//    if (newApkFile.isDirectory){
+//        val listFiles = newApkFile.listFiles()
+//
+//        listFiles?.forEach { file ->
+//            if (file.isFile && file.name.endsWith(".dex")){
+//                var name = file.name
+//                println("file name : $name")
+//
+//                //重命名
+//                var cursor = name.indexOf(".dex")
+//                var newName = file.parent + File.separator + name.subSequence(0, cursor) + "_" + ".dex"
+//
+//                println("file  newName : $newName")
+//
+//                file.renameTo(File(newName))
+//            }
+//        }
+//    }
 
+    /**
+     * 第二步 处理 aar  获得壳 dex
+     */
+    var aarFile = File("app/src/main/source/mylibrary-release.aar")
+    Dx.jar2Dex(aarFile)
+//    DxJ.jar2Dex(aarFile)
 
 
 

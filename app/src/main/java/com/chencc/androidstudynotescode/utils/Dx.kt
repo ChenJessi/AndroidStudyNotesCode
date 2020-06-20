@@ -40,7 +40,10 @@ object Dx {
         return aarDex
     }
 
-     fun dxCommand(aarDex: File, classesJar: File) {
+    /**
+     * 执行 windows 命令  使用 dx.bat 脚本  将 jar包转换为 dex
+     */
+    fun dxCommand(aarDex: File, classesJar: File) {
         var runtime = Runtime.getRuntime()
          val process = runtime.exec(
              "cmd.exe /C C:/Users/Administrator.USER-20200422BX/AppData/Local/Android/Sdk/build-tools/29.0.3/dx --dex --output=" + aarDex.absolutePath.toString() + " " +

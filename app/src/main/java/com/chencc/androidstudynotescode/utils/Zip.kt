@@ -16,8 +16,10 @@ object Zip {
     fun zip(dir: File, zip: File) {
         zip.delete()
         // 对输出文件做CRC32校验
+
         var cos = CheckedOutputStream(FileOutputStream(zip), CRC32())
         var zos = ZipOutputStream(cos)
+        println("basePath : ${dir.parentFile.path + File.separator}")
         compress(dir, zos, "")
         zos.flush()
         zos.close()
@@ -116,13 +118,19 @@ object Zip {
         if (files.isEmpty()){
             //新建一个 zip 文件
             println("ZipEntry  :  $basePath${dir.name}/")
-            var entry = ZipEntry("$basePath${dir.name}/")
+            var entry = ZipEntry("$basePath/")
             zos.putNextEntry(entry)
             zos.closeEntry();
         }
         for (file in files){
             //递归压缩
-            compress(file, zos, "$basePath${dir.name}/")
+            println("name   :  ${dir.name}")
+            if (dir.name == "temp"){
+                compress(file, zos, "$basePath${dir.name}/")
+            } else {
+                compress(file, zos, "$basePath${dir.name}/")
+            }
+
         }
     }
 

@@ -1,12 +1,8 @@
 package com.chencc.androidstudynotescode.JavaIO_dex
 
-import com.chencc.androidstudynotescode.utils.AESUtils
-import com.chencc.androidstudynotescode.utils.Dx
-import com.chencc.androidstudynotescode.utils.Utils
-import com.chencc.androidstudynotescode.utils.Zip
+import com.chencc.androidstudynotescode.utils.*
 import java.io.File
 import java.io.FileOutputStream
-import java.security.Signature
 
 //@RunWith(AndroidJUnit4::class)
 /**
@@ -17,6 +13,12 @@ fun main() {
 
 //        Zip.unZip(File("app/src/main/source/app-release.apk"), File("app/src/main/source/apk"))
 //    Zip.zip(File("app/src/main/test"), File("app/src/main/source/test.apk"))
+
+//    val newApkFile = File("app/src/main/source/temp")
+//    var unsignedApk = File("app/src/main/source/apk/apk-unsigned.apk")
+//    unsignedApk.parentFile.mkdirs()
+//
+//    Zip.zip(newApkFile ,unsignedApk)
 
 
 
@@ -110,6 +112,9 @@ fun main() {
 
     Zip.zip(newApkFile ,unsignedApk)
 
+    // 对 apk 签名
+    var signedApk = File("app/src/main/source/apk/apk-signed.apk")
+    Signature.signature(unsignedApk, signedApk)
 
 
 
@@ -119,10 +124,6 @@ fun main() {
 
 
 
-
-
-
-//    Zip.zip( File("app/src/main/test"), File("app/src/main/source/test.apk"))
 
 
 }

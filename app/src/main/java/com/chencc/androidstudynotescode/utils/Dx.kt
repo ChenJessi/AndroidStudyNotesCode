@@ -76,7 +76,7 @@ object Dx {
              while (inputStream.read(buffer).also { len = it } != -1){
                  bos.write(buffer, 0, len)
              }
-             println("process :  "+ java.lang.String(bos.toByteArray(), Charset.forName("GBK")))
+             println("process :  "+ String(bos.toByteArray(), Charset.forName("GBK")))
              throw  RuntimeException("dx run failed");
          }
 

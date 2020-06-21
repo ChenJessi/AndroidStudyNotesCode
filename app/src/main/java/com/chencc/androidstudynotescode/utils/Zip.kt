@@ -85,6 +85,9 @@ object Zip {
 
         if (dirNameNew.size > 1){
             for (str in dirNameNew){
+                if (str == "temp"){
+                    return continue
+                }
                 buffer.append("/")
                 buffer.append(str)
             }

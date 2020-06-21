@@ -1,6 +1,9 @@
 package com.chencc.androidstudynotescode.utils
 
+import java.io.ByteArrayOutputStream
 import java.io.File
+import java.lang.RuntimeException
+import java.nio.charset.Charset
 
 object Signature {
 
@@ -17,6 +20,25 @@ object Signature {
         )
 
         val process = Runtime.getRuntime().exec(cmd)
+        println("start sign")
+
+        var waitResult = process.waitFor()
+        println("waitResult : $waitResult")
+
+        println("exitValue :  ${process.exitValue()}")
+        if (process.exitValue() != 0){
+            var inputStream = process.errorStream
+            var len = 0
+            var buffer = ByteArray(2048)
+            var bos = ByteArrayOutputStream()
+            while (inputStream.read(buffer).also { len = it } != -1){
+                bos.write(buffer, 0, len)
+            }
+
+            println(String(bos.toByteArray(),Charset.forName("GBK")))
+            throw RuntimeException("签名执行失败")
+        }
+
     }
 
 

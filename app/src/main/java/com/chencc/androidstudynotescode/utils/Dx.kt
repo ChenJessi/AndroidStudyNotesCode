@@ -85,17 +85,21 @@ object Dx {
 
 
     // 读取输入流
-    private fun read(inputStream: InputStream, out: PrintStream) {
+     fun read(inputStream: InputStream, out: PrintStream) {
+         var fos = FileOutputStream(File("app/src/main/source/log.txt"))
         try {
             val reader = BufferedReader(InputStreamReader(inputStream))
             var line: String = ""
-            while (reader.readLine().also({ it?.let {  line = it} }) != null) {
+            var bos = ByteArrayOutputStream()
+            while (reader.readLine().also { it?.let {  line = it} } != null) {
                 out.println(line)
             }
+            println("process :  "+ String(bos.toByteArray(), Charset.forName("GBK")))
         } catch (e: IOException) {
             e.printStackTrace()
         } finally {
             try {
+                fos.close()
                 inputStream.close()
             } catch (e: IOException) {
                 e.printStackTrace()

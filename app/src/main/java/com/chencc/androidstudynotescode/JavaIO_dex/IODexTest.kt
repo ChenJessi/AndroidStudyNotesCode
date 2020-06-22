@@ -21,6 +21,11 @@ fun main() {
 //    Zip.zip(newApkFile ,unsignedApk)
 
 
+//    var unsignedApk = File("app/src/main/source/apk/apk-unsigned.apk")
+//    unsignedApk.parentFile.mkdirs()
+//
+//    var signedApk = File("app/src/main/source/apk/apk-signed.apk")
+//    Signature.signature(unsignedApk, signedApk)
 
     val fileApk =  File("app/src/main/source/apk")
     if (fileApk.exists()){
@@ -112,7 +117,7 @@ fun main() {
 
     Zip.zip(newApkFile ,unsignedApk)
 
-    // 对 apk 签名
+//     对 apk 签名
     var signedApk = File("app/src/main/source/apk/apk-signed.apk")
     Signature.signature(unsignedApk, signedApk)
 

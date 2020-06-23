@@ -21,6 +21,7 @@ import javax.crypto.spec.SecretKeySpec
     private lateinit var decryptCipher: Cipher
 
 
+
      fun init(password: String) {
         try {
             encryptCipher = Cipher.getInstance(algorithmStr)

@@ -3,8 +3,6 @@ package com.chencc.mylibrary
 import android.app.Application
 import android.content.Context
 import android.util.Log
-import com.chencc.mylibrary.java.AES
-import com.chencc.mylibrary.java.Zip
 import com.chencc.mylibrary.utils.*
 import java.io.File
 import java.io.FileOutputStream
@@ -26,7 +24,6 @@ class ShellApplication : Application() {
     fun IODexTest() {
 
         init(DEFAULT_PWD)
-//        AES.init("abcdefghijklmnop")
 
         var apkFile = File(applicationInfo.sourceDir)
         // /data/app/com.chencc.androidstudynotescode-z6lKjUP-NRQVFvs6yxbrbg==/base.apk
@@ -36,9 +33,9 @@ class ShellApplication : Application() {
         // 创建文件夹 存放 apk 解压文件
         var unZipFile = getDir("fake_apk", Context.MODE_PRIVATE)
         var app = File(unZipFile, "app")
+        // 若文件存在，则已经解密过 dex 了，直接加载即可
         if (!app.exists()) {
-//            unZip(apkFile, app)
-            Zip.unZip(apkFile, app)
+            unZip(apkFile, app)
             var files = app.listFiles()
             // 壳 dex 即 classes.dex
             // 对 非 壳dex 进行解密

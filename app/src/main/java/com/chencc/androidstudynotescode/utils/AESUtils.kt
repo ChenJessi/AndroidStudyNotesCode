@@ -47,6 +47,7 @@ object AESUtils {
      */
 
     fun encryptAPKFile(srcApkFile : File, dstApkFile : File) : File?{
+        // 解压 apk到 dstApkFile
         Zip.unZip(srcApkFile, dstApkFile)
         // 获取所有 dex 文件
         var dexFiles = dstApkFile.listFiles(FilenameFilter { _, name ->
@@ -55,22 +56,23 @@ object AESUtils {
 
         var mainDexFile : File? = null
 
-        for (dexFile in dexFiles){
-            // 读数据
+        dexFiles?.forEach { dexFile->
+            // 读取 dex 文件数据
             var buffer = Utils.getBytes(dexFile)
             // 加密
             var encryptBytes = encrypt(buffer)
 
-            //
             if (dexFile.name.endsWith("classes.dex")){
                 mainDexFile = dexFile
             }
             // 将加密后的数据写入 替换原来的数据
             var fos = FileOutputStream(dexFile)
             fos.write(encryptBytes)
+
             fos.flush()
             fos.close()
         }
+
         return mainDexFile
     }
 

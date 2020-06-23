@@ -73,13 +73,12 @@ fun main() {
     if (newApkFile.isDirectory){
         val listFiles = newApkFile.listFiles()
 
-
         listFiles?.forEachIndexed { index, file  ->
             if (file.isFile && file.name.endsWith(".dex")){
                 var name = file.name
                 println("file name : $name")
 
-                //重命名
+                //对加密后的dex 文件重命名
                 var cursor = name.indexOf(".dex")
                 var newName = file.parent + File.separator + name.subSequence(0, cursor) + index + ".dex"
 

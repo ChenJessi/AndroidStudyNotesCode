@@ -5,7 +5,10 @@ import android.os.Build;
 import android.util.Log;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Array;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -51,12 +54,25 @@ public class Hotfix {
     }
 
     private static final class V23{
-        private static void install(ClassLoader classLoader, List<File> additionalClassPathEntries, File optimizedDirectory){
+        private static void install(ClassLoader classLoader, List<File> additionalClassPathEntries, File optimizedDirectory) throws NoSuchFieldException, IllegalAccessException {
             // 找到 pathList
+            Field pathListField = ShareReflectUtil.findField(classLoader, "pathList");
+            Object dexPathList = pathListField.get(classLoader);
+
+            ArrayList<IOException> suppressedExceptions = new ArrayList<>();
+            // 从pathList 中找到 makePathElements 方法执行
+            // / 得到补丁创建的 Element[]
 
         }
     }
 
 
+
+    private static Object[] makePathElements( Object dexPathList, ArrayList<File> files, File optimizedDirectory, ArrayList<IOException> suppressedExceptions) throws NoSuchFieldException {
+
+        // 通过阅读 android6、7、8、9源码，都存在makePathElements方法
+        Method makePathElements = ShareReflectUtil.findField(dexPathList, "makePathElements");
+
+    }
 
 }

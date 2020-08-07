@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
 import android.util.Log
+import com.chencc.androidstudynotescode.androidjvm_class_test.Test
 import dalvik.system.DexClassLoader
 import dalvik.system.PathClassLoader
 import java.util.zip.ZipFile
@@ -16,5 +17,6 @@ class MainActivity : AppCompatActivity() {
 
         Log.e("MainActivity", "Activity.class 由： + ${Activity::class.java.classLoader} + 加载" )
         Log.e("MainActivity", "MainActivity.class 由： + $classLoader + 加载" )
+        Test.test()
     }
 }

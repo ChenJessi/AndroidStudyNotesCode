@@ -13,7 +13,7 @@ class ShellApplication : Application() {
     private val TAG = "ShellApplication"
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
-        IODexTest()
+//        IODexTest()
 
     }
 

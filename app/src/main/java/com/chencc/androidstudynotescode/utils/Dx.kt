@@ -6,6 +6,20 @@ import java.nio.charset.Charset
 object Dx {
 
     /**
+     * class 转 dex
+     */
+
+    private fun class2dex(){
+        // C:\Users\Administrator.USER-20200422BX\AppData\Local\Android\Sdk\build-tools\29.0.3    dx.bat
+        //    执行命令 ：      dx --dex --output=D:\dex\out.dex  D:\dex
+
+        /**
+         * D:\dex  要编译的文件路径
+         *  D:\dex\out.dex  dex文件输出路径
+         */
+    }
+
+    /**
      * jar 转 dex
      */
     fun jar2Dex(aarFile : File) : File {

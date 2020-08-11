@@ -17,6 +17,8 @@ class MainActivity : AppCompatActivity() {
 
         Log.e("MainActivity", "Activity.class 由： + ${Activity::class.java.classLoader} + 加载" )
         Log.e("MainActivity", "MainActivity.class 由： + $classLoader + 加载" )
+
+
         Test.test()
     }
 }

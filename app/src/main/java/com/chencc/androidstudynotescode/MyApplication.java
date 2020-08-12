@@ -20,7 +20,7 @@ public class MyApplication extends Application {
         super.attachBaseContext(base);
         //执行热修复。 插入补丁dex
         //   /sdcard/Android/data/test.dex  dex 本地文件路径
-        Hotfix.installPatch(this,  new File("/sdcard/Android/data/test.dex"));
+//        Hotfix.installPatch(this,  new File("/sdcard/Android/data/test.dex"));
 
     }
 

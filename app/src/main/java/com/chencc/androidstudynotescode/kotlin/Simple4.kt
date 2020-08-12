@@ -29,7 +29,7 @@ fun main() {
     val t2 = test2.copy(id = 2)
     println(v1)
     println(v2)
-    
+
 }
 
 /**

@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.chencc.androidstudynotescode.R
 import kotlinx.android.synthetic.main.activity_view_pager_test.*
+import java.util.*
+import kotlin.concurrent.timerTask
 
 /**
  * ViewPager ≤‚ ‘
@@ -20,5 +22,10 @@ class TestViewPagerActivity : AppCompatActivity(){
 
         viewPager.offscreenPageLimit = 3
         viewPager.adapter = adapter
+
+        Timer().schedule(timerTask {
+            
+        },2000,2000)
+
     }
 }

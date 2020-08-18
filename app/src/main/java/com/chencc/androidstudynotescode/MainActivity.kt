@@ -1,6 +1,7 @@
 package com.chencc.androidstudynotescode
 
 import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
@@ -11,8 +12,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.ViewPager
 import com.chencc.androidstudynotescode.androidjvm_class_test.Test
 import com.chencc.androidstudynotescode.androidjvm_class_test.Test.test
+import com.chencc.androidstudynotescode.customview.viewpager.TestViewPagerActivity
 import dalvik.system.DexClassLoader
 import dalvik.system.PathClassLoader
 import kotlinx.android.synthetic.main.activity_main.*
@@ -29,10 +32,12 @@ class MainActivity : AppCompatActivity() {
         Log.e("MainActivity", "MainActivity.class 由： + $classLoader + 加载")
 
 //        Test.test()
+//        test1()
 
 
 
-        test1()
+
+        startActivity(Intent(this@MainActivity, TestViewPagerActivity::class.java))
     }
 
     /**

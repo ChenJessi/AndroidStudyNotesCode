@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SimpleViewGroup_Layout">
+        <!-- 自定义的属性 -->
+        <attr name="layout_simple_attr" format="integer"/>
+        <!-- 使用系统预置的属性 -->
+        <attr name="android:layout_gravity"/>
+    </declare-styleable>
+</resources>

@@ -20,8 +20,12 @@ class TestViewPagerActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_pager_test)
 
+        viewPager.pageMargin = 30
         viewPager.offscreenPageLimit = 3
         viewPager.adapter = adapter
+        viewPager.currentItem = adapter.mList.size * 100;
+        viewPager.setPageTransformer(true, PageTransform())
+
 
         Timer().schedule(timerTask {
             

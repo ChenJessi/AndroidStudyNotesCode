@@ -8,6 +8,19 @@ fun main() {
 //    `   `("test")
 //    ` testFun  `("testFun")
 //    ` 9999  `("9999")
+    val i = 1
+    when{
+        i < 2 ->{
+            println("1111")
+       }
+        i < 3 -> {
+            println("2222")
+        }
+        else -> {
+            println("3333")
+        }
+
+    }
 
 }
 //

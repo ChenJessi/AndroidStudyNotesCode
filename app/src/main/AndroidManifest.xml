@@ -19,8 +19,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <!-- viewpager测试-->
         <activity android:name=".customview.viewpager.TestViewPagerActivity"/>
+        <!-- FlowLayout 流式布局-->
+        <activity android:name=".customview.flowLayout.TestFlowActivity"/>
     </application>
 
 </manifest>

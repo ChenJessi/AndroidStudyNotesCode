@@ -16,7 +16,7 @@ class MyViewPager : ViewPager{
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         var height = 0
 
-        for (i in 0..childCount) {
+        for (i in 0 until childCount) {
             val child = getChildAt(i)
             val param = child.layoutParams
             val childWidthSpec = ViewGroup.getChildMeasureSpec(widthMeasureSpec,0, param.width)
@@ -27,14 +27,10 @@ class MyViewPager : ViewPager{
             if (h > height){
                 height = h
             }
-            var hs = MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY)
-            setMeasuredDimension(widthMeasureSpec, heightMeasureSpec)
-            super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         }
 
-
-
-
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        var heightSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY)
+        setMeasuredDimension(widthMeasureSpec, heightSpec)
+        super.onMeasure(widthMeasureSpec, heightSpec)
     }
 }

@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.chencc.androidstudynotescode.androidjvm_class_test.Test
 import com.chencc.androidstudynotescode.androidjvm_class_test.Test.test
+import com.chencc.androidstudynotescode.customview.flowLayout.TestFlowActivity
 import com.chencc.androidstudynotescode.customview.viewpager.TestViewPagerActivity
 import dalvik.system.DexClassLoader
 import dalvik.system.PathClassLoader
@@ -37,7 +38,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        startActivity(Intent(this@MainActivity, TestViewPagerActivity::class.java))
+        startActivity(Intent(this@MainActivity, TestFlowActivity::class.java))
     }
 
     /**
@@ -50,7 +51,6 @@ class MainActivity : AppCompatActivity() {
                 testxc1()
                 testxc()
             }
-
 
             withContext(Dispatchers.IO) {
                 MLog("t===========1 : ${Thread.currentThread().name}")

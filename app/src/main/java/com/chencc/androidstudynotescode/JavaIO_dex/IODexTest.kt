@@ -103,7 +103,7 @@ fun main() {
     }
     //将 aarDex 包写入 解压后的 apk 包
     var fos = FileOutputStream(tempMainDex)
-    var bytes = Utils.getBytes(aarDex)
+    var bytes = getBytes(aarDex)
     fos.write(bytes)
     fos.flush()
     fos.close()

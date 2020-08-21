@@ -58,7 +58,7 @@ object AESUtils {
 
         dexFiles?.forEach { dexFile->
             // 读取 dex 文件数据
-            var buffer = Utils.getBytes(dexFile)
+            var buffer = getBytes(dexFile)
             // 加密
             var encryptBytes = encrypt(buffer)
 

@@ -2,10 +2,12 @@ package com.chencc.androidstudynotescode.customview.flowLayout
 
 import android.content.Context
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
-import android.view.View.MeasureSpec
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.core.content.ContextCompat
+import com.chencc.androidstudynotescode.R
+import com.chencc.androidstudynotescode.utils.dp2px
 import kotlin.math.max
 
 /**
@@ -17,6 +19,9 @@ class FlowLayout : ViewGroup {
     private val allLines = mutableListOf<MutableList<View>>()           // 记录每一行的 View
     private val linesHeight = mutableListOf<Int>()           // 记录每一行的 View
 
+    private var mHorizontalSpacing: Int = dp2px(16f).toInt() //每个item横向间距
+
+    private var mVerticalSpacing: Int = dp2px(8f).toInt() //每个item纵向间距
 
 
     constructor(context: Context?) : super(context)
@@ -26,7 +31,15 @@ class FlowLayout : ViewGroup {
         attrs,
         defStyleAttr
     )
-
+    init {
+//        for (i in 0..9){
+//            val view = TextView(context).apply {
+//                text = "测试text1 ${1}"
+//                background = ContextCompat.getDrawable(context, R.drawable.shape_button_circular)
+//            }
+//            addView(view)
+//        }
+    }
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         allLines.clear()
         linesHeight.clear()
@@ -36,11 +49,11 @@ class FlowLayout : ViewGroup {
         val selfWidth = MeasureSpec.getSize(widthMeasureSpec)       // 父控件给的宽度
 
         var parentNeededWidth = 0               // 子view要求的宽度
-        var parentNeededHeight = 0              // // 子view要求的高度
+        var parentNeededHeight = paddingTop + paddingBottom              // // 子view要求的高度
         var lineView = mutableListOf<View>()
 
         var lineHeight = 0  // 行高
-        var lineWidthUse = 0    // 已经被子View 使用的宽度
+        var lineWidthUse = paddingLeft    // 已经被子View 使用的宽度
 
         for (i in 0 until childCount){
             val childView = getChildAt(i)
@@ -58,18 +71,24 @@ class FlowLayout : ViewGroup {
                 /**
                  * 是否需要换行
                  */
-                if (width > selfWidth - lineWidthUse){  //    剩余宽度不够了就换行
+                if (width > selfWidth - lineWidthUse - paddingRight){  //    剩余宽度不够了就换行
                     allLines.add(lineView)
                     lineView = mutableListOf()
                     linesHeight.add(lineHeight)
+                    // 每行最后一个view 多增加了一个 mHorizontalSpacing   换行时候要减去
+                    parentNeededWidth = max(parentNeededWidth, lineWidthUse + paddingRight - mHorizontalSpacing)
+                    // 每次换行 多加一个 行间距  最后一行不用
+                    parentNeededHeight += if (i == childCount -1){
+                        lineHeight
+                    }else{
+                        lineHeight + mVerticalSpacing
+                    }
 
-                    parentNeededWidth = max(parentNeededWidth, lineWidthUse)
-                    parentNeededHeight += lineHeight
                     lineHeight = 0
-                    lineWidthUse = 0
+                    lineWidthUse = paddingLeft
                 }
-
-                lineWidthUse += width
+                // 使用过的宽度每次增加  view 宽度 + 间距
+                lineWidthUse += (width + mHorizontalSpacing)
                 lineView.add(childView)
 
                 /**
@@ -78,7 +97,7 @@ class FlowLayout : ViewGroup {
                 if (i == childCount -1){
                     allLines.add(lineView)
                     linesHeight.add(lineHeight)
-                    parentNeededWidth = max(parentNeededWidth, lineWidthUse)
+                    parentNeededWidth = max(parentNeededWidth, lineWidthUse  + paddingRight - mHorizontalSpacing)
                     parentNeededHeight += lineHeight
                 }
 
@@ -94,15 +113,18 @@ class FlowLayout : ViewGroup {
     }
 
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
-        var heightUse = 0
+        var heightUse = paddingTop
         for (i in 0 until linesHeight.size){
             val lineViews = allLines[i]
-            var widthUse = 0
+            var widthUse = paddingLeft
             for (j in  lineViews){
                 j.layout(widthUse,heightUse, widthUse + j.measuredWidth, heightUse + j.measuredHeight)
-                widthUse += j.measuredWidth
+                widthUse += (j.measuredWidth + mHorizontalSpacing)
             }
-            heightUse += linesHeight[i]
+            heightUse += (linesHeight[i] + mVerticalSpacing)
         }
     }
 }
+
+
+

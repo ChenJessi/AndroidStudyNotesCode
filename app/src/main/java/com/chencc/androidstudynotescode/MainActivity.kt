@@ -17,6 +17,7 @@ import com.chencc.androidstudynotescode.androidjvm_class_test.Test
 import com.chencc.androidstudynotescode.androidjvm_class_test.Test.test
 import com.chencc.androidstudynotescode.customview.flowLayout.TestFlowActivity
 import com.chencc.androidstudynotescode.customview.viewpager.TestViewPagerActivity
+import com.chencc.androidstudynotescode.utils.getResId
 import dalvik.system.DexClassLoader
 import dalvik.system.PathClassLoader
 import kotlinx.android.synthetic.main.activity_main.*

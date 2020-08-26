@@ -1,7 +1,11 @@
 package com.chencc.androidstudynotescode.skin
 
+import android.graphics.drawable.Drawable
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
+import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import com.chencc.androidstudynotescode.utils.getResId
 
 /**
@@ -24,7 +28,8 @@ class SkinAttribute {
     private val mSkinViews = mutableListOf<SkinView>()
 
     /**
-     * 记录每个view 需要换肤的属性
+     * 遍历每个 view 的所有属性
+     * 找出需要换肤的属性并记录 属性名称 和 资源id
      */
     fun look(view: View, attr : AttributeSet){
         val mSkinPairs = mutableListOf<SkinPair>()
@@ -43,10 +48,12 @@ class SkinAttribute {
                 if (attributeValue.startsWith("?")){
                     // 获取id
                     val attrId = attributeValue.substring(1).toInt()
-                    resId = getResId(view.context, IntArray(attrId))[0]
+                    resId = getResId(view.context, IntArray(1){attrId})[0]
                 }else {
                     // 剩下的 是以 @ 开头的 我们自己的资源
                     resId = attributeValue.substring(1).toInt()
+                    Log.e("TAG", "look:  $resId   ${attributeValue}")
+
                 }
                 mSkinPairs.add(SkinPair(attributeName, resId))
             }
@@ -75,13 +82,38 @@ class SkinAttribute {
  * View 需要更换的属性和资源id集合
  */
 class SkinView(var view : View , var mSkinPairs : MutableList<SkinPair> = mutableListOf()) : SkinViewSupport{
+
+    /**遍历所有需要修改的属性
+     *
+     * 对view的每一个属性进行修改
+     */
     override fun applySkin() {
         mSkinPairs.forEach {
             applySkinSupport()
             val attributeName = it.attributeName
+            when(attributeName){
+                "background" ->{
+                    val background = SkinResources.getBackground(it.resId)
+                    // background 为 color 时 为 int 类型
+                    if (background is Int){
+                        view.setBackgroundColor(background)
+                    }else if (background is Drawable){
+                        ViewCompat.setBackground(view, background)
+                    }
+                }
+                "src" ->{}
+                "textColor" ->{}
+                "drawableLeft" ->{}
+                "drawableTop" ->{}
+                "drawableRight" ->{}
+                "drawableBottom" ->{}
+            }
         }
     }
 
+    /**
+     * 修改实现了 SkinViewSupport 的view属性
+     */
     private fun applySkinSupport(){
         if (view is SkinViewSupport){
             (view as SkinViewSupport).applySkin()

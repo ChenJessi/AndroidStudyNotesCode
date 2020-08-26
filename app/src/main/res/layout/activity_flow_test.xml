@@ -8,7 +8,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="wrap_content"
-        android:background="#ffff95"
+        android:background="@color/cardview_dark_background"
         android:paddingRight="10dp"
         android:paddingLeft="10dp"
         android:paddingTop="10dp"

@@ -2,12 +2,16 @@ package com.chencc.androidstudynotescode.customview.flowLayout
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.chencc.androidstudynotescode.R
+import com.chencc.androidstudynotescode.skin.SkinAttribute
 import com.chencc.androidstudynotescode.utils.dp2px
+import com.chencc.androidstudynotescode.utils.getResId
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.math.max
 
 /**
@@ -25,7 +29,10 @@ class FlowLayout : ViewGroup {
 
 
     constructor(context: Context?) : super(context)
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
+    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs){
+        Log.e(TAG, "FlowLayout  attrs : ${attrs}" )
+        attrs?.let { SkinAttribute().look(this, it) }
+    }
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
         context,
         attrs,

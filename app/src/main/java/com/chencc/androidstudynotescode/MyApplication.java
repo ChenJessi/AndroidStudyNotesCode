@@ -8,6 +8,7 @@ import android.util.Log;
 import androidx.annotation.RequiresApi;
 
 import com.chencc.androidstudynotescode.androidjvm_class.Hotfix;
+import com.chencc.androidstudynotescode.skin.SkinManager;
 
 
 import java.io.File;
@@ -21,7 +22,11 @@ public class MyApplication extends Application {
         //执行热修复。 插入补丁dex
         //   /sdcard/Android/data/test.dex  dex 本地文件路径
 //        Hotfix.installPatch(this,  new File("/sdcard/Android/data/test.dex"));
-
     }
 
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        SkinManager.INSTANCE.init(this);
+    }
 }

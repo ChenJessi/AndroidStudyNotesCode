@@ -9,7 +9,7 @@ import android.util.Log
  */
 
 /**
- * 获得 theme
+ * 获得 Android SDK 内置 theme 资源 id
  */
 fun getResId(context : Context, attrs : IntArray) : IntArray{
     var resIds = IntArray(attrs.size)

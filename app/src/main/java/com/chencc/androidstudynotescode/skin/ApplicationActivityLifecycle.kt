@@ -37,7 +37,8 @@ class ApplicationActivityLifecycle(var obserable : Observable) : Application.Act
         }
         val skinLayoutInflaterFactory = SkinLayoutInflaterFactory(activity)
         LayoutInflaterCompat.setFactory2(layoutInflater, skinLayoutInflaterFactory)
-        mLayoutInflaterFactories.put(activity, skinLayoutInflaterFactory)
+        mLayoutInflaterFactories[activity] = skinLayoutInflaterFactory
+        obserable.addObserver(skinLayoutInflaterFactory)
     }
 
     override fun onActivityResumed(activity: Activity) {
@@ -62,6 +63,7 @@ class ApplicationActivityLifecycle(var obserable : Observable) : Application.Act
 
     override fun onActivityStopped(activity: Activity) {
         val remove = mLayoutInflaterFactories.remove(activity)
+        SkinManager.deleteObserver(remove)
     }
 
 

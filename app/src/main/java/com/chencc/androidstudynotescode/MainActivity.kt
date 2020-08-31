@@ -17,6 +17,7 @@ import com.chencc.androidstudynotescode.androidjvm_class_test.Test
 import com.chencc.androidstudynotescode.androidjvm_class_test.Test.test
 import com.chencc.androidstudynotescode.customview.flowLayout.TestFlowActivity
 import com.chencc.androidstudynotescode.customview.viewpager.TestViewPagerActivity
+import com.chencc.androidstudynotescode.skin.SkinTestActivity
 import com.chencc.androidstudynotescode.utils.getResId
 import dalvik.system.DexClassLoader
 import dalvik.system.PathClassLoader
@@ -36,10 +37,17 @@ class MainActivity : AppCompatActivity() {
 //        Test.test()
 //        test1()
 
+        text1.setOnClickListener {
+            startActivity(Intent(this@MainActivity, SkinTestActivity::class.java))
+        }
+        text2.setOnClickListener {
+            startActivity(Intent(this@MainActivity, TestFlowActivity::class.java))
+        }
+        text3.setOnClickListener {
+            startActivity(Intent(this@MainActivity, TestViewPagerActivity::class.java))
+        }
 
 
-
-        startActivity(Intent(this@MainActivity, TestFlowActivity::class.java))
     }
 
     /**

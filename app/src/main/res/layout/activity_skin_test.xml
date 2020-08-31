@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/tvSkin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/color_button_bg"
+        android:paddingVertical="10dp"
+        android:paddingHorizontal="20dp"
+        android:textColor="@color/color_text"
+        android:text="换肤"/>
+
+    <TextView
+        android:id="@+id/tvReset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/tvSkin"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/color_text"
+        android:paddingVertical="10dp"
+        android:paddingHorizontal="20dp"
+        android:layout_marginLeft="10dp"
+        android:background="@color/color_button_bg"
+        android:text="还原"/>
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSkin"
+        android:layout_marginTop="30dp"
+        android:src="@color/color_image_bg"/>
+
+    <ImageView
+        android:id="@+id/image1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image"
+        android:layout_marginTop="30dp"
+        android:src="@mipmap/ic_launcher_round"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

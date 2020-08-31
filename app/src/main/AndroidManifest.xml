@@ -24,6 +24,8 @@
         <activity android:name=".customview.viewpager.TestViewPagerActivity"/>
         <!-- FlowLayout 流式布局-->
         <activity android:name=".customview.flowLayout.TestFlowActivity"/>
+        <!-- 插件化换肤 -->
+        <activity android:name=".skin.SkinTestActivity"/>
     </application>
 
 </manifest>

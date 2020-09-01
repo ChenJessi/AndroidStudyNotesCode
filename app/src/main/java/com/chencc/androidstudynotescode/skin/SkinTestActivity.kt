@@ -15,7 +15,9 @@ class SkinTestActivity : AppCompatActivity() {
         setContentView(R.layout.activity_skin_test)
 
         tvSkin.setOnClickListener {
-//            SkinManager.loadSkin()
+//            SkinManager.loadSkin("/sdcard/Android/data/skinlib.apk")
+//            SkinManager.loadSkin("/sdcard/Android/data/skinlib-debug.aar")
+            SkinManager.loadSkin("/sdcard/Android/data/app-debug.apk")
         }
         tvReset.setOnClickListener {
             SkinManager.loadSkin("")

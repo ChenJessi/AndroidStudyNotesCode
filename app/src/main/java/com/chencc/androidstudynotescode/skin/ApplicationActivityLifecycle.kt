@@ -53,18 +53,17 @@ class ApplicationActivityLifecycle(var obserable : Observable) : Application.Act
 
     }
 
-    override fun onActivityDestroyed(activity: Activity) {
-
-    }
-
     override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {
 
     }
 
     override fun onActivityStopped(activity: Activity) {
+
+    }
+
+    override fun onActivityDestroyed(activity: Activity) {
         val remove = mLayoutInflaterFactories.remove(activity)
         SkinManager.deleteObserver(remove)
     }
-
 
 }

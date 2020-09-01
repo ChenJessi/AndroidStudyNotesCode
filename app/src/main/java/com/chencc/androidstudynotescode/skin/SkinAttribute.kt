@@ -122,7 +122,8 @@ class SkinView(var view: View, var mSkinPairs: MutableList<SkinPair> = mutableLi
                     }
             }
             "textColor" ->{
-                val textColor = SkinResources.getColorStateList(it.resId)
+//                val textColor = SkinResources.getColorStateList(it.resId)
+                val textColor = SkinResources.getColor(it.resId)
                 if (view is TextView){
                     (view as TextView).setTextColor(textColor)
                 }

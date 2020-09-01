@@ -9,7 +9,7 @@ import java.util.*
 
 object SkinManager : Observable(){
     private lateinit var mContext : Application
-    private val skinActivityLifecycle by lazy (){ ApplicationActivityLifecycle(this) }
+    private val skinActivityLifecycle by lazy { ApplicationActivityLifecycle(this) }
 
 
     fun init(context : Application){

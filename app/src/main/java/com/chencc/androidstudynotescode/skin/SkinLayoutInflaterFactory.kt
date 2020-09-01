@@ -3,6 +3,7 @@ package com.chencc.androidstudynotescode.skin
 import android.app.Activity
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.widget.ThemeUtils
@@ -35,7 +36,7 @@ class SkinLayoutInflaterFactory(var activity: Activity) : LayoutInflater.Factory
         var view = createSDKView(name, context, attrs)
         // 如果 view == null  说明 是 androidx 支持包或者我们的自定义view 不用拼前缀直接反射创建
         if (view == null){
-            view == createView(name, context, attrs)
+            view = createView(name, context, attrs)
         }
         // view 不为空，收集View 需要换肤的属性并保存
         if (view != null){
@@ -55,7 +56,7 @@ class SkinLayoutInflaterFactory(var activity: Activity) : LayoutInflater.Factory
      */
     private fun createSDKView(name: String, context: Context, attrs: AttributeSet): View? {
         // 如果包含 . 则不是SDK 中的View( 如 TextView 等)   可能是  androidx 支持包或者我们的自定义view
-        if (-1 == name.indexOf(".")) {
+        if (-1 != name.indexOf(".")) {
             return null
         }
         // 不包含的话就要在解析的节点 name 之前 拼上  android.widget.  尝试去反射 创建

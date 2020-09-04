@@ -17,6 +17,7 @@ import com.chencc.androidstudynotescode.androidjvm_class_test.Test
 import com.chencc.androidstudynotescode.androidjvm_class_test.Test.test
 import com.chencc.androidstudynotescode.customview.flowLayout.TestFlowActivity
 import com.chencc.androidstudynotescode.customview.viewpager.TestViewPagerActivity
+import com.chencc.androidstudynotescode.nestedscroll.NestedScrollActivity
 import com.chencc.androidstudynotescode.skin.SkinTestActivity
 import com.chencc.androidstudynotescode.utils.getResId
 import dalvik.system.DexClassLoader
@@ -45,6 +46,9 @@ class MainActivity : AppCompatActivity() {
         }
         text3.setOnClickListener {
             startActivity(Intent(this@MainActivity, TestViewPagerActivity::class.java))
+        }
+        text4.setOnClickListener {
+            startActivity(Intent(this@MainActivity, NestedScrollActivity::class.java))
         }
 
 

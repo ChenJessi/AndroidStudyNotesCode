@@ -2,47 +2,68 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_button_bg1"
+    android:background="@color/colorAccent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/text1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/color_button_bg"
-        android:paddingVertical="10dp"
-        android:paddingHorizontal="20dp"
-        android:textColor="@color/color_text"
-        android:text="换肤"/>
+    <com.chencc.androidstudynotescode.customview.flowLayout.FlowLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@color/color_button_bg"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="20dp"
+            android:textColor="@color/color_text"
+            android:text="换肤"/>
 
-    <TextView
-        android:id="@+id/text2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toRightOf="@id/text1"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textColor="@color/color_text1"
-        android:paddingVertical="10dp"
-        android:paddingHorizontal="20dp"
-        android:layout_marginLeft="10dp"
-        android:background="@color/color_button_bg1"
-        android:text="流式布局"/>
+        <TextView
+            android:id="@+id/text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toRightOf="@id/text1"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/color_text1"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="20dp"
+            android:layout_marginLeft="10dp"
+            android:background="@color/color_button_bg1"
+            android:text="流式布局"/>
 
 
-    <TextView
-        android:id="@+id/text3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintLeft_toRightOf="@id/text2"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textColor="@color/color_text2"
-        android:paddingVertical="10dp"
-        android:paddingHorizontal="20dp"
-        android:layout_marginLeft="10dp"
-        android:background="@color/color_button_bg2"
-        android:text="viewpager"/>
+        <TextView
+            android:id="@+id/text3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toRightOf="@id/text2"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/color_text2"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="20dp"
+            android:layout_marginLeft="10dp"
+            android:background="@color/color_button_bg2"
+            android:text="viewpager"/>
+
+        <TextView
+            android:id="@+id/text4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toRightOf="@id/text3"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/color_image_bg"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="10dp"
+            android:layout_marginLeft="15dp"
+            android:background="@color/color_button_bg3"
+            android:text="NestedScroll"/>
+
+
+    </com.chencc.androidstudynotescode.customview.flowLayout.FlowLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 

@@ -26,6 +26,8 @@
         <activity android:name=".customview.flowLayout.TestFlowActivity"/>
         <!-- 插件化换肤 -->
         <activity android:name=".skin.SkinTestActivity"/>
+        <!-- 自定义二级联动列表 处理滑动-->
+        <activity android:name=".nestedscroll.NestedScrollActivity"/>
     </application>
 
 </manifest>

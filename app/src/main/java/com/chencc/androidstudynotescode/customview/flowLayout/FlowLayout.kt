@@ -23,7 +23,7 @@ class FlowLayout : ViewGroup {
     private val allLines = mutableListOf<MutableList<View>>()           // 记录每一行的 View
     private val linesHeight = mutableListOf<Int>()           // 记录每一行的 View
 
-    private var mHorizontalSpacing: Int = dp2px(16f).toInt() //每个item横向间距
+    private var mHorizontalSpacing: Int = dp2px(10f).toInt() //每个item横向间距
 
     private var mVerticalSpacing: Int = dp2px(8f).toInt() //每个item纵向间距
 
@@ -113,6 +113,8 @@ class FlowLayout : ViewGroup {
         val heightMode = MeasureSpec.getMode(heightMeasureSpec)
         val widthMode = MeasureSpec.getMode(widthMeasureSpec)
 
+        // 如果尺寸是精确模式 就使用将确定的大小  如  "layout_width" = 100dp  那测量大小就是 100dp
+        // 否则就使用 实际计算出来的尺寸
         val realWidth = if (widthMode == MeasureSpec.EXACTLY) selfWidth else parentNeededWidth
         val realHeight = if (heightMode == MeasureSpec.EXACTLY) selfHeight else parentNeededHeight
 

@@ -30,8 +30,6 @@ class FlowLayout : ViewGroup {
 
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs){
-        Log.e(TAG, "FlowLayout  attrs : ${attrs}" )
-        attrs?.let { SkinAttribute().look(this, it) }
     }
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
         context,

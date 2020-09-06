@@ -28,6 +28,7 @@
         <activity android:name=".skin.SkinTestActivity"/>
         <!-- 自定义二级联动列表 处理滑动-->
         <activity android:name=".nestedscroll.NestedScrollActivity"/>
+        <activity android:name=".nestedscroll.NestedViewPagerActivityTest1"/>
     </application>
 
 </manifest>

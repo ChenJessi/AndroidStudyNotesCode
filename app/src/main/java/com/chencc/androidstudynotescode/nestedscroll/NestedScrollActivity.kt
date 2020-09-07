@@ -22,7 +22,7 @@ class NestedScrollActivity : AppCompatActivity() {
             startActivity(Intent(this@NestedScrollActivity, NestedViewPagerActivityTest1::class.java))
         }
         button2.setOnClickListener {
-
+            startActivity(Intent(this@NestedScrollActivity, NestedViewPagerActivityTest2::class.java))
         }
         button3.setOnClickListener {
 

@@ -19,6 +19,8 @@ class RecyclerAdapter(var mList : MutableList<String>) : RecyclerView.Adapter<Ba
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         holder.view.text = mList[position]
+        holder.view.textSize = 20f
+        holder.view.setPadding(0,30, 0, 30)
     }
 }
 

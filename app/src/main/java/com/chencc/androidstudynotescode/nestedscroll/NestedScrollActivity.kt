@@ -23,12 +23,15 @@ class NestedScrollActivity : AppCompatActivity() {
         }
         button2.setOnClickListener {
             startActivity(Intent(this@NestedScrollActivity, NestedViewPagerActivityTest2::class.java))
+
         }
         button3.setOnClickListener {
+            startActivity(Intent(this@NestedScrollActivity, NestedViewPagerActivityTest3::class.java))
 
         }
         button4.setOnClickListener {
-
+            // ÍêÉÆÐ§¹û
+            startActivity(Intent(this@NestedScrollActivity, NestedViewPagerActivity::class.java))
         }
     }
 }

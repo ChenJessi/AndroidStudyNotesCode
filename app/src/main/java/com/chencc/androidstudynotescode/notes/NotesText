@@ -1,0 +1,120 @@
+
+
+
+
+    /**
+     * 事件分发极简流畅伪代码
+     */
+    fun dispatchTouchEvent(ev: MotionEvent): Boolean {
+        var result = false          //  默认事件没有被消费过
+        var intercept = false       // 决定是否拦截
+        if (!requestDisallowInterceptTouchEvent()) {        //  如果不拦截， 就交给子View
+            intercept = onInterceptTouchEvent(ev)
+        }
+        //  如果不拦截 并且事件类型为预期的类型
+        // 找出接收的子View  看是否有子View 拦截
+        if (!intercept && (ACTION_DOWN || ACTION_POINTER_DOWN || ACTION_HOVER_MOVE)) {
+            for (i in (childrenCount - 1) downTo 0) {
+                mFirstTouchTarget = child.dispatchTouchEvent(ev)
+            }
+        }
+        /**
+         * 事件分发
+         */
+        if (mFirstTouchTarget == null) {      // 如果没有被子View 消费， 就交给 onTouchEvent 处理
+            result = onTouchEvent(ev)
+        } else {
+            for (touchTarget: TouchTarget in mFirstTouchTarget) {        // 从 mFirstTouchTarget 中取出 mFirstTouchTarget.next
+                result = touchTarget.child.dispatchTouchEvent(ev)
+            }
+        }
+
+        return result
+    }
+
+
+
+
+
+        fun dispatchTouchEvent(event: MotionEvent): Boolean {
+            ......
+            var result = false               // 函数返回值，主要告诉调用者是否消费了事件
+            if (onFilterTouchEventForSecurity(event)) {
+
+                val li: ListenerInfo = mListenerInfo
+
+                /**
+                 * 如果设置了 onTouchListener 并且 当前 view 可以点击 就调用监听器的 onTouch 方法
+                 * 如果 onTouch 方法返回为true 就设置 result 为 true
+                 */
+                if (li != null && li.mOnTouchListener != null
+                    && (mViewFlags & ENABLED_MASK) == ENABLED
+                && li.mOnTouchListener.onTouch(this, event)) {
+                    result = true
+                }
+
+                /**
+                 * 如果 result 为false  则调用自身的 onTouchEvent 方法
+                 *  如果 onTouchEvent 返回值为true 则 result 赋值为 true
+                 */
+                if (!result && onTouchEvent(event)) {
+                     result = true;
+                 }
+
+            }
+            ......
+            return result
+        }
+
+
+        /**
+         *  简化伪代码
+         */
+        fun dispatchTouchEvent(event : MotionEvent) : Boolean{
+
+            if(mOnTouchListener.onTouch(this, event)){          // 如果我们自己设置的监听器 返回为true 则返回为true
+                return true
+            } else if(onTouchEvent(event)){            // 如果自身的 onTouchEvent 处理了事件 也返回为true
+                return true
+            }
+
+            return false                        // 否则就返回为false
+        }
+
+
+
+        fun onTouchEvent(event : MotionEvent) : Boolean {
+            ......
+            val action = event.action
+
+            /**
+             *  检查各种 clickable
+             */
+
+             val clickable = ((viewFlags & CLICKABLE) == CLICKABLE
+                                           || (viewFlags & LONG_CLICKABLE) == LONG_CLICKABLE)
+                                           || (viewFlags & CONTEXT_CLICKABLE) == CONTEXT_CLICKABLE;
+            if(clickable) {
+
+                when(action){
+                    MotionEvent.ACTION_UP -> {
+                        ...
+                        removeLongPressCallback();  // 移除长按事件
+                        ......
+                        performClickInternal();     // 检查单机事件  实际上是 performClickInternal() ->  performClick() 内部进行检查
+                        ...
+                    }
+
+                    MotionEvent.ACTION_DOWN -> {
+                        ...
+                        checkForLongClick(...)      // 检测长按
+                        ...
+                    }
+                    ...
+                }
+
+               return true                // 表示事件被消费
+            }
+            ......
+            return false
+        }

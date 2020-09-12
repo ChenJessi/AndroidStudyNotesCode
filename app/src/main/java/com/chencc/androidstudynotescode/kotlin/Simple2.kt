@@ -11,13 +11,6 @@ fun main() {
 //    for (i in 0 until 9){
 //        println("i1  : $i")
 //    }
-    var b = mutableListOf<MutableList<Int>>()
-    var a = mutableListOf<Int>(1,2,3)
-
-    println(b)
-    b.add(a)
-    a = mutableListOf()
-    println(b)
 //    for (i in 9 downTo 0){
 //        println("i1  : $i")
 //    }
@@ -29,4 +22,16 @@ fun main() {
 //    for (i in 0..9 step 3){
 //        println("i3  : $i")
 //    }
+
+
+
+
+
+//    var b = mutableListOf<MutableList<Int>>()
+//    var a = mutableListOf<Int>(1,2,3)
+//
+//    println(b)
+//    b.add(a)
+//    a = mutableListOf()
+//    println(b)
 }

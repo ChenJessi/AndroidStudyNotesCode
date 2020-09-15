@@ -20,6 +20,7 @@ import com.chencc.androidstudynotescode.customview.viewpager.TestViewPagerActivi
 import com.chencc.androidstudynotescode.nestedscroll.NestedScrollActivity
 import com.chencc.androidstudynotescode.skin.SkinTestActivity
 import com.chencc.androidstudynotescode.utils.getResId
+import com.chencc.androidstudynotescode.view_dispatch.ViewDispatchActivity
 import dalvik.system.DexClassLoader
 import dalvik.system.PathClassLoader
 import kotlinx.android.synthetic.main.activity_main.*
@@ -50,6 +51,9 @@ class MainActivity : AppCompatActivity() {
         text4.setOnClickListener {
             startActivity(Intent(this@MainActivity, NestedScrollActivity::class.java))
         }
+        text5.setOnClickListener {
+            startActivity(Intent(this@MainActivity, ViewDispatchActivity::class.java))
+        }
 
 
     }
@@ -57,7 +61,7 @@ class MainActivity : AppCompatActivity() {
     /**
      * 测试协程
      */
-    fun test1(){
+    fun test1() {
         GlobalScope.launch {
 
             launch {
@@ -96,8 +100,6 @@ class MainActivity : AppCompatActivity() {
 
         MLog("test11111===========2 : ${Thread.currentThread().name}")
     }
-
-
 
 
 //    fun testView() {
@@ -142,6 +144,6 @@ suspend fun testxc1() = withContext(Dispatchers.IO) {
 //    }
 //}
 
-fun MLog(string: String){
-    Log.e("TAG", string )
+fun MLog(string: String) {
+    Log.e("TAG", string)
 }

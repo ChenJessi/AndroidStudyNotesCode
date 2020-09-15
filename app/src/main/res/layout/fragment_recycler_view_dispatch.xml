@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.chencc.androidstudynotescode.view_dispatch.MySwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.chencc.androidstudynotescode.view_dispatch.DispatchRecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.chencc.androidstudynotescode.view_dispatch.DispatchRecyclerView>
+
+</com.chencc.androidstudynotescode.view_dispatch.MySwipeRefreshLayout>

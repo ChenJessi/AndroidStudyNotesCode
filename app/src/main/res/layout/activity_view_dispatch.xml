@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.chencc.androidstudynotescode.customview.flowLayout.FlowLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:insetBottom="0dp"
+        android:insetTop="0dp"
+        android:insetLeft="0dp"
+        app:strokeColor="@color/color_text1"
+        app:strokeWidth="4dp"
+        app:cornerRadius="15dp"
+        android:textAllCaps="false"
+        android:text="viewpager_recycler"
+        android:textColor="@color/color_text"
+        android:backgroundTint="@color/colorPrimary"/>
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:insetBottom="0dp"
+        android:insetTop="0dp"
+        android:insetLeft="0dp"
+        app:strokeColor="@color/color_flow_bg"
+        app:strokeWidth="4dp"
+        app:cornerRadius="15dp"
+        android:textAllCaps="false"
+        android:text="viewpager_swiperefresh"
+        android:textColor="@color/color_text"
+        android:backgroundTint="@color/color_button_bg"/>
+
+</com.chencc.androidstudynotescode.customview.flowLayout.FlowLayout>

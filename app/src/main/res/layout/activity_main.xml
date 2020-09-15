@@ -54,14 +54,26 @@
             app:layout_constraintLeft_toRightOf="@id/text3"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:textColor="@color/color_image_bg"
+            android:textColor="@color/color_text1"
             android:paddingHorizontal="10dp"
             android:paddingVertical="10dp"
             android:layout_marginLeft="15dp"
             android:background="@color/color_button_bg3"
             android:text="NestedScroll"/>
 
-
+        <TextView
+            android:id="@+id/text5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toRightOf="@id/text3"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/color_text"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="10dp"
+            android:layout_marginLeft="15dp"
+            android:background="@color/color_text2"
+            android:text="滑动冲突"/>
     </com.chencc.androidstudynotescode.customview.flowLayout.FlowLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

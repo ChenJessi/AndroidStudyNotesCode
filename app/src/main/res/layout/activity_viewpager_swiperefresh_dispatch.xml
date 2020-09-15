@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.chencc.androidstudynotescode.view_dispatch.CustomSRL2
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.chencc.androidstudynotescode.view_dispatch.CustomVPInner
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </com.chencc.androidstudynotescode.view_dispatch.CustomSRL2>
+</androidx.constraintlayout.widget.ConstraintLayout>

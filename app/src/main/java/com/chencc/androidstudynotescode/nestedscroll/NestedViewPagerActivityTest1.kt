@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chencc.androidstudynotescode.R
+import com.chencc.androidstudynotescode.adapter.ViewPager2Adapter
 import com.chencc.androidstudynotescode.adapter.ViewPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -23,7 +24,7 @@ class NestedViewPagerActivityTest1 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_nested_viewpager_test1)
-        viewPager.adapter = ViewPagerAdapter(this@NestedViewPagerActivityTest1, initRecyclerViewFraments())
+        viewPager.adapter = ViewPager2Adapter(this@NestedViewPagerActivityTest1, initRecyclerViewFraments())
         val labels = arrayOf("linear", "scroll", "recycler")
         TabLayoutMediator(tabLayout , viewPager, object :TabLayoutMediator.TabConfigurationStrategy{
             override fun onConfigureTab(tab: TabLayout.Tab, position: Int) {

@@ -74,6 +74,24 @@
             android:layout_marginLeft="15dp"
             android:background="@color/color_text2"
             android:text="滑动冲突"/>
+
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:insetBottom="0dp"
+            android:insetTop="0dp"
+            android:insetLeft="0dp"
+            app:strokeColor="@color/color_button_bg3"
+            app:strokeWidth="4dp"
+            app:cornerRadius="15dp"
+            android:textAllCaps="false"
+            app:backgroundTint="@null"
+            android:text="文字绘制"
+            android:textColor="@color/color_text"
+            android:backgroundTint="@color/color_bg"/>
     </com.chencc.androidstudynotescode.customview.flowLayout.FlowLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

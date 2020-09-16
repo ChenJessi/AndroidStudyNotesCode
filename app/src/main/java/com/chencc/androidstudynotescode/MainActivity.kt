@@ -17,6 +17,7 @@ import com.chencc.androidstudynotescode.androidjvm_class_test.Test
 import com.chencc.androidstudynotescode.androidjvm_class_test.Test.test
 import com.chencc.androidstudynotescode.customview.flowLayout.TestFlowActivity
 import com.chencc.androidstudynotescode.customview.viewpager.TestViewPagerActivity
+import com.chencc.androidstudynotescode.draw_text.DrawTextActivity
 import com.chencc.androidstudynotescode.nestedscroll.NestedScrollActivity
 import com.chencc.androidstudynotescode.skin.SkinTestActivity
 import com.chencc.androidstudynotescode.utils.getResId
@@ -54,7 +55,12 @@ class MainActivity : AppCompatActivity() {
         text5.setOnClickListener {
             startActivity(Intent(this@MainActivity, ViewDispatchActivity::class.java))
         }
-
+        /**
+         * 文字绘制
+         */
+        button6.setOnClickListener {
+            startActivity(Intent(this@MainActivity, DrawTextActivity::class.java))
+        }
 
     }
 

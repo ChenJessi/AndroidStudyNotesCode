@@ -38,6 +38,11 @@
         <activity android:name=".view_dispatch.RecyclerViewViewPagerActivity"/>
         <activity android:name=".view_dispatch.SwipeRefreshViewPagerActivity"/>
 
+        <!--文字绘制-->
+        <activity android:name=".draw_text.DrawTextActivity"/>
+        <activity android:name=".draw_text.AssistLineActivity"/>
+        <activity android:name=".draw_text.TextMeasureActivity"/>
+
 
     </application>
 

@@ -34,8 +34,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAllCaps="false"
-            android:text=""
+            android:text="变色文字演示"
             android:textColor="@color/color_text"
             android:backgroundTint="@color/color_button_bg"/>
+
     </com.chencc.androidstudynotescode.customview.flowLayout.FlowLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

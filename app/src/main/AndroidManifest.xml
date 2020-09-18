@@ -42,6 +42,8 @@
         <activity android:name=".draw_text.DrawTextActivity"/>
         <activity android:name=".draw_text.AssistLineActivity"/>
         <activity android:name=".draw_text.TextMeasureActivity"/>
+        <activity android:name=".draw_text.ColorChangeActivity"/>
+
 
 
     </application>

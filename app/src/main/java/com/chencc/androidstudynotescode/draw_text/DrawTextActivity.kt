@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.activity_drawtext.*
 /**
  * 文字绘制
  */
-class DrawTextActivity : AppCompatActivity(){
+class DrawTextActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_drawtext)
@@ -26,6 +26,12 @@ class DrawTextActivity : AppCompatActivity(){
          */
         button2.setOnClickListener {
             startActivity(Intent(this@DrawTextActivity, TextMeasureActivity::class.java))
+        }
+        /**
+         * 变色文字演示
+         */
+        button3.setOnClickListener {
+            startActivity(Intent(this@DrawTextActivity, ColorChangeActivity::class.java))
         }
     }
 }

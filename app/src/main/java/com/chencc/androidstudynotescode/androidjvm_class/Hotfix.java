@@ -38,7 +38,7 @@ public class Hotfix {
             } catch (Throwable e) {
                 e.printStackTrace();
             }
-        }else {
+        } else {
                 // sdk 23  6.0及以上
             try {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){

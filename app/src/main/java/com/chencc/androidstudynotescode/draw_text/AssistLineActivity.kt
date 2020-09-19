@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_color_change.*
 /**
  * 文字辅助线
  */
-class AssistLineActivity : AppCompatActivity(){
+class AssistLineActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_assist_line)
@@ -25,7 +25,7 @@ class AssistLineActivity : AppCompatActivity(){
 /**
  * 文字测量演示
  */
-class TextMeasureActivity : AppCompatActivity(){
+class TextMeasureActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setContentView(TextMeasureView(this))
@@ -34,10 +34,11 @@ class TextMeasureActivity : AppCompatActivity(){
 }
 
 private const val TAG = "AssistLineActivity"
+
 /**
  * 变色文字 + ViewPager
  */
-class ColorChangeActivity : AppCompatActivity(){
+class ColorChangeActivity : AppCompatActivity() {
 
     private val mViewList by lazy { mutableListOf<ColorChangeTextView>() }
 
@@ -45,7 +46,7 @@ class ColorChangeActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_color_change)
 
-        viewPager.adapter = ViewPager2Adapter(this@ColorChangeActivity , initReacyclerViewData())
+        viewPager.adapter = ViewPager2Adapter(this@ColorChangeActivity, initReacyclerViewData())
         viewPager.registerOnPageChangeCallback(initChangeCallback())
 
 //        tvColorChange.setDirection(DIRECTION_BOTTOM)
@@ -56,7 +57,7 @@ class ColorChangeActivity : AppCompatActivity(){
         mViewList.add(tvColorChange3)
     }
 
-    private fun initReacyclerViewData() : MutableList<Fragment>{
+    private fun initReacyclerViewData(): MutableList<Fragment> {
         return mutableListOf<Fragment>().apply {
             add(RecyclerViewFragment())
             add(RecyclerViewFragment())
@@ -64,7 +65,7 @@ class ColorChangeActivity : AppCompatActivity(){
         }
     }
 
-    private fun initChangeCallback() : ViewPager2.OnPageChangeCallback {
+    private fun initChangeCallback(): ViewPager2.OnPageChangeCallback {
         return object : ViewPager2.OnPageChangeCallback() {
             override fun onPageScrollStateChanged(state: Int) {
 
@@ -73,48 +74,40 @@ class ColorChangeActivity : AppCompatActivity(){
             override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
                 Log.e(TAG, "onPageScrolled:   $position     $positionOffset   $positionOffsetPixels}")
 
-//            if (positionOffset >= 0){
-//
-//                val left = mViewList[position]
-//                left.setDirection(DIRECTION_LEFT)
-//                if (position + 1 < mViewList.size){
-//                    val right = mViewList[position + 1]
-//                    right.setDirection(DIRECTION_RIGHT)
-//                }
-//
-//            }
-
-
-
-
-
-
-
-
-                when(position){
-                    0 -> {
-
-                        tvColorChange.setTextChangeColor(Color.BLACK)
-                        tvColorChange.setTextColor(Color.RED)
-                        tvColorChange.setPercent(positionOffset)
-                        tvColorChange2.setTextColor(Color.BLACK)
-                        tvColorChange2.setTextChangeColor(Color.RED)
-                        tvColorChange2.setPercent(positionOffset)
-                    }
-                    1 -> {
-                        tvColorChange2.setTextChangeColor(Color.BLACK)
-                        tvColorChange2.setTextColor(Color.RED)
-                        tvColorChange2.setPercent(positionOffset)
-                        tvColorChange3.setTextColor(Color.BLACK)
-                        tvColorChange3.setTextChangeColor(Color.RED)
-                        tvColorChange3.setPercent(positionOffset)
-                    }
-                    2 -> {
-                        tvColorChange3.setTextChangeColor(Color.BLACK)
-                        tvColorChange3.setTextColor(Color.RED)
-                        tvColorChange3.setPercent(positionOffset)
-                    }
+                if (positionOffset > 0) {
+                    val left = mViewList[position]
+                    left.setDirection(DIRECTION_RIGHT)
+                    left.setPercent(1 - positionOffset)
+                    val right = mViewList[position + 1]
+                    right.setDirection(DIRECTION_LEFT)
+                    right.setPercent(positionOffset)
                 }
+
+
+//                when(position){
+//                    0 -> {
+//
+//                        tvColorChange.setTextChangeColor(Color.BLACK)
+//                        tvColorChange.setTextColor(Color.RED)
+//                        tvColorChange.setPercent(positionOffset)
+//                        tvColorChange2.setTextColor(Color.BLACK)
+//                        tvColorChange2.setTextChangeColor(Color.RED)
+//                        tvColorChange2.setPercent(positionOffset)
+//                    }
+//                    1 -> {
+//                        tvColorChange2.setTextChangeColor(Color.BLACK)
+//                        tvColorChange2.setTextColor(Color.RED)
+//                        tvColorChange2.setPercent(positionOffset)
+//                        tvColorChange3.setTextColor(Color.BLACK)
+//                        tvColorChange3.setTextChangeColor(Color.RED)
+//                        tvColorChange3.setPercent(positionOffset)
+//                    }
+//                    2 -> {
+//                        tvColorChange3.setTextChangeColor(Color.BLACK)
+//                        tvColorChange3.setTextColor(Color.RED)
+//                        tvColorChange3.setPercent(positionOffset)
+//                    }
+//                }
 
             }
 

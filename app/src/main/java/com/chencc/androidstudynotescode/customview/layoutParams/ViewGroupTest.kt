@@ -1,9 +1,8 @@
-package com.chencc.androidstudynotescode.customview
+package com.chencc.androidstudynotescode.customview.layoutParams
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.ViewGroup
-import androidx.viewpager.widget.ViewPager
 import com.chencc.androidstudynotescode.R
 
 
@@ -28,20 +27,28 @@ class ViewGroupTest(private val mContext: Context) : ViewGroup(mContext){
      * 生成默认的 LayoutParams
      */
     override fun generateDefaultLayoutParams(): LayoutParams {
-        return MarginLayoutParamsTest(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
+        return MarginLayoutParamsTest(
+            LayoutParams.MATCH_PARENT,
+            LayoutParams.WRAP_CONTENT
+        )
     }
 
     /**
      * 对传入的 layoutParams 进行转化
      */
     override fun generateLayoutParams(p: LayoutParams?): LayoutParams {
-        return MarginLayoutParamsTest(p)
+        return MarginLayoutParamsTest(
+            p
+        )
     }
     /**
      * 对传入的 layoutParams 进行转化
      */
     override fun generateLayoutParams(attrs: AttributeSet?): LayoutParams {
-        return  MarginLayoutParamsTest(context, attrs)
+        return MarginLayoutParamsTest(
+            context,
+            attrs
+        )
     }
 }
 

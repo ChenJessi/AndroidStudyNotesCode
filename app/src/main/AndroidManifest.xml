@@ -20,10 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- viewpager测试-->
-        <activity android:name=".customview.viewpager.TestViewPagerActivity"/>
-        <!-- FlowLayout 流式布局-->
-        <activity android:name=".customview.flowLayout.TestFlowActivity"/>
+
         <!-- 插件化换肤 -->
         <activity android:name=".skin.SkinTestActivity"/>
         <!-- 自定义二级联动列表 处理滑动-->
@@ -44,7 +41,14 @@
         <activity android:name=".draw_text.TextMeasureActivity"/>
         <activity android:name=".draw_text.ColorChangeActivity"/>
 
-
+        <!--自定义view-->
+        <activity android:name=".customview.CustomViewActivity"/>
+        <!-- viewpager测试-->
+        <activity android:name=".customview.viewpager.TestViewPagerActivity"/>
+        <!-- FlowLayout 流式布局-->
+        <activity android:name=".customview.flowLayout.TestFlowActivity"/>
+        <!--灵动的锦鲤  自定义drawable-->
+        <activity android:name=".customview.fishview.FishActivity"/>
 
     </application>
 

@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.chencc.androidstudynotescode.androidjvm_class_test.Test
 import com.chencc.androidstudynotescode.androidjvm_class_test.Test.test
+import com.chencc.androidstudynotescode.customview.CustomViewActivity
 import com.chencc.androidstudynotescode.customview.flowLayout.TestFlowActivity
 import com.chencc.androidstudynotescode.customview.viewpager.TestViewPagerActivity
 import com.chencc.androidstudynotescode.draw_text.DrawTextActivity
@@ -26,6 +27,9 @@ import dalvik.system.DexClassLoader
 import dalvik.system.PathClassLoader
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import java.util.zip.ZipFile
 
 class MainActivity : AppCompatActivity() {
@@ -44,10 +48,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this@MainActivity, SkinTestActivity::class.java))
         }
         text2.setOnClickListener {
-            startActivity(Intent(this@MainActivity, TestFlowActivity::class.java))
-        }
-        text3.setOnClickListener {
-            startActivity(Intent(this@MainActivity, TestViewPagerActivity::class.java))
+            startActivity(Intent(this@MainActivity, CustomViewActivity::class.java))
         }
         text4.setOnClickListener {
             startActivity(Intent(this@MainActivity, NestedScrollActivity::class.java))
@@ -62,25 +63,63 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this@MainActivity, DrawTextActivity::class.java))
         }
 
+//        text0()
     }
+
+
+    fun text0() {
+        GlobalScope.launch {
+            flow<Int> {
+                (60 downTo 0).forEach {
+                    delay(1000)
+                    emit(it)
+                }
+            }
+                .flowOn(Dispatchers.Main)
+                .collect {
+                    Log.e("TAG", "text0:   $it")
+                }
+        }
+    }
+    fun launchUI(block : suspend ()->Unit){
+        GlobalScope.launch {
+            block.invoke()
+        }
+    }
+
+    fun test2(){
+        launchUI {
+            flow<Int> {
+                (60 downTo 0).forEach {
+                    delay(1000)
+                    emit(it)
+                }
+            }
+                .flowOn(Dispatchers.Main)
+                .collect {
+                    Log.e("TAG", "text0:   $it")
+                }
+        }
+    }
+
 
     /**
      * 测试协程
      */
     fun test1() {
-        GlobalScope.launch {
-
-            launch {
-                testxc1()
-                testxc()
-            }
-
-            withContext(Dispatchers.IO) {
-                MLog("t===========1 : ${Thread.currentThread().name}")
-
-                delay(2000)
-                MLog("t===========3 : ${Thread.currentThread().name}")
-            }
+//        GlobalScope.launch {
+//
+//            launch {
+//                testxc1()
+//                testxc()
+//            }
+//
+//            withContext(Dispatchers.IO) {
+//                MLog("t===========1 : ${Thread.currentThread().name}")
+//
+//                delay(2000)
+//                MLog("t===========3 : ${Thread.currentThread().name}")
+//            }
 //            withContext(Dispatchers.IO){
 //                println("===========8 : ${Thread.currentThread().name}")
 //                delay(2000)
@@ -101,10 +140,10 @@ class MainActivity : AppCompatActivity() {
 //            withContext(Dispatchers.Main){
 //                println("===========7 : ${Thread.currentThread().name}")
 //            }
-        }
+//        }
 
 
-        MLog("test11111===========2 : ${Thread.currentThread().name}")
+//        MLog("test11111===========2 : ${Thread.currentThread().name}")
     }
 
 

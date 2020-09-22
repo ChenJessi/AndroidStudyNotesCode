@@ -24,11 +24,16 @@ fun main() {
 //    println((stu + stu1).name)      // Êä³ö name
 
 
-    var test2 = test2(1, "test")
-    val(v1 ,v2) = test2.copy(id = 2)
-    val t2 = test2.copy(id = 2)
-    println(v1)
-    println(v2)
+//    var test2 = test2(1, "test")
+//    val(v1 ,v2) = test2.copy(id = 2)
+//    val t2 = test2.copy(id = 2)
+//    println(v1)
+//    println(v2)
+
+    var a = arrayOf<String>("0","1","2","3")
+    println("${a.toList().toString()}")
+    a[0] = "aaa"
+    println("${a.toList()}")
 
 }
 

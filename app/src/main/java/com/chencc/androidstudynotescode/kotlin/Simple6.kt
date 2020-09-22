@@ -9,26 +9,27 @@ import kotlinx.coroutines.*
  */
 fun main() {
 
-    GlobalScope.launch {
+//    GlobalScope.launch {
+//
+//        withContext(Dispatchers.IO){
+//            println("===========8 : ${Thread.currentThread().name}")
+//            delay(2000)
+//            println("===========9 : ${Thread.currentThread().name}")
+//        }
+//        withContext(Dispatchers.Default){
+//            println("===========6 : ${Thread.currentThread().name}")
+//            delay(3000)
+//            println("===========1 : ${Thread.currentThread().name}")
+//        }
+//        println("===========5 : ${Thread.currentThread().name}")
+//        test()
+//        println("===========4 : ${Thread.currentThread().name}")
+//        withContext(Dispatchers.Default){
+//            println("===========7 : ${Thread.currentThread().name}")
+//        }
+//    }
+//    Thread.sleep(20000)
 
-        withContext(Dispatchers.IO){
-            println("===========8 : ${Thread.currentThread().name}")
-            delay(2000)
-            println("===========9 : ${Thread.currentThread().name}")
-        }
-        withContext(Dispatchers.Default){
-            println("===========6 : ${Thread.currentThread().name}")
-            delay(3000)
-            println("===========1 : ${Thread.currentThread().name}")
-        }
-        println("===========5 : ${Thread.currentThread().name}")
-        test()
-        println("===========4 : ${Thread.currentThread().name}")
-        withContext(Dispatchers.Default){
-            println("===========7 : ${Thread.currentThread().name}")
-        }
-    }
-    Thread.sleep(20000)
 }
 
 suspend fun test(){

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.chencc.androidstudynotescode.customview.flowLayout.FlowLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_text1"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="20dp"
+            android:layout_marginLeft="10dp"
+            android:background="@color/color_button_bg1"
+            android:text="流式布局"/>
+
+        <TextView
+            android:id="@+id/text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/color_text2"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="20dp"
+            android:layout_marginLeft="10dp"
+            android:background="@color/color_button_bg2"
+            android:text="viewpager"/>
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:insetBottom="0dp"
+            android:insetTop="0dp"
+            android:insetLeft="0dp"
+            android:textAllCaps="false"
+            app:backgroundTint="@null"
+            android:text="锦鲤"
+            android:textColor="@color/color_text"
+            android:backgroundTint="@color/color_bg"/>
+
+
+    </com.chencc.androidstudynotescode.customview.flowLayout.FlowLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

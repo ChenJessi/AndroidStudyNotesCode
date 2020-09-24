@@ -4,6 +4,8 @@ import android.animation.ValueAnimator
 import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.util.Log
+import android.view.animation.LinearInterpolator
+import kotlin.math.abs
 import kotlin.math.cos
 import kotlin.math.sin
 
@@ -42,10 +44,14 @@ class FishDrawable constructor() : Drawable(){
     /**
      *  鱼的重心点 所有的部件和动画都是以重心点为基准
      */
-    private val middlePoint by lazy{
+    val middlePoint by lazy{
         PointF(4.19f * HEAD_RADIUS, 4.19f * HEAD_RADIUS)
     }
+    /**
+     * 鱼头圆心的坐标
+     */
 
+    val headPoint by lazy { PointF() }
     /**
      * 鱼身旋转的角度
      */
@@ -77,13 +83,11 @@ class FishDrawable constructor() : Drawable(){
 
 
     override fun draw(canvas: Canvas) {
-//        val fishAngle = fishMainAngle
 
-        val fishAngle = fishMainAngle + sin(Math.toRadians(currentValue * 1.2 * frequence) * 10).toFloat()
+        val fishAngle = fishMainAngle + sin(Math.toRadians(currentValue * 1.2 * frequence)).toFloat() * 10f
 
-        Log.e(TAG, "draw: fishAngle    ${fishAngle}" )
         // 获取鱼头的圆心
-        val headPoint = calculatePoint(middlePoint, BODY_LENGTH / 2, fishAngle)
+        headPoint.set(calculatePoint(middlePoint, BODY_LENGTH / 2, fishAngle))
         canvas.drawCircle(headPoint.x, headPoint.y, HEAD_RADIUS, mPaint)
 
         // 画鱼右鳍d  右鳍开始点
@@ -98,21 +102,24 @@ class FishDrawable constructor() : Drawable(){
         val bodyBottomCenterPoint = calculatePoint(middlePoint,  BODY_LENGTH / 2, fishAngle - 180)
         canvas.drawCircle(bodyBottomCenterPoint.x, bodyBottomCenterPoint.y, BIG_CIRCLE_RADIUS, mPaint)
 
+        // 节肢1 的动画
+        val segmentAngle = fishMainAngle + cos(Math.toRadians(currentValue * 1.5 * frequence)).toFloat() * 15f
+        val segment2Angle = fishMainAngle + sin(Math.toRadians(currentValue * 1.5 * frequence)).toFloat() * 35f
         // 节肢1
-        val middleCenterPoint = makeSegment(canvas, bodyBottomCenterPoint, BIG_CIRCLE_RADIUS, MIDDLE_CIRCLE_RADIUS, FIND_MIDDLE_CIRCLE_LENGTH, fishAngle)
+        val middleCenterPoint = makeSegment(canvas, bodyBottomCenterPoint, BIG_CIRCLE_RADIUS, MIDDLE_CIRCLE_RADIUS, FIND_MIDDLE_CIRCLE_LENGTH, segmentAngle)
         // 节肢2
-        makeSegment(canvas, middleCenterPoint, MIDDLE_CIRCLE_RADIUS, SMALL_CIRCLE_RADIUS, FIND_SMALL_CIRCLE_LENGTH, fishAngle)
+        makeSegment(canvas, middleCenterPoint, MIDDLE_CIRCLE_RADIUS, SMALL_CIRCLE_RADIUS, FIND_SMALL_CIRCLE_LENGTH, segment2Angle)
 
         // 画尾部三角形
         //  大三角形
-        makeTriangel(canvas, middleCenterPoint, FIND_TRIANGLE_LENGTH, BIG_CIRCLE_RADIUS, fishAngle)
-        makeTriangel(canvas, middleCenterPoint, FIND_TRIANGLE_LENGTH - 20, BIG_CIRCLE_RADIUS - 30, fishAngle)
 
+        val findEdgeLength = abs(sin(Math.toRadians(currentValue * 1.5 * frequence)).toFloat() * BIG_CIRCLE_RADIUS)
+        val triangleAngle = fishMainAngle + sin(Math.toRadians(currentValue * 1.5 * frequence)).toFloat() * 35f
+        makeTriangle(canvas, middleCenterPoint, FIND_TRIANGLE_LENGTH, findEdgeLength, triangleAngle)
+        makeTriangle(canvas, middleCenterPoint, FIND_TRIANGLE_LENGTH - 20, findEdgeLength - 30, triangleAngle)
         // 鱼身
         makeBody(canvas, headPoint, bodyBottomCenterPoint, fishAngle)
     }
-
-
 
     /**
      * 绘制鱼身
@@ -142,7 +149,7 @@ class FishDrawable constructor() : Drawable(){
      * @param findLength  顶点到底边的垂直距离
      * @param sideLength  边长
      */
-    private fun makeTriangel(canvas: Canvas, vertexPoint : PointF , findLength: Float, sideLength : Float, fishAngle : Float){
+    private fun makeTriangle(canvas: Canvas, vertexPoint : PointF , findLength: Float, sideLength : Float, fishAngle : Float){
         // 三角形底边的中心坐标
         val bottomCenterPoint = calculatePoint(vertexPoint, findLength, fishAngle - 180)
         // 三角形底边两个点
@@ -164,7 +171,7 @@ class FishDrawable constructor() : Drawable(){
      * @param smallRadius 小圆半径
      * @param findLength 大圆中心点到小圆中心点的距离  即梯形上底到下底的垂直距离
      */
-    private fun makeSegment(canvas: Canvas, bottomCenterPoint: PointF, bigRadius : Float,  smallRadius : Float , findLength : Float , fishAngle: Float) : PointF {
+    private fun makeSegment(canvas: Canvas, bottomCenterPoint: PointF, bigRadius : Float,  smallRadius : Float , findLength : Float , fishAngle: Float ) : PointF {
 
         // 节肢 中圆
         val middleCenterPoint = calculatePoint(bottomCenterPoint,  findLength, fishAngle - 180)
@@ -196,13 +203,12 @@ class FishDrawable constructor() : Drawable(){
             duration = 3000
             // 无限循环
             repeatCount = ValueAnimator.INFINITE
-            // 重复模式  往复
-            repeatMode = ValueAnimator.REVERSE
-            
+            // 重复模式
+            repeatMode = ValueAnimator.RESTART
+            interpolator = LinearInterpolator()
             start()
         }.addUpdateListener {
             currentValue = it.animatedValue as Float
-            Log.e(TAG, "initAnimator:   $currentValue" )
             invalidateSelf()
         }
 

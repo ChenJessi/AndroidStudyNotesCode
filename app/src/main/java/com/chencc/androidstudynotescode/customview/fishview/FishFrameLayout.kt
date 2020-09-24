@@ -140,11 +140,29 @@ class FishFrameLayout : FrameLayout {
         val angleAOB = Math.toDegrees(acos(cosO).toDouble())
 
         /**
-         *  AO 中线的右上方
+         * direction = tan∠BAC - tan∠B0C
+         * C 点位 经B点做垂线与( Bx, Ay)  ( Bx, Oy) 的焦点
+         * 以 AO 中线 为准线
+         *  控制点B 在 AO 中线的右上方时 ：
+         *  1. B 在 A 的上方 ：
+         *      0  < tan∠BAC  <  90°，0  < tan∠B0C <  90°&& tan∠BAC  <  tan∠B0C  所以 ：direction =  (-a / -b) - ( -c / -d) < 0
+         *  2. B 在 A 的下方：
+         *      0  < tan∠BAC  <  90°，0  < tan∠B0C <  90°&& tan∠BAC  <  tan∠B0C  所以 ：direction =  (a / -b) - ( -c / -d) < 0
          *
-         *  tan∠ABC - tan∠OBC
+         *
+         *  控制点B 在 AO 中线的左上方时 ：   direction =  (-a / b) - ( -c / -d) < 0
+         *  t
+         *
+         *
+         *
          */
         val direction = (A.y - B.y) / (A.x - B.x) - (O.y - B.y) / (O.x - B.x)
+        if (direction == 0f){
+
+        }else{
+
+        }
+
     }
 }
 

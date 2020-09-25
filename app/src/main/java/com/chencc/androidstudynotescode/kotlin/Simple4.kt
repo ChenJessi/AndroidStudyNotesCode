@@ -30,10 +30,16 @@ fun main() {
 //    println(v1)
 //    println(v2)
 
-    var a = arrayOf<String>("0","1","2","3")
-    println("${a.toList().toString()}")
-    a[0] = "aaa"
-    println("${a.toList()}")
+//    var a = arrayOf<String>("0","1","2","3")
+//    println("${a.toList().toString()}")
+//    a[0] = "aaa"
+//    println("${a.toList()}")
+
+//    val tan = arrayOf<Int>()
+//    val tan1 = arrayOfNulls<Int>(2)
+//
+//    println(tan)
+//    println(tan.size)
 
 }
 

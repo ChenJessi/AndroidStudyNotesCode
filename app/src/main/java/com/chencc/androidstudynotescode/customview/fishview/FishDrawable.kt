@@ -3,7 +3,6 @@ package com.chencc.androidstudynotescode.customview.fishview
 import android.animation.ValueAnimator
 import android.graphics.*
 import android.graphics.drawable.Drawable
-import android.util.Log
 import android.view.animation.LinearInterpolator
 import kotlin.math.abs
 import kotlin.math.cos
@@ -13,6 +12,7 @@ private const val TAG = "FishDrawable"
 /**
  * UI - 灵动的锦鲤练习
  */
+
 class FishDrawable constructor() : Drawable(){
     // 透明度
     private val OTHER_ALPHA = 110
@@ -20,7 +20,7 @@ class FishDrawable constructor() : Drawable(){
      * 鱼 身上所有的尺寸都是以鱼头半径为单位绘制的
      */
     //鱼头半径
-    private var HEAD_RADIUS = 100f
+    var HEAD_RADIUS = 30f
     // 鱼身长度
     private var BODY_LENGTH = HEAD_RADIUS * 3.2f;
     // 寻找鱼鳍起始点坐标的线长
@@ -40,6 +40,19 @@ class FishDrawable constructor() : Drawable(){
     // --寻找大三角形底边中心点的线长
     private final var FIND_TRIANGLE_LENGTH = MIDDLE_CIRCLE_RADIUS * 2.7f;
 
+    private val mPath by lazy { Path() }
+    private val mPaint by lazy {
+        Paint().apply {
+            // 抗锯齿
+            isAntiAlias = true
+            // 填充类型
+            style = Paint.Style.FILL
+            // 防抖
+            isDither = true
+            // 设置颜色
+            setARGB(OTHER_ALPHA , 244, 92, 71)
+        }
+    }
 
     /**
      *  鱼的重心点 所有的部件和动画都是以重心点为基准
@@ -55,31 +68,14 @@ class FishDrawable constructor() : Drawable(){
     /**
      * 鱼身旋转的角度
      */
-    private var fishMainAngle = 0f
-    private val mPaint by lazy {
-        Paint().apply {
-            // 抗锯齿
-            isAntiAlias = true
-            // 填充类型
-            style = Paint.Style.FILL
-            // 防抖
-            isDither = true
-            // 设置颜色
-            setARGB(OTHER_ALPHA , 244, 92, 71)
-        }
-    }
-
-
-    private val mPath by lazy { Path() }
+    var fishMainAngle = 0f
 
     private var currentValue = 0f
-    private var frequence = 1f
+    var frequence = 1f
 
     init {
         initAnimator()
     }
-
-
 
 
     override fun draw(canvas: Canvas) {
@@ -96,7 +92,7 @@ class FishDrawable constructor() : Drawable(){
 
         // 画左鱼鳍
         val leftFinsPoint = calculatePoint(headPoint, FIND_FINS_LENGTH, fishAngle + 110)
-        makeFins(canvas, leftFinsPoint,fishAngle, false)
+        makeFins(canvas, leftFinsPoint, fishAngle, false)
         //节肢1 大圆
         // 大圆的圆心即为身体底部的中心
         val bodyBottomCenterPoint = calculatePoint(middlePoint,  BODY_LENGTH / 2, fishAngle - 180)
@@ -266,7 +262,7 @@ class FishDrawable constructor() : Drawable(){
      *  sinA = a / c
      *  cosA = b / c
      */
-    private fun calculatePoint(startPointF: PointF, length : Float, angle : Float) : PointF{
+     fun calculatePoint(startPointF: PointF, length: Float, angle: Float) : PointF{
         //  x坐标
         val deltaX =   cos(Math.toRadians(angle.toDouble())) * length
         // y坐标
@@ -287,7 +283,9 @@ class FishDrawable constructor() : Drawable(){
 
         // 计算 鱼鳍控制点的坐标
         //  鱼鳍控制点的高度为  1.8倍的鱼鳍长度  FINS_LENGTH * 1.8
-        val controlPoint = calculatePoint(startPointF, FINS_LENGTH * 1.8f, if (isRight) (fishAngle - controlAngle) else (fishAngle + controlAngle))
+
+        val finsLength = FINS_LENGTH * 1.8f + sin(Math.toRadians(currentValue * 1.5 )) * FINS_LENGTH
+        val controlPoint = calculatePoint(startPointF, finsLength.toFloat(), if (isRight) (fishAngle - controlAngle) else (fishAngle + controlAngle))
         // 绘制鱼鳍
         mPath.reset()
         mPath.moveTo(startPointF.x, startPointF.y)

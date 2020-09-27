@@ -28,8 +28,8 @@ class AssistLineActivity : AppCompatActivity() {
 class TextMeasureActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(TextMeasureView(this))
-        setContentView(ColorChangeTextView(this))
+        setContentView(TextMeasureView(this))
+//        setContentView(ColorChangeTextView(this))
     }
 }
 

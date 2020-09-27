@@ -22,8 +22,14 @@ class TitleItemDecoration : RecyclerView.ItemDecoration() {
         style = Paint.Style.FILL
         color = Color.RED
     }
+    val mTextPaint = Paint().apply{
+        textSize = 18f
+        color = Color.WHITE
+        style = Paint.Style.FILL
+        isAntiAlias = true
+    }
     val rect = Rect()
-
+    val fontMetrics = Paint.FontMetrics()
 
     override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDrawOver(c, parent, state)
@@ -44,6 +50,12 @@ class TitleItemDecoration : RecyclerView.ItemDecoration() {
                 if (isHead){
                     rect.set(left, (itemView.top - groupHeaderHeight).toInt(), right, itemView.top)
                     c.drawRect(rect, mPaint)
+
+                    val title = adapter.mList[position].title
+                    mPaint.getFontMetrics(fontMetrics)
+                    val baseLine = itemView.top - groupHeaderHeight / 2 + (fontMetrics.descent - fontMetrics.ascent) / 2
+                    c.drawText(title, 0, title.length, left.toFloat(), baseLine, mTextPaint)
+                    
                 }else {
                     rect.set(left, (itemView.top - decorationHeight).toInt(), right, itemView.top)
                     c.drawRect(rect, mPaint)

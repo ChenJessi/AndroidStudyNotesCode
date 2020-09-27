@@ -16,4 +16,4 @@ import java.io.RandomAccessFile
         return buffer
     }
 
-    fun dp2px(dp : Float):Float = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, Resources.getSystem().displayMetrics)
+

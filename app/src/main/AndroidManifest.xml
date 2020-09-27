@@ -49,6 +49,8 @@
         <activity android:name=".customview.flowLayout.TestFlowActivity"/>
         <!--灵动的锦鲤  自定义drawable-->
         <activity android:name=".customview.fishview.FishActivity"/>
+        <!--Decoration 练习-->
+        <activity android:name=".customview.decoration.DecorationActivity"/>
 
     </application>
 

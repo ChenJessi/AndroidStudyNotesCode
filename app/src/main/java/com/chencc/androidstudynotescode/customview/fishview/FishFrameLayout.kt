@@ -31,24 +31,24 @@ class FishFrameLayout : FrameLayout {
         }
     }
 
-    val mPaint by lazy {
+    val mPaint =
         Paint().apply {
             isAntiAlias = true
             isDither = true
             style = Paint.Style.STROKE
             color = Color.GRAY
         }
-    }
+
     val mPath = Path()
     private var touchX = 0f
     private var touchY = 0f
     var ripple = 0f
 
-    private val animation by lazy {
+    private val animation=
         ObjectAnimator.ofFloat(this, "ripple", 0f, 110f).apply {
             duration = 3000
         }
-    }
+
 
 
 

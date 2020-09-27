@@ -46,6 +46,19 @@
             android:backgroundTint="@color/color_bg"/>
 
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:insetBottom="0dp"
+            android:insetTop="0dp"
+            android:insetLeft="0dp"
+            android:textAllCaps="false"
+            app:backgroundTint="@null"
+            android:text="decoration"
+            android:textColor="@color/color_text"
+            android:backgroundTint="@color/colorPrimary"/>
+
     </com.chencc.androidstudynotescode.customview.flowLayout.FlowLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

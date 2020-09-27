@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chencc.androidstudynotescode.R
-import com.chencc.androidstudynotescode.nestedscroll.RecyclerAdapter
+import com.chencc.androidstudynotescode.adapter.RecyclerAdapter
 import kotlinx.android.synthetic.main.fragment_recycler_view_dispatch.*
 
 
@@ -29,7 +29,8 @@ class RecyclerViewFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recyclerView.layoutManager = LinearLayoutManager(activity)
-        val adapter = RecyclerAdapter(getData())
+        val adapter =
+            RecyclerAdapter(getData())
         recyclerView.adapter = adapter
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener(){
             val THRESHOLD_LOAD_MORE = 3

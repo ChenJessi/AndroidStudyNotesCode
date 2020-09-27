@@ -1,7 +1,5 @@
-package com.chencc.androidstudynotescode.nestedscroll
+package com.chencc.androidstudynotescode.adapter
 
-import android.content.Context
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -12,7 +10,11 @@ import androidx.recyclerview.widget.RecyclerView
  */
 class RecyclerAdapter(var mList : MutableList<String>) : RecyclerView.Adapter<BaseViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
-        return BaseViewHolder(TextView(parent.context))
+        return BaseViewHolder(
+            TextView(
+                parent.context
+            )
+        )
     }
 
     override fun getItemCount(): Int = mList.size

@@ -24,7 +24,7 @@ fun main() {
 //    }
 
 
-
+//    println(0 % 5)
 
 
 //    var b = mutableListOf<MutableList<Int>>()

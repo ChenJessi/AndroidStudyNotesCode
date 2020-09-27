@@ -3,7 +3,9 @@ package com.chencc.androidstudynotescode.customview
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
 import com.chencc.androidstudynotescode.R
+import com.chencc.androidstudynotescode.customview.decoration.DecorationActivity
 import com.chencc.androidstudynotescode.customview.fishview.FishActivity
 import com.chencc.androidstudynotescode.customview.flowLayout.TestFlowActivity
 import com.chencc.androidstudynotescode.customview.viewpager.TestViewPagerActivity
@@ -27,5 +29,9 @@ class CustomViewActivity  : AppCompatActivity() {
         button3.setOnClickListener {
             startActivity(Intent(this@CustomViewActivity, FishActivity::class.java))
         }
+        button4.setOnClickListener {
+            startActivity(Intent(this@CustomViewActivity, DecorationActivity::class.java))
+        }
+
     }
 }

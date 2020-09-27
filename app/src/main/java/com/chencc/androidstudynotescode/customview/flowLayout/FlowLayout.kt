@@ -23,9 +23,9 @@ class FlowLayout : ViewGroup {
     private val allLines = mutableListOf<MutableList<View>>()           // 记录每一行的 View
     private val linesHeight = mutableListOf<Int>()           // 记录每一行的 View
 
-    private var mHorizontalSpacing: Int = dp2px(10f).toInt() //每个item横向间距
+    private var mHorizontalSpacing: Int = 10f.dp2px.toInt() //每个item横向间距
 
-    private var mVerticalSpacing: Int = dp2px(8f).toInt() //每个item纵向间距
+    private var mVerticalSpacing: Int = 8f.dp2px.toInt() //每个item纵向间距
 
 
     constructor(context: Context?) : super(context)

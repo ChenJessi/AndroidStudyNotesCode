@@ -40,8 +40,8 @@ class FishDrawable constructor() : Drawable(){
     // --寻找大三角形底边中心点的线长
     private final var FIND_TRIANGLE_LENGTH = MIDDLE_CIRCLE_RADIUS * 2.7f;
 
-    private val mPath by lazy { Path() }
-    private val mPaint by lazy {
+    private val mPath= Path()
+    private val mPaint =
         Paint().apply {
             // 抗锯齿
             isAntiAlias = true
@@ -52,19 +52,18 @@ class FishDrawable constructor() : Drawable(){
             // 设置颜色
             setARGB(OTHER_ALPHA , 244, 92, 71)
         }
-    }
+
 
     /**
      *  鱼的重心点 所有的部件和动画都是以重心点为基准
      */
-    val middlePoint by lazy{
-        PointF(4.19f * HEAD_RADIUS, 4.19f * HEAD_RADIUS)
-    }
+    val middlePoint = PointF(4.19f * HEAD_RADIUS, 4.19f * HEAD_RADIUS)
+
     /**
      * 鱼头圆心的坐标
      */
 
-    val headPoint by lazy { PointF() }
+    val headPoint = PointF()
     /**
      * 鱼身旋转的角度
      */

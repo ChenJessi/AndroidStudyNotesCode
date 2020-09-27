@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chencc.androidstudynotescode.R
+import com.chencc.androidstudynotescode.adapter.RecyclerAdapter
 import kotlinx.android.synthetic.main.fragment_recycler_view.*
 
 /**
@@ -27,7 +28,8 @@ class RecyclerViewFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recyclerView.layoutManager = LinearLayoutManager(activity)
-        val adapter = RecyclerAdapter(getData())
+        val adapter =
+            RecyclerAdapter(getData())
         recyclerView.adapter = adapter
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener(){
             val THRESHOLD_LOAD_MORE = 3
@@ -41,8 +43,8 @@ class RecyclerViewFragment : Fragment() {
                     var offset = recyclerView.adapter?.let { it.itemCount - lastPosition - 1 } ?:0
                     if (offset <= THRESHOLD_LOAD_MORE){
                         hasLoadMore = true;
-                        adapter.mList.addAll(getData());
-                        adapter.notifyDataSetChanged();
+                        adapter.mList.addAll(getData())
+                        adapter.notifyDataSetChanged()
                     }
                 }
 

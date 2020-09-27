@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.chencc.androidstudynotescode.R
+import com.chencc.androidstudynotescode.adapter.RecyclerAdapter
 
 /**
  * @author Created by CHEN on 2020/9/6
@@ -23,7 +23,8 @@ class FixedDataScrollDisabledRecyclerView: RecyclerView {
 
     init {
         layoutManager = LinearLayoutManager(context)
-        adapter = RecyclerAdapter(initList())
+        adapter =
+            RecyclerAdapter(initList())
 
     }
 

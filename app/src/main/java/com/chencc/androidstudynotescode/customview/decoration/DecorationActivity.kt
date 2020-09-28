@@ -22,8 +22,12 @@ class DecorationActivity : AppCompatActivity() {
 
     private fun getData(): MutableList<TitleBean> {
         val data = mutableListOf<TitleBean>()
-        for ( index in 0..19){
-            val title = if (index < 10) "title" else "item"
+        for ( index in 0..50){
+            val title = when(index){
+                in 0..15 -> "title"
+                in 15..30 -> "item"
+                else -> "child"
+            }
             data.add(TitleBean(title," ChildView item $index"))
         }
         return data

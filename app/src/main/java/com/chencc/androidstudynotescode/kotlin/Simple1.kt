@@ -32,6 +32,7 @@ fun main() {
 
 //    println("test =====>>>  ${1.6 +.5}")
 //    println("test =====>>>  ${.5}")
+//    println(5 % 2)
 }
 
 /**

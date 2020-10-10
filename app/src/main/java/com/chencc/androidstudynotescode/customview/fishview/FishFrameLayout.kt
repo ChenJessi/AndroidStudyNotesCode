@@ -6,6 +6,7 @@ import android.animation.ObjectAnimator
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.FrameLayout
@@ -107,6 +108,7 @@ class FishFrameLayout : FrameLayout {
         // 控制点2 为 点C
         //  ∠AOC 的夹角
         val angle = includeAngle(middlePoint, headPoint, PointF(touchX, touchY)) / 2
+
         // O和控制点2 连线 与 x轴夹角
         val delta = includeAngle(middlePoint , PointF(middlePoint.x + 1f,  middlePoint.y), headPoint)
         // 控制点2 的坐标
@@ -168,11 +170,10 @@ class FishFrameLayout : FrameLayout {
         // 向量积公式
         // 向量数量积公式 ：
         //  a * b = ax * bx + ay * by
-        //  a·b=|a||b|·cosθ
+        //  a · b=|a||b|·cosθ
         //  cos = a * b / |a| * |b|
         val AOB = (A.x - O.x) * (B.x - O.x) + (A.y - O.y) * (B.y - O.y);
         val cosO = AOB / (oaLength * obLength)
-
         // ∠ AOB 绝对值
         val angleAOB = Math.toDegrees(acos(cosO).toDouble()).toFloat()
 

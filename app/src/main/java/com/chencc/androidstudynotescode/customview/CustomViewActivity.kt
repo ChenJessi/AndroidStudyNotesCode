@@ -8,6 +8,7 @@ import com.chencc.androidstudynotescode.R
 import com.chencc.androidstudynotescode.customview.decoration.DecorationActivity
 import com.chencc.androidstudynotescode.customview.fishview.FishActivity
 import com.chencc.androidstudynotescode.customview.flowLayout.TestFlowActivity
+import com.chencc.androidstudynotescode.customview.layoutManager.SlideCardActivity
 import com.chencc.androidstudynotescode.customview.viewpager.TestViewPagerActivity
 import kotlinx.android.synthetic.main.activity_customview.*
 
@@ -31,6 +32,9 @@ class CustomViewActivity  : AppCompatActivity() {
         }
         button4.setOnClickListener {
             startActivity(Intent(this@CustomViewActivity, DecorationActivity::class.java))
+        }
+        button5.setOnClickListener {
+            startActivity(Intent(this@CustomViewActivity, SlideCardActivity::class.java))
         }
 
     }

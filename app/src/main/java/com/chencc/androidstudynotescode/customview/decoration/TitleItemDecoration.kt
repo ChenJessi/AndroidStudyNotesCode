@@ -92,9 +92,9 @@ class TitleItemDecoration : RecyclerView.ItemDecoration() {
                 }
 
                 if (isHead ){
-                    if (position == lastPosition + 1){
-                        continue
-                    }else {
+//                    if (position == lastPosition + 1){
+//                        continue
+//                    }else {
                         val bottom = min(view.top, parent.height - parent.paddingBottom)
                         val rectTop = max(view.top - groupHeaderHeight.toInt(), parent.paddingTop)
                         rect.set(left, rectTop, right, bottom)
@@ -105,16 +105,20 @@ class TitleItemDecoration : RecyclerView.ItemDecoration() {
                         c.getClipBounds(rect)
                         c.drawRect(rect, mPaint)
                         c.drawText(title, 0, title.length, left.toFloat(), baseLine, mTextPaint)
-                    }
+
+//                    }
 
                 } else {
-                    if (position == lastPosition + 1){
-                        continue
-                    }else {
+//                    if (position == lastPosition + 1){
+//                        continue
+//                    }else {
                         val bottom = min(view.top, parent.height - parent.paddingBottom)
-                        rect.set(left, (view.top - decorationHeight).toInt(), right, bottom)
-                        c.drawRect(rect, mPaint)
-                    }
+                        val top = (view.top - decorationHeight).toInt()
+                        if (top < bottom){
+                            rect.set(left, top, right, bottom)
+                            c.drawRect(rect, mPaint)
+                        }
+//                    }
                 }
             }
         }

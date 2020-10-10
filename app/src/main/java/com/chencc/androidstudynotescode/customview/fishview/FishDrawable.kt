@@ -282,8 +282,8 @@ class FishDrawable constructor() : Drawable(){
 
         // 计算 鱼鳍控制点的坐标
         //  鱼鳍控制点的高度为  1.8倍的鱼鳍长度  FINS_LENGTH * 1.8
+        val finsLength = FINS_LENGTH * 1.5f + sin(Math.toRadians(currentValue * 1.5)) * FINS_LENGTH
 
-        val finsLength = FINS_LENGTH * 1.8f + sin(Math.toRadians(currentValue * 1.5 )) * FINS_LENGTH
         val controlPoint = calculatePoint(startPointF, finsLength.toFloat(), if (isRight) (fishAngle - controlAngle) else (fishAngle + controlAngle))
         // 绘制鱼鳍
         mPath.reset()

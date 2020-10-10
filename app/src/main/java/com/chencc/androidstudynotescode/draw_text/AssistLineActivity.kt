@@ -52,6 +52,7 @@ class ColorChangeActivity : AppCompatActivity() {
 //        tvColorChange.setDirection(DIRECTION_BOTTOM)
 //        tvColorChange2.setDirection(DIRECTION_BOTTOM)
 //        tvColorChange3.setDirection(DIRECTION_BOTTOM)
+        tvColorChange.setPercent(1f)
         mViewList.add(tvColorChange)
         mViewList.add(tvColorChange2)
         mViewList.add(tvColorChange3)

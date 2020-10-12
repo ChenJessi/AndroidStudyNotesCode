@@ -17,7 +17,6 @@ class SlideCardActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_slide_card)
 
-        CardConfig.initConfig(this);
         for (i in 0..5){
             mList.add("item $i")
         }

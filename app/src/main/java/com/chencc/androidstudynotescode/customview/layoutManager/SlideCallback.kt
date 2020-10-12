@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import kotlin.math.sqrt
 
+private const val TAG = "SlideCallback"
 
 class SlideCallback(val adapter: CardRecyclerAdapter, val mList :MutableList<String>) : ItemTouchHelper.SimpleCallback(0, 15) {
 
@@ -21,12 +22,20 @@ class SlideCallback(val adapter: CardRecyclerAdapter, val mList :MutableList<Str
         adapter.notifyDataSetChanged()
     }
 
-//    override fun hasSwipeFlag(
-//        recyclerView: RecyclerView?,
-//        viewHolder: RecyclerView.ViewHolder?
-//    ): Boolean {
-//
-//    }
+    override fun getMovementFlags(
+        recyclerView: RecyclerView,
+        viewHolder: RecyclerView.ViewHolder
+    ): Int {
+        val childLayoutPosition = recyclerView.getChildLayoutPosition(viewHolder.itemView)
+
+        return if (childLayoutPosition == 0){
+            makeMovementFlags(getDragDirs(recyclerView, viewHolder),
+                getSwipeDirs(recyclerView, viewHolder))
+        }else{
+            makeMovementFlags(0, 0)
+        }
+
+    }
 
     override fun onChildDraw(c: Canvas, recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, dX: Float, dY: Float, actionState: Int, isCurrentlyActive: Boolean) {
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive)
@@ -40,18 +49,6 @@ class SlideCallback(val adapter: CardRecyclerAdapter, val mList :MutableList<Str
         val itemCount = recyclerView.childCount
 
 
-//        for (i in itemCount - 2 downTo  0){
-//            val view = recyclerView.getChildAt(i)
-//
-//            val level = itemCount - 1 - i
-//
-//            if (level > 0  && level < MAX_SHOW_COUNT -1){
-//                view.translationY = ((TRANS_Y_GAP * level) - (fraction * TRANS_Y_GAP))
-//                view.scaleX = (1 - SCALE_GAP * level) + (fraction * SCALE_GAP)
-//                view.scaleY = (1 - SCALE_GAP * level) + (fraction * SCALE_GAP)
-//            }
-//        }
-
         for (i in 0 until itemCount){
             val view = recyclerView.getChildAt(i)
 
@@ -63,7 +60,7 @@ class SlideCallback(val adapter: CardRecyclerAdapter, val mList :MutableList<Str
             }
 
         }
-        
+
 
     }
 

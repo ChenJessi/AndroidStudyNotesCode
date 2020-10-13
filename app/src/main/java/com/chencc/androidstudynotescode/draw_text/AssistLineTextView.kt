@@ -28,6 +28,7 @@ class AssistLineTextView : AppCompatTextView {
             style = Paint.Style.STROKE
         }
     }
+    // ÐéÏßÂ·¾¶
     private val mDashPathEffect by lazy {
         DashPathEffect(floatArrayOf(3f, 2f), 0f);
     }

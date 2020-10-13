@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 class DecorationAdapter(var mList : MutableList<TitleBean>) : RecyclerView.Adapter<BaseViewHolder>(){
 
     fun isHeadTitle(position: Int) : Boolean{
+        return true
         return when{
             position == 0 -> true
             mList[position].title != mList[position-1].title -> true

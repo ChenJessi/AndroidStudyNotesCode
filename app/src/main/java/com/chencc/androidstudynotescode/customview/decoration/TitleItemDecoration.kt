@@ -1,9 +1,7 @@
 package com.chencc.androidstudynotescode.customview.decoration
 
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.Rect
+import android.graphics.*
+import android.os.Build
 import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,16 +15,17 @@ import kotlin.math.min
  * 悬浮标题 ItemDecoration
  */
 private const val TAG = "TitleItemDecoration"
+
 class TitleItemDecoration : RecyclerView.ItemDecoration() {
 
     val groupHeaderHeight = 30f.dp2px
     val decorationHeight = 8f.dp2px
 
-    val mPaint : Paint = Paint().apply {
+    val mPaint: Paint = Paint().apply {
         style = Paint.Style.FILL
         color = Color.RED
     }
-    val mTextPaint = Paint().apply{
+    val mTextPaint = Paint().apply {
         textSize = 18f.sp2px
         color = Color.WHITE
         style = Paint.Style.FILL
@@ -37,34 +36,37 @@ class TitleItemDecoration : RecyclerView.ItemDecoration() {
 
     override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDrawOver(c, parent, state)
-        if(parent.adapter is DecorationAdapter){
+        if (parent.adapter is DecorationAdapter) {
             val adapter = parent.adapter as DecorationAdapter
             val left = parent.paddingLeft
             val top = parent.paddingTop
             val right = parent.width - parent.paddingRight
-            val position = (parent.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+            val position =
+                (parent.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
 
             val view = parent.findViewHolderForAdapterPosition(position)!!.itemView
             val isHead = adapter.isHeadTitle(position + 1)
-            if (isHead){
+            if (isHead) {
                 //  rectBottom 是顶部悬浮title 展示出来的高度
-                val rectBottom = min((view.bottom - top).toFloat()  ,  groupHeaderHeight)
+                val rectBottom = min((view.bottom - top).toFloat(), groupHeaderHeight)
                 rect.set(left, top, right, top + rectBottom.toInt())
 
                 val title = adapter.mList[position].title
                 mTextPaint.getFontMetrics(fontMetrics)
-                val baseLine = top + rectBottom - groupHeaderHeight / 2 - fontMetrics.ascent / 2 - fontMetrics.descent / 2
+                val baseLine =
+                    top + rectBottom - groupHeaderHeight / 2 - fontMetrics.ascent / 2 - fontMetrics.descent / 2
                 c.clipRect(rect)
                 c.getClipBounds(rect)
                 c.drawRect(rect, mPaint)
                 c.drawText(title, 0, title.length, left.toFloat(), baseLine, mTextPaint)
 
-            }else{
+            } else {
                 rect.set(left, top, right, (top + groupHeaderHeight).toInt())
                 c.drawRect(rect, mPaint)
                 val title = adapter.mList[position].title
                 mTextPaint.getFontMetrics(fontMetrics)
-                val baseLine = top +  groupHeaderHeight / 2 - fontMetrics.ascent / 2 - fontMetrics.descent / 2
+                val baseLine =
+                    top + groupHeaderHeight / 2 - fontMetrics.ascent / 2 - fontMetrics.descent / 2
                 c.drawText(title, 0, title.length, left.toFloat(), baseLine, mTextPaint)
             }
         }
@@ -72,68 +74,74 @@ class TitleItemDecoration : RecyclerView.ItemDecoration() {
 
     override fun onDraw(c: Canvas, parent: RecyclerView, state: RecyclerView.State) {
         super.onDraw(c, parent, state)
-        if (parent.adapter is DecorationAdapter){
+        if (parent.adapter is DecorationAdapter) {
             val adapter = parent.adapter as DecorationAdapter
             val left = parent.paddingLeft
             val right = parent.width - parent.paddingRight
 
             // 获取当前可见 child
             val count = parent.childCount
-            for (index in 0 until count){
+            for (index in 0 until count) {
                 val view = parent.getChildAt(index)
                 val position = parent.getChildAdapterPosition(view)
                 val isHead = adapter.isHeadTitle(position)
-                val lastPosition = (parent.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
+                val lastPosition =
+                    (parent.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
 
                 val lastView = parent.findViewHolderForAdapterPosition(lastPosition + 1)?.itemView
-                Log.e(TAG, "onDraw:  lastPosition  :    $lastPosition  ${lastView?.bottom}     ${parent.height}    ${parent.paddingBottom}")
-                if (view.top - groupHeaderHeight < parent.top ){
-                    continue
-                }
+                Log.e(
+                    TAG,
+                    "onDraw:  lastPosition  :    $lastPosition  ${lastView?.bottom}     ${parent.height}    ${parent.paddingBottom}"
+                )
 
-                if (isHead ){
-//                    if (position == lastPosition + 1){
-//                        continue
-//                    }else {
-                        val bottom = min(view.top, parent.height - parent.paddingBottom)
-                        val rectTop = max(view.top - groupHeaderHeight.toInt(), parent.paddingTop)
-                        rect.set(left, rectTop, right, bottom)
-                        val title = adapter.mList[position].title
-                        mTextPaint.getFontMetrics(fontMetrics)
-                        val baseLine = view.top - groupHeaderHeight / 2  - fontMetrics.ascent / 2 - fontMetrics.descent / 2
-                        c.clipRect(parent.paddingLeft, parent.paddingTop, parent.width - parent.paddingRight, parent.height - parent.paddingBottom )
-                        c.getClipBounds(rect)
+                if (isHead) {
+
+                    val bottom = min(view.top, parent.height - parent.paddingBottom)
+                    val rectTop = max(view.top - groupHeaderHeight.toInt(), parent.paddingTop)
+                    rect.set(left, rectTop, right, bottom)
+                    if (rectTop < bottom){
                         c.drawRect(rect, mPaint)
-                        c.drawText(title, 0, title.length, left.toFloat(), baseLine, mTextPaint)
+                    }
 
-//                    }
+                    val title = adapter.mList[position].title
+                    mTextPaint.getFontMetrics(fontMetrics)
+                    val baseLine = view.top - groupHeaderHeight / 2 - fontMetrics.ascent / 2 - fontMetrics.descent / 2
+
+                    c.clipRect(left, parent.paddingTop, right, parent.height - parent.paddingBottom)
+                    c.drawText(title, 0, title.length, left.toFloat(), baseLine, mTextPaint)
+
+                    rect.setEmpty()
+
 
                 } else {
-//                    if (position == lastPosition + 1){
-//                        continue
-//                    }else {
-                        val bottom = min(view.top, parent.height - parent.paddingBottom)
-                        val top = (view.top - decorationHeight).toInt()
-                        if (top < bottom){
-                            rect.set(left, top, right, bottom)
-                            c.drawRect(rect, mPaint)
-                        }
-//                    }
+
+                    val bottom = min(view.top, parent.height - parent.paddingBottom)
+                    val top = (view.top - decorationHeight).toInt()
+                    val rectTop = max(view.top - groupHeaderHeight.toInt(), parent.paddingTop)
+                    if (rectTop < bottom) {
+                        rect.set(left, rectTop, right, bottom)
+                        c.drawRect(rect, mPaint)
+                    }
                 }
             }
         }
     }
 
-    override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+    override fun getItemOffsets(
+        outRect: Rect,
+        view: View,
+        parent: RecyclerView,
+        state: RecyclerView.State
+    ) {
         super.getItemOffsets(outRect, view, parent, state)
-        if (parent.adapter is DecorationAdapter){
+        if (parent.adapter is DecorationAdapter) {
             val adapter = parent.adapter as DecorationAdapter
             val position = parent.getChildAdapterPosition(view)
             val isHead = adapter.isHeadTitle(position)
-            if (isHead){
+            if (isHead) {
                 outRect.set(0, groupHeaderHeight.toInt(), 0, 0)
-            }else{
-                outRect.set(0, decorationHeight.toInt() , 0, 0)
+            } else {
+                outRect.set(0, decorationHeight.toInt(), 0, 0)
             }
         }
     }

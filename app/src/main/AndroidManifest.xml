@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.chencc.androidstudynotescode">
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".MyApplication"
@@ -13,46 +13,52 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/MaterialComponents_Theme">
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
+        </activity> <!-- 插件化换肤 -->
+        <activity android:name=".skin.SkinTestActivity" />
 
-        <!-- 插件化换肤 -->
-        <activity android:name=".skin.SkinTestActivity"/>
-        <!-- 自定义二级联动列表 处理滑动-->
-        <activity android:name=".nestedscroll.NestedScrollActivity"/>
-        <activity android:name=".nestedscroll.NestedViewPagerActivityTest1"/>
-        <activity android:name=".nestedscroll.NestedViewPagerActivityTest2"/>
-        <activity android:name=".nestedscroll.NestedViewPagerActivityTest3"/>
-        <activity android:name=".nestedscroll.NestedViewPagerActivity"/>
+        <!-- 自定义二级联动列表 处理滑动 -->
+        <activity android:name=".nestedscroll.NestedScrollActivity" />
+        <activity android:name=".nestedscroll.NestedViewPagerActivityTest1" />
+        <activity android:name=".nestedscroll.NestedViewPagerActivityTest2" />
+        <activity android:name=".nestedscroll.NestedViewPagerActivityTest3" />
+        <activity android:name=".nestedscroll.NestedViewPagerActivity" />
 
-        <!--事件分发  滑动冲突-->
-        <activity android:name=".view_dispatch.ViewDispatchActivity"/>
-        <activity android:name=".view_dispatch.RecyclerViewViewPagerActivity"/>
-        <activity android:name=".view_dispatch.SwipeRefreshViewPagerActivity"/>
+        <!-- 事件分发  滑动冲突 -->
+        <activity android:name=".view_dispatch.ViewDispatchActivity" />
+        <activity android:name=".view_dispatch.RecyclerViewViewPagerActivity" />
+        <activity android:name=".view_dispatch.SwipeRefreshViewPagerActivity" />
 
-        <!--文字绘制-->
-        <activity android:name=".draw_text.DrawTextActivity"/>
-        <activity android:name=".draw_text.AssistLineActivity"/>
-        <activity android:name=".draw_text.TextMeasureActivity"/>
-        <activity android:name=".draw_text.ColorChangeActivity"/>
+        <!-- 文字绘制 -->
+        <activity android:name=".draw_text.DrawTextActivity" />
+        <activity android:name=".draw_text.AssistLineActivity" />
+        <activity android:name=".draw_text.TextMeasureActivity" />
+        <activity android:name=".draw_text.ColorChangeActivity" />
+        <!-- 自定义view -->
+        <activity android:name=".customview.CustomViewActivity" />
+        <!-- viewpager测试 -->
+        <activity android:name=".customview.viewpager.TestViewPagerActivity" />
+        <!-- FlowLayout 流式布局 -->
+        <activity android:name=".customview.flowLayout.TestFlowActivity" />
+        <!-- 灵动的锦鲤  自定义drawable -->
+        <activity android:name=".customview.fishview.FishActivity" />
+        <!-- Decoration 练习 -->
+        <activity android:name=".customview.decoration.DecorationActivity" />
+        <!-- 自定义LayoutManager 滑动卡片布局 练习 -->
+        <activity android:name=".customview.layoutManager.SlideCardActivity" />
 
-        <!--自定义view-->
-        <activity android:name=".customview.CustomViewActivity"/>
-        <!-- viewpager测试-->
-        <activity android:name=".customview.viewpager.TestViewPagerActivity"/>
-        <!-- FlowLayout 流式布局-->
-        <activity android:name=".customview.flowLayout.TestFlowActivity"/>
-        <!--灵动的锦鲤  自定义drawable-->
-        <activity android:name=".customview.fishview.FishActivity"/>
-        <!--Decoration 练习-->
-        <activity android:name=".customview.decoration.DecorationActivity"/>
-        <!--自定义LayoutManager 滑动卡片布局 练习-->
-        <activity android:name=".customview.layoutManager.SlideCardActivity"/>
+
+        <!--懒加载fragment   ViewPager1-->
+        <activity android:name=".lazyfragment.LazyFragmentActivity" />
+        <!--ViewPager1-->
+        <activity android:name=".lazyfragment.LazyFragment1Activity" />
+
 
     </application>
 

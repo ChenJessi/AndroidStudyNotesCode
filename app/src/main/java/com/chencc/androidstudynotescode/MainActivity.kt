@@ -19,10 +19,12 @@ import com.chencc.androidstudynotescode.customview.CustomViewActivity
 import com.chencc.androidstudynotescode.customview.flowLayout.TestFlowActivity
 import com.chencc.androidstudynotescode.customview.viewpager.TestViewPagerActivity
 import com.chencc.androidstudynotescode.draw_text.DrawTextActivity
+import com.chencc.androidstudynotescode.lazyfragment.LazyFragmentActivity
 import com.chencc.androidstudynotescode.nestedscroll.NestedScrollActivity
 import com.chencc.androidstudynotescode.skin.SkinTestActivity
 import com.chencc.androidstudynotescode.utils.getResId
 import com.chencc.androidstudynotescode.view_dispatch.ViewDispatchActivity
+import com.qmuiteam.qmui.util.QMUIDrawableHelper
 import dalvik.system.DexClassLoader
 import dalvik.system.PathClassLoader
 import kotlinx.android.synthetic.main.activity_main.*
@@ -43,7 +45,6 @@ class MainActivity : AppCompatActivity() {
 
 //        Test.test()
 //        test1()
-
         text1.setOnClickListener {
             startActivity(Intent(this@MainActivity, SkinTestActivity::class.java))
         }
@@ -62,8 +63,12 @@ class MainActivity : AppCompatActivity() {
         button6.setOnClickListener {
             startActivity(Intent(this@MainActivity, DrawTextActivity::class.java))
         }
-
-//        text0()
+        /**
+         * fragment 懒加载
+         */
+        text7.setOnClickListener {
+            startActivity(Intent(this@MainActivity, LazyFragmentActivity::class.java))
+        }
     }
 
 

@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.activity_fragment_lazy.*
  * fragment 懒加载
  * ViewPager ViewPager2
  */
-const val type = "type"
+const val FRAGMENT_TYPE = "type"
 class LazyFragmentActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,12 +18,12 @@ class LazyFragmentActivity : AppCompatActivity(){
         button1.setOnClickListener {
 
             startActivity(Intent(this@LazyFragmentActivity, LazyFragment1Activity::class.java).apply {
-                putExtra(type, 1)
+                putExtra(FRAGMENT_TYPE, 1)
             })
         }
         button2.setOnClickListener {
             startActivity(Intent(this@LazyFragmentActivity, LazyFragment1Activity::class.java).apply {
-                putExtra(type, 2)
+                putExtra(FRAGMENT_TYPE, 2)
             })
         }
     }

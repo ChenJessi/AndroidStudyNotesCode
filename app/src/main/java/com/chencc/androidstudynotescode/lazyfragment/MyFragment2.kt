@@ -15,8 +15,8 @@ import com.chencc.androidstudynotescode.lazyfragment.base2.BaseFragment
 import kotlinx.android.synthetic.main.fragment_my.*
 import kotlinx.coroutines.*
 
-private const val TAG = "MyFragment1"
-class MyFragment1 : BaseFragment5(), CoroutineScope by MainScope() {
+private const val TAG = "MyFragment2"
+class MyFragment2 : BaseFragment(), CoroutineScope by MainScope() {
 
     var index = -1
     companion object {
@@ -29,27 +29,36 @@ class MyFragment1 : BaseFragment5(), CoroutineScope by MainScope() {
         }
     }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_my, container , false)
+    }
+//    override fun getLayoutId(): Int = R.layout.fragment_my
+//
+//    override fun initView(rootView: View?) {
+//        index = arguments?.getInt("index") ?: -1
+//        Log.e(TAG, "index:  $index  initView:  " )
+//    }
+//
+//    override fun load() {
+//        super.load()
+//        Log.e(TAG, "index:  $index  load:  " )
+//        getData()
+//    }
+//
+//    override fun loadStop() {
+//        super.loadStop()
+//        cancel()
+//        Log.e(TAG, "index:  $index  loadStop:  " )
+//    }
 
-    override fun getLayoutId(): Int = R.layout.fragment_my
-
-    override fun initView(rootView: View?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         index = arguments?.getInt("index") ?: -1
-        Log.e(TAG, "index:  $index  initView:  " )
     }
-
-    override fun load() {
-        super.load()
-        Log.e(TAG, "index:  $index  load:  " )
-        getData()
-    }
-
-    override fun loadStop() {
-        super.loadStop()
-        cancel()
-        Log.e(TAG, "index:  $index  loadStop:  " )
-    }
-
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
 //        Log.e(TAG, "index:  $index  onAttach:  " )

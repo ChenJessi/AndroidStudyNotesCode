@@ -10,8 +10,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/navView"
         android:layout_width="match_parent"
+        android:visibility="gone"
         android:layout_height="0dp"/>
 
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/navView"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="0dp"/>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navView"
         android:layout_width="0dp"

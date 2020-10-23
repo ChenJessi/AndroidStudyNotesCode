@@ -12,7 +12,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/MaterialComponents_Theme">
+        android:theme="@style/MaterialAppTheme">
 
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -63,7 +63,8 @@
         <!--MaterialDesign 练习-->
         <activity android:name=".materialdesign.MaterialDesignActivity" />
         <!--CoordinatorLayout 练习 -->
-        <activity android:name=".materialdesign.coordinator.CoordinatorActivity" />
+        <activity android:name=".materialdesign.coordinator.CoordinatorActivity"
+            android:theme="@style/TranslucentTheme"/>
 
 
     </application>

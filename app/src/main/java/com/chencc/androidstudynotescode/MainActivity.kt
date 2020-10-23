@@ -20,6 +20,7 @@ import com.chencc.androidstudynotescode.customview.flowLayout.TestFlowActivity
 import com.chencc.androidstudynotescode.customview.viewpager.TestViewPagerActivity
 import com.chencc.androidstudynotescode.draw_text.DrawTextActivity
 import com.chencc.androidstudynotescode.lazyfragment.LazyFragmentActivity
+import com.chencc.androidstudynotescode.materialdesign.MaterialDesignActivity
 import com.chencc.androidstudynotescode.nestedscroll.NestedScrollActivity
 import com.chencc.androidstudynotescode.skin.SkinTestActivity
 import com.chencc.androidstudynotescode.utils.getResId
@@ -68,6 +69,13 @@ class MainActivity : AppCompatActivity() {
          */
         text7.setOnClickListener {
             startActivity(Intent(this@MainActivity, LazyFragmentActivity::class.java))
+        }
+
+        /**
+         * MaterialDesign
+         */
+        text8.setOnClickListener {
+            startActivity(Intent(this@MainActivity, MaterialDesignActivity::class.java))
         }
     }
 

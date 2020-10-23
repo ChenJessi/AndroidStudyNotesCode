@@ -21,6 +21,10 @@ import com.chencc.androidstudynotescode.adapter.ViewPager2Adapter
 import com.chencc.androidstudynotescode.adapter.ViewPagerAdapter
 import kotlinx.android.synthetic.main.activity_lazy_fragment1.*
 
+/**
+ * viewPager
+ * ViewPager2
+ */
 class LazyFragment1Activity : AppCompatActivity() {
 
     private val mFragment1 by lazy { mutableListOf<Fragment>().apply {
@@ -37,9 +41,8 @@ class LazyFragment1Activity : AppCompatActivity() {
         add(MyFragment2.newInstance(4))
         add(MyFragment2.newInstance(5))
     } }
-
     private val adapter by lazy { ViewPagerAdapter(supportFragmentManager, mFragment1) }
-    private val adapter2 by lazy { ViewPager2Adapter(this@LazyFragment1Activity) }
+    private val adapter2 by lazy { ViewPager2Adapter(this@LazyFragment1Activity, mFragment2) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lazy_fragment1)
@@ -58,6 +61,7 @@ class LazyFragment1Activity : AppCompatActivity() {
                 vp2()
             }
         }
+
     }
 
     /**
@@ -148,18 +152,16 @@ class LazyFragment1Activity : AppCompatActivity() {
                 navView.selectedItemId = position
             }
         })
+//        viewPager2.offscreenPageLimit = 5
     }
 }
 
 
-class ViewPager2Adapter(var activity : FragmentActivity) : FragmentStateAdapter(activity) {
-    override fun getItemCount(): Int = 5
-
-
-    override fun createFragment(position: Int): Fragment {
-        return MyFragment2.newInstance(position)
-    }
+//class ViewPager2Adapter(var activity : FragmentActivity) : FragmentStateAdapter(activity) {
+//    override fun getItemCount(): Int = 5
+//
+//
 //    override fun createFragment(position: Int): Fragment {
-//        return mList[position]
+//        return MyFragment2.newInstance(position)
 //    }
-}
+//}

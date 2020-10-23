@@ -20,10 +20,10 @@ class MyFragment2 : BaseFragment(), CoroutineScope by MainScope() {
 
     var index = -1
     companion object {
-        fun newInstance(index: Int): MyFragment1 {
+        fun newInstance(index: Int): MyFragment2 {
             val args = Bundle()
             args.putInt("index" , index)
-            val fragment = MyFragment1()
+            val fragment = MyFragment2()
             fragment.arguments = args
             return fragment
         }
@@ -36,28 +36,17 @@ class MyFragment2 : BaseFragment(), CoroutineScope by MainScope() {
     ): View? {
         return inflater.inflate(R.layout.fragment_my, container , false)
     }
-//    override fun getLayoutId(): Int = R.layout.fragment_my
-//
-//    override fun initView(rootView: View?) {
-//        index = arguments?.getInt("index") ?: -1
-//        Log.e(TAG, "index:  $index  initView:  " )
-//    }
-//
-//    override fun load() {
-//        super.load()
-//        Log.e(TAG, "index:  $index  load:  " )
-//        getData()
-//    }
-//
-//    override fun loadStop() {
-//        super.loadStop()
-//        cancel()
-//        Log.e(TAG, "index:  $index  loadStop:  " )
-//    }
+
+    override fun loadData() {
+        super.loadData()
+        Log.e(TAG, "index:  $index  loadData:  " )
+        getData()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         index = arguments?.getInt("index") ?: -1
+        Log.e(TAG, "index: $index  onCreate:  " )
     }
     override fun onAttach(context: Context) {
         super.onAttach(context)

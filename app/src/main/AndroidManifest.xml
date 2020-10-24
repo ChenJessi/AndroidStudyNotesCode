@@ -65,6 +65,10 @@
         <!--CoordinatorLayout 练习 -->
         <activity android:name=".materialdesign.coordinator.CoordinatorActivity"
             android:theme="@style/TranslucentTheme"/>
+        <!--Toolbar 练习 -->
+        <activity
+            android:name=".materialdesign.toolbar.ToolbarActivity"
+            android:theme="@style/TranslucentTheme" />
 
 
     </application>

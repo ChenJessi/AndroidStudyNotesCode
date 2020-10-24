@@ -7,7 +7,6 @@ import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
-import com.chencc.androidstudynotescode.androidjvm_class.Hotfix;
 import com.chencc.androidstudynotescode.skin.SkinManager;
 
 

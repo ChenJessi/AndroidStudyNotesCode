@@ -5,33 +5,55 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:fitsSystemWindows="true"
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/color1"
         android:theme="@style/AppTheme.AppBarOverlay">
 
+<!--        <TextView-->
+<!--            android:text="AppBarLayout的第一个子View"-->
+<!--            android:padding="10dp"-->
+<!--            android:textColor="@color/color_bg"-->
+<!--            android:gravity="center"-->
+<!--            app:layout_scrollFlags="scroll"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"/>-->
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsingToolbarLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:contentScrim="@color/color_bg"
+            android:layout_height="match_parent"
+            app:contentScrim="@color/color_button_bg"
             app:statusBarScrim="@color/color_bg"
+            app:titleEnabled="true"
+            app:title="哦哦哦"
             app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
 
             <ImageView
                 android:layout_width="match_parent"
                 android:background="@drawable/image1"
-                app:layout_collapseMode="parallax"
                 android:fitsSystemWindows="true"
-                android:layout_height="250dp"/>
+                app:layout_collapseMode="parallax"
+                app:layout_collapseParallaxMultiplier="0.6"
+                android:layout_height="200dp"/>
 
             <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?actionBarSize"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/AppTheme.AppBarOverlay"/>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
+
+        <TextView
+            android:text="AppBarLayout的最后一个子View"
+            android:padding="10dp"
+            android:textColor="@color/color_bg"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </com.google.android.material.appbar.AppBarLayout>
 
 

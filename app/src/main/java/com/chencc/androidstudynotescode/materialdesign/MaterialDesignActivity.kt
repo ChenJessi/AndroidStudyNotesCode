@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.chencc.androidstudynotescode.R
 import com.chencc.androidstudynotescode.materialdesign.coordinator.CoordinatorActivity
+import com.chencc.androidstudynotescode.materialdesign.toolbar.ToolbarActivity
 import kotlinx.android.synthetic.main.activity_material_design.*
 
 
@@ -18,6 +19,9 @@ class MaterialDesignActivity : AppCompatActivity(){
 
         button1.setOnClickListener {
             startActivity(Intent(this@MaterialDesignActivity, CoordinatorActivity::class.java))
+        }
+        button2.setOnClickListener {
+            startActivity(Intent(this@MaterialDesignActivity, ToolbarActivity::class.java))
         }
     }
 }

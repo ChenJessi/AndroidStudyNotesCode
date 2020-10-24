@@ -28,7 +28,7 @@
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    
+
     <!--沉浸式主题-->
     <style name="TranslucentTheme" parent="MaterialAppTheme">
         <item name="android:windowTranslucentStatus">false</item>
@@ -36,5 +36,24 @@
         <item name="android:statusBarColor">@color/transparent</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+    </style>
+
+
+    <!--Toolbar 弹出的 popup 的主题-->
+    <style name="ToolBarPopupTheme" parent="ThemeOverlay.AppCompat.Light">
+        <!--背景颜色-->
+        <item name="android:background">@color/color1</item>
+        <!--设置文字颜色-->
+        <item name="android:textColorPrimary">@color/color_text</item>
+        <!--设置文字大小-->
+        <item name="android:textSize">16sp</item>
+        <item name="actionOverflowMenuStyle">@style/OverflowMenuStyle</item>
+
+    </style>
+
+    <!--Toolbar 弹出 popup的主题 的设置-->
+    <style name="OverflowMenuStyle" parent="Widget.AppCompat.Light.PopupMenu.Overflow">
+        <!--这个属性为 false 时， popup在 Toolbar 的下面展示-->
+        <item name="overlapAnchor">false</item>
     </style>
 </resources>

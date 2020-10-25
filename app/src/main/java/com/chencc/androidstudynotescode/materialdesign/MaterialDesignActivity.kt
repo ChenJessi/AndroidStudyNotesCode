@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.chencc.androidstudynotescode.R
 import com.chencc.androidstudynotescode.materialdesign.coordinator.CoordinatorActivity
 import com.chencc.androidstudynotescode.materialdesign.toolbar.ToolbarActivity
+import com.chencc.androidstudynotescode.materialdesign.viewpager2.ViewPager2Activity
 import kotlinx.android.synthetic.main.activity_material_design.*
 
 
@@ -22,6 +23,9 @@ class MaterialDesignActivity : AppCompatActivity(){
         }
         button2.setOnClickListener {
             startActivity(Intent(this@MaterialDesignActivity, ToolbarActivity::class.java))
+        }
+        button3.setOnClickListener {
+            startActivity(Intent(this@MaterialDesignActivity, ViewPager2Activity::class.java))
         }
     }
 }

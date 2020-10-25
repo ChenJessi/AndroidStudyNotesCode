@@ -43,10 +43,12 @@
     <style name="ToolBarPopupTheme" parent="ThemeOverlay.AppCompat.Light">
         <!--背景颜色-->
         <item name="android:background">@color/color1</item>
+<!--        <item name="android:background">@drawable/image1</item>-->
         <!--设置文字颜色-->
-        <item name="android:textColorPrimary">@color/color_text</item>
+        <item name="android:textColorPrimary">@color/color3</item>
         <!--设置文字大小-->
         <item name="android:textSize">16sp</item>
+        <item name="android:gravity">center</item>
         <item name="actionOverflowMenuStyle">@style/OverflowMenuStyle</item>
 
     </style>
@@ -55,5 +57,9 @@
     <style name="OverflowMenuStyle" parent="Widget.AppCompat.Light.PopupMenu.Overflow">
         <!--这个属性为 false 时， popup在 Toolbar 的下面展示-->
         <item name="overlapAnchor">false</item>
+        <!--弹窗横向偏移量 默认右侧对齐-->
+        <item name="android:dropDownHorizontalOffset">-20dp</item>
+        <!--弹窗纵向偏移量-->
+        <item name="android:dropDownVerticalOffset">20dp</item>
     </style>
 </resources>

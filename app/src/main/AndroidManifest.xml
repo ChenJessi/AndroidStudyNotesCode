@@ -69,6 +69,10 @@
         <activity
             android:name=".materialdesign.toolbar.ToolbarActivity"
             android:theme="@style/TranslucentTheme" />
+        <!--ViewPager2练习-->
+        <activity
+            android:name=".materialdesign.viewpager2.ViewPager2Activity"
+            android:theme="@style/TranslucentTheme" />
 
 
     </application>

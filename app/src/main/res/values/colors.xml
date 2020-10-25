@@ -16,6 +16,7 @@
     <color name="color_button_bg3">#00FF00</color>
     <color name="color_image_bg">#ffc020</color>
     <color name="color2">#00000000</color>
+    <color name="color3">#000000</color>
 
 
 </resources>

@@ -3,9 +3,11 @@ package com.chencc.androidstudynotescode.materialdesign.viewpager2
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.WindowManager
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.setPadding
 import androidx.fragment.app.Fragment
 import com.chencc.androidstudynotescode.R
@@ -22,7 +24,10 @@ import kotlinx.android.synthetic.main.activity_viewpager2.*
  * @email 188669@163.com
  * ViewPager2 练习
  */
-class ViewPager2Activity : AppCompatActivity(){
+
+private const val TAG = "ViewPager2Activity"
+
+class ViewPager2Activity : AppCompatActivity() {
 
     val mFragments by lazy {
         mutableListOf<Fragment>().apply {
@@ -47,7 +52,7 @@ class ViewPager2Activity : AppCompatActivity(){
         }
         toolbar.layoutParams?.apply {
             this as FrameLayout.LayoutParams
-            this.setMargins(0,QMUIStatusBarHelper.getStatusbarHeight(this@ViewPager2Activity),0,0)
+            this.setMargins(0, QMUIStatusBarHelper.getStatusbarHeight(this@ViewPager2Activity), 0, 0)
         }
 
         collapsingToolbarLayout.title = "哆啦a梦"
@@ -77,12 +82,44 @@ class ViewPager2Activity : AppCompatActivity(){
         tabLayout.tabGravity = TabLayout.GRAVITY_FILL
         tabLayout.setSelectedTabIndicatorGravity(TabLayout.INDICATOR_GRAVITY_BOTTOM)
         tabLayout.isInlineLabel = false
+        tabLayout.tabIconTint = ContextCompat.getColorStateList(this@ViewPager2Activity, R.color.tablayout_icon_color_list)
 
+        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabReselected(tab: TabLayout.Tab?) {
 
-        TabLayoutMediator(tabLayout, viewPager2, TabLayoutMediator.TabConfigurationStrategy {
-            tab, position ->
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+//                tab?.badge?.number = tab?.badge?.number ?: 0 + 1
+                Log.e(TAG, "onTabUnselected:  ${tab?.position}" )
+                val number = tab?.badge?.number?:0
+                tab?.badge?.clearNumber()
+                tab?.badge?.number = number + 1
+            }
+
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                Log.e(TAG, "onTabSelected:  ${tab?.position}" )
+                val number = tab?.badge?.number?:0
+                tab?.badge?.clearNumber()
+                tab?.badge?.number = number + 1
+            }
+        })
+        TabLayoutMediator(tabLayout, viewPager2, TabLayoutMediator.TabConfigurationStrategy { tab, position ->
+            tab.orCreateBadge.apply {
+                badgeTextColor = Color.WHITE
+                backgroundColor = ContextCompat.getColor(this@ViewPager2Activity, R.color.color_bg)
+                // number 最大长度 3  超过三位用 + 符号代替  例如：最大为99+
+                maxCharacterCount = 3
+                // number 不为空时 返回 number 或者最大数量
+                // number为空时  返回此提示
+                tab.badge?.setContentDescriptionNumberless("number 值为空")
+                // 数字角标
+                number = 80
+            }
+
             tab.text = titles[position]
             tab.setIcon(R.mipmap.topmenu_icn_member)
+            Log.e(TAG, "TabLayoutMediator  position:  $position ")
         }).attach()
 
     }

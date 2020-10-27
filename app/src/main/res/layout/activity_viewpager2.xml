@@ -46,7 +46,7 @@
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabIndicatorAnimationDuration="800" />
+            app:tabIndicatorAnimationDuration="500" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager2"

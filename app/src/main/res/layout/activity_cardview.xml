@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="20dp">
 
 
     <androidx.cardview.widget.CardView
@@ -49,10 +50,11 @@
                 android:text="Hello,美女，你喜欢吃青椒吗" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
+    </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         app:cardCornerRadius="4dp"
         app:cardElevation="4dp">
 

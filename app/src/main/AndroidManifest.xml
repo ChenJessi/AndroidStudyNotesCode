@@ -78,6 +78,10 @@
         <activity
             android:name=".materialdesign.cardview.CardViewActivity" />
 
+        <!--BottomAppBar-->
+        <activity
+            android:name=".materialdesign.bottomappbar.BottomAppBarActivity"
+            android:theme="@style/MaterialAppTheme" />
 
     </application>
 

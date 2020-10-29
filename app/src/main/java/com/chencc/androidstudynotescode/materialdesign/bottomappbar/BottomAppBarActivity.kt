@@ -1,4 +1,4 @@
-package com.chencc.androidstudynotescode.materialdesign
+package com.chencc.androidstudynotescode.materialdesign.bottomappbar
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.chencc.androidstudynotescode.R
+import com.chencc.androidstudynotescode.materialdesign.bottomappbar.BottomAppBarActivity
 import com.chencc.androidstudynotescode.materialdesign.cardview.CardViewActivity
 import com.chencc.androidstudynotescode.materialdesign.coordinator.CoordinatorActivity
 import com.chencc.androidstudynotescode.materialdesign.toolbar.ToolbarActivity
@@ -30,6 +31,9 @@ class MaterialDesignActivity : AppCompatActivity(){
         }
         button4.setOnClickListener {
             startActivity(Intent(this@MaterialDesignActivity, CardViewActivity::class.java))
+        }
+        button5.setOnClickListener {
+            startActivity(Intent(this@MaterialDesignActivity, BottomAppBarActivity::class.java))
         }
     }
 }

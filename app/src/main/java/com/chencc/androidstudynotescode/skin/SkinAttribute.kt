@@ -27,7 +27,11 @@ class SkinAttribute {
         "drawableLeft",
         "drawableTop",
         "drawableRight",
-        "drawableBottom"
+        "drawableBottom",
+        "drawableLeftCompat",
+        "drawableTopCompat",
+        "drawableRightCompat",
+        "drawableBottomCompat"
     )
     private val mSkinViews = mutableListOf<SkinView>()
 
@@ -128,20 +132,24 @@ class SkinView(var view: View, var mSkinPairs: MutableList<SkinPair> = mutableLi
                     (view as TextView).setTextColor(textColor)
                 }
             }
-            "drawableLeft" ->{
+            "drawableLeft", "drawableLeftCompat" ->{
                 left = SkinResources.getDrawable(it.resId)
             }
-            "drawableTop" ->{
+            "drawableTop" , "drawableTopCompat"->{
                 top = SkinResources.getDrawable(it.resId)
             }
-            "drawableRight" ->{
+            "drawableRight" , "drawableRightCompat"->{
                 right = SkinResources.getDrawable(it.resId)
             }
-            "drawableBottom" ->{
+            "drawableBottom" , "drawableBottomCompat"->{
                 bottom = SkinResources.getDrawable(it.resId)
             }
         }
          if (view is TextView){
+             left?.setBounds(0,0, left.intrinsicWidth, left.intrinsicHeight)
+             top?.setBounds(0,0, top.intrinsicWidth, top.intrinsicHeight)
+             right?.setBounds(0,0, right.intrinsicWidth, right.intrinsicHeight)
+             bottom?.setBounds(0,0, bottom.intrinsicWidth, bottom.intrinsicHeight)
              (view as TextView).setCompoundDrawables(left, top, right, bottom)
          }
     }

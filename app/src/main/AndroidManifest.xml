@@ -86,6 +86,11 @@
             android:name=".materialdesign.bottomsheets.BottomSheetsActivity"
             android:theme="@style/MaterialAppTheme" />
 
+        <!--Chips  EidtText-->
+        <activity
+            android:name=".materialdesign.chips.ChipsActivity"
+            android:theme="@style/MaterialAppTheme" />
+
     </application>
 
 </manifest>

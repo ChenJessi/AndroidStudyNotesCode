@@ -7,6 +7,7 @@ import com.chencc.androidstudynotescode.R
 import com.chencc.androidstudynotescode.materialdesign.bottomappbar.BottomAppBarActivity
 import com.chencc.androidstudynotescode.materialdesign.bottomsheets.BottomSheetsActivity
 import com.chencc.androidstudynotescode.materialdesign.cardview.CardViewActivity
+import com.chencc.androidstudynotescode.materialdesign.chips.ChipsActivity
 import com.chencc.androidstudynotescode.materialdesign.coordinator.CoordinatorActivity
 import com.chencc.androidstudynotescode.materialdesign.toolbar.ToolbarActivity
 import com.chencc.androidstudynotescode.materialdesign.viewpager2.ViewPager2Activity
@@ -38,6 +39,9 @@ class MaterialDesignActivity : AppCompatActivity(){
         }
         button6.setOnClickListener {
             startActivity(Intent(this@MaterialDesignActivity, BottomSheetsActivity::class.java))
+        }
+        button7.setOnClickListener {
+            startActivity(Intent(this@MaterialDesignActivity, ChipsActivity::class.java))
         }
     }
 }

@@ -25,8 +25,8 @@ class TrapezoidEdgeTreatment : EdgeTreatment() {
             addArc(center - 70f.dp2px,0f, center - 20f.dp2px, 50f.dp2px  , 270f, 45f)
             lineTo(center - 15f.dp2px, 30f.dp2px)
             lineTo(center + 15f.dp2px, 30f.dp2px)
-//            lineTo(center + 20f.dp2px, 0f)
-            addArc(center + 15f.dp2px,0f, center + 65f.dp2px, 50f.dp2px  , 225f, 45f)
+            lineTo(center + 27.5f.dp2px, 7.5f.dp2px)
+            addArc(center + 20f.dp2px,0f, center + 70f.dp2px, 50f.dp2px  , 225f, 45f)
             lineTo(length, 0f)
         }
     }

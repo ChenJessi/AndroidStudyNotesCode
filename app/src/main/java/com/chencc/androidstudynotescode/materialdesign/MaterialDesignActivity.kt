@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.chencc.androidstudynotescode.R
 import com.chencc.androidstudynotescode.materialdesign.bottomappbar.BottomAppBarActivity
+import com.chencc.androidstudynotescode.materialdesign.bottomsheets.BottomSheetsActivity
 import com.chencc.androidstudynotescode.materialdesign.cardview.CardViewActivity
 import com.chencc.androidstudynotescode.materialdesign.coordinator.CoordinatorActivity
 import com.chencc.androidstudynotescode.materialdesign.toolbar.ToolbarActivity
@@ -34,6 +35,9 @@ class MaterialDesignActivity : AppCompatActivity(){
         }
         button5.setOnClickListener {
             startActivity(Intent(this@MaterialDesignActivity, BottomAppBarActivity::class.java))
+        }
+        button6.setOnClickListener {
+            startActivity(Intent(this@MaterialDesignActivity, BottomSheetsActivity::class.java))
         }
     }
 }

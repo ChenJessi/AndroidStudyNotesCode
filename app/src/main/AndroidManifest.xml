@@ -75,12 +75,15 @@
             android:name=".materialdesign.viewpager2.ViewPager2Activity"
             android:theme="@style/TranslucentTheme" />
         <!--CardView-->
-        <activity
-            android:name=".materialdesign.cardview.CardViewActivity" />
+        <activity android:name=".materialdesign.cardview.CardViewActivity" />
 
         <!--BottomAppBar-->
         <activity
             android:name=".materialdesign.bottomappbar.BottomAppBarActivity"
+            android:theme="@style/MaterialAppTheme" />
+        <!--BottomSheets-->
+        <activity
+            android:name=".materialdesign.bottomsheets.BottomSheetsActivity"
             android:theme="@style/MaterialAppTheme" />
 
     </application>

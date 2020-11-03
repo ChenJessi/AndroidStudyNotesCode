@@ -95,8 +95,8 @@
             android:id="@+id/ivShow"
             android:scaleType="centerCrop"
             android:layout_gravity="center_horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
             android:background="@drawable/chip_girl2" />
 
         <SeekBar

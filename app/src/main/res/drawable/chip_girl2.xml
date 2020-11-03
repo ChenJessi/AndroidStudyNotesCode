@@ -2,6 +2,6 @@
 <clip xmlns:android="http://schemas.android.com/apk/res/android"
     android:clipOrientation="horizontal"
     android:gravity="center"
-    android:drawable="@drawable/girl1">
+    android:drawable="@drawable/image_head">
 </clip>
 

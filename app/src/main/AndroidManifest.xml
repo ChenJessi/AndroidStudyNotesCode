@@ -90,6 +90,10 @@
         <activity
             android:name=".materialdesign.chips.ChipsActivity"
             android:theme="@style/MaterialAppTheme" />
+        <!--FloatActionButton-->
+        <activity
+            android:name=".materialdesign.floatingactionbutton.FloatActionButtonActivity"
+            android:theme="@style/MaterialAppTheme" />
 
     </application>
 

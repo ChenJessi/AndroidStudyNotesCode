@@ -1,9 +1,11 @@
 package com.chencc.androidstudynotescode.materialdesign.chips
 
+import android.graphics.drawable.ClipDrawable
 import android.os.Bundle
 import android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
 import android.text.style.ImageSpan
 import android.util.Log
+import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import com.chencc.androidstudynotescode.R
 import com.google.android.material.chip.ChipDrawable
@@ -31,5 +33,28 @@ class ChipsActivity : AppCompatActivity(){
             text.setSpan(span, mPreSelectionEnd, text.length, SPAN_EXCLUSIVE_EXCLUSIVE)
             mPreSelectionEnd = text.length
         }
+
+        seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                val max = seekBar?.max ?: 0
+                val scale = progress.toDouble() / max
+                val drawable = ivShow.background as ClipDrawable
+                drawable.level = (scale * 10000).toInt()
+                tvInfo.text = progress.toString()
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+
+            }
+        })
+
+        button1.setOnClickListener {
+            button2.isEnabled = !button2.isEnabled
+        }
+
     }
 }

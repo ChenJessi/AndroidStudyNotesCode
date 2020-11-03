@@ -5,6 +5,7 @@ import android.content.res.ColorStateList
 import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.Drawable
+import android.util.Log
 import androidx.core.content.ContextCompat
 
 /**
@@ -13,6 +14,7 @@ import androidx.core.content.ContextCompat
  *
  * 皮肤resource信息
  */
+private const val TAG = "SkinResources"
 object SkinResources {
     // 皮肤包名
     private var mSkinPkgName = ""
@@ -106,6 +108,7 @@ object SkinResources {
 
     fun  getBackground(resId : Int) : Any?{
         val typeName = mAppResource?.getResourceTypeName(resId)
+
         return  when(typeName){
             "color" ->{
                 getColor(resId)

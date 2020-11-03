@@ -43,5 +43,6 @@ class MaterialDesignActivity : AppCompatActivity(){
         button7.setOnClickListener {
             startActivity(Intent(this@MaterialDesignActivity, ChipsActivity::class.java))
         }
+
     }
 }

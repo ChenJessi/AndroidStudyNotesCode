@@ -8,15 +8,22 @@ import android.util.Log
  * @email 188669@163.com
  */
 
+private const val TAG = "ThemeUtils"
+
+
 /**
  * 获得 Android SDK 内置 theme 资源 id
  */
+
 fun getResId(context : Context, attrs : IntArray) : IntArray{
     var resIds = IntArray(attrs.size)
     val a = context.obtainStyledAttributes(attrs)
+
     attrs.forEachIndexed{ index,i ->
+        Log.e(TAG, "getResId:   ${a}")
         resIds[index] = a.getResourceId(index, 0)
     }
     a.recycle()
+    Log.e(TAG, "getResId   resIds:   ${resIds[0]}")
     return resIds
 }

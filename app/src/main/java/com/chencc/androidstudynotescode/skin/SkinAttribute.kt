@@ -15,6 +15,7 @@ import com.chencc.androidstudynotescode.utils.getResId
  * @author Created by CHEN on 2020/8/24
  * @email 188669@163.com
  */
+private const val TAG = "SkinAttribute"
 
 /**
  * 要换肤的 View 的属性
@@ -49,7 +50,7 @@ class SkinAttribute {
                 val attributeValue = attr.getAttributeValue(i)
                 //  xml 写死的颜色不能换肤 #
                 if (attributeValue.startsWith("#")) {
-                    return
+                    continue
                 }
                 var resId: Int
                 // ？开头的表示系统资源
@@ -57,11 +58,15 @@ class SkinAttribute {
                     // 获取id
                     val attrId = attributeValue.substring(1).toInt()
                     resId = getResId(view.context, IntArray(1) { attrId })[0]
+                    Log.e("TAG", "look:  attrId ====  $attrId   ${attributeValue}")
                 } else {
                     // 剩下的 是以 @ 开头的 我们自己的资源
                     resId = attributeValue.substring(1).toInt()
                     Log.e("TAG", "look:  $resId   ${attributeValue}")
 
+                }
+                if (resId == 0){
+                    continue
                 }
                 mSkinPairs.add(SkinPair(attributeName, resId))
             }

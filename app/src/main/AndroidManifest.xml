@@ -22,19 +22,16 @@
             </intent-filter>
         </activity> <!-- 插件化换肤 -->
         <activity android:name=".skin.SkinTestActivity" />
-
         <!-- 自定义二级联动列表 处理滑动 -->
         <activity android:name=".nestedscroll.NestedScrollActivity" />
         <activity android:name=".nestedscroll.NestedViewPagerActivityTest1" />
         <activity android:name=".nestedscroll.NestedViewPagerActivityTest2" />
         <activity android:name=".nestedscroll.NestedViewPagerActivityTest3" />
         <activity android:name=".nestedscroll.NestedViewPagerActivity" />
-
         <!-- 事件分发  滑动冲突 -->
         <activity android:name=".view_dispatch.ViewDispatchActivity" />
         <activity android:name=".view_dispatch.RecyclerViewViewPagerActivity" />
         <activity android:name=".view_dispatch.SwipeRefreshViewPagerActivity" />
-
         <!-- 文字绘制 -->
         <activity android:name=".draw_text.DrawTextActivity" />
         <activity android:name=".draw_text.AssistLineActivity" />
@@ -52,49 +49,53 @@
         <activity android:name=".customview.decoration.DecorationActivity" />
         <!-- 自定义LayoutManager 滑动卡片布局 练习 -->
         <activity android:name=".customview.layoutManager.SlideCardActivity" />
-
-
-        <!--懒加载fragment   ViewPager1-->
+        <!-- 懒加载fragment   ViewPager1 -->
         <activity android:name=".lazyfragment.LazyFragmentActivity" />
-        <!--ViewPager1-->
+
+        <!-- ViewPager1 -->
         <activity android:name=".lazyfragment.LazyFragment1Activity" />
-
-
-        <!--MaterialDesign 练习-->
+        <!-- MaterialDesign 练习 -->
         <activity android:name=".materialdesign.MaterialDesignActivity" />
-        <!--CoordinatorLayout 练习 -->
+        <!-- CoordinatorLayout 练习 -->
         <activity
             android:name=".materialdesign.coordinator.CoordinatorActivity"
             android:theme="@style/TranslucentTheme" />
-        <!--Toolbar 练习 -->
+        <!-- Toolbar 练习 -->
         <activity
             android:name=".materialdesign.toolbar.ToolbarActivity"
             android:theme="@style/TranslucentTheme" />
-        <!--ViewPager2练习-->
+        <!-- ViewPager2练习 -->
         <activity
             android:name=".materialdesign.viewpager2.ViewPager2Activity"
             android:theme="@style/TranslucentTheme" />
-        <!--CardView-->
+        <!-- CardView -->
         <activity android:name=".materialdesign.cardview.CardViewActivity" />
-
-        <!--BottomAppBar-->
+        <!-- BottomAppBar -->
         <activity
             android:name=".materialdesign.bottomappbar.BottomAppBarActivity"
             android:theme="@style/MaterialAppTheme" />
-        <!--BottomSheets-->
+        <!-- BottomSheets -->
         <activity
             android:name=".materialdesign.bottomsheets.BottomSheetsActivity"
             android:theme="@style/MaterialAppTheme" />
 
-        <!--Chips  EidtText-->
+        <!-- Chips  EidtText -->
         <activity
             android:name=".materialdesign.chips.ChipsActivity"
             android:theme="@style/MaterialAppTheme" />
-        <!--FloatActionButton-->
+        <!-- FloatActionButton -->
         <activity
             android:name=".materialdesign.floatingactionbutton.FloatActionButtonActivity"
             android:theme="@style/MaterialAppTheme" />
+        <!--DrawerLayout-->
+        <activity
+            android:name=".materialdesign.drawer.DrawerLayoutActivity"
+            android:label="@string/title_activity_drawer_layout"
+            android:theme="@style/TranslucentTheme"></activity>
 
+        <!--MaterialButton-->
+        <activity android:name=".materialdesign.materialbutton.MaterialButtonActivity"
+            android:theme="@style/MaterialAppTheme_NoActionBar"/>
     </application>
 
 </manifest>

@@ -1,0 +1,5 @@
+<resources>
+
+
+    <style name="MaterialAppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+</resources>

@@ -9,7 +9,9 @@ import com.chencc.androidstudynotescode.materialdesign.bottomsheets.BottomSheets
 import com.chencc.androidstudynotescode.materialdesign.cardview.CardViewActivity
 import com.chencc.androidstudynotescode.materialdesign.chips.ChipsActivity
 import com.chencc.androidstudynotescode.materialdesign.coordinator.CoordinatorActivity
+import com.chencc.androidstudynotescode.materialdesign.drawer.DrawerLayoutActivity
 import com.chencc.androidstudynotescode.materialdesign.floatingactionbutton.FloatActionButtonActivity
+import com.chencc.androidstudynotescode.materialdesign.materialbutton.MaterialButtonActivity
 import com.chencc.androidstudynotescode.materialdesign.toolbar.ToolbarActivity
 import com.chencc.androidstudynotescode.materialdesign.viewpager2.ViewPager2Activity
 import kotlinx.android.synthetic.main.activity_material_design.*
@@ -46,6 +48,12 @@ class MaterialDesignActivity : AppCompatActivity(){
         }
         button8.setOnClickListener {
             startActivity(Intent(this@MaterialDesignActivity, FloatActionButtonActivity::class.java))
+        }
+        button9.setOnClickListener {
+            startActivity(Intent(this@MaterialDesignActivity, DrawerLayoutActivity::class.java))
+        }
+        button10.setOnClickListener {
+            startActivity(Intent(this@MaterialDesignActivity, MaterialButtonActivity::class.java))
         }
 
     }

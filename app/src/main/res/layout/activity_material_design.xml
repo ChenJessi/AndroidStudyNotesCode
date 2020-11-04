@@ -60,6 +60,18 @@
         android:textAllCaps="false"
         android:text="FloatActionButton"/>
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="DrawerLayout"/>
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="DrawerLayout"/>
 
 </com.chencc.androidstudynotescode.customview.flowLayout.FlowLayout>

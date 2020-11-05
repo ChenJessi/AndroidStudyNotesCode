@@ -96,6 +96,21 @@
         <!--MaterialButton-->
         <activity android:name=".materialdesign.materialbutton.MaterialButtonActivity"
             android:theme="@style/MaterialAppTheme_NoActionBar"/>
+
+        <!--MaterialText-->
+        <activity android:name=".materialdesign.materialtext.MaterialTextActivity"
+            android:theme="@style/MaterialAppTheme_NoActionBar"/>
+
+        <!--Navigation-->
+        <activity android:name=".materialdesign.navigation.NavigationActivity"
+            android:theme="@style/MaterialAppTheme_NoActionBar"/>
+
+        <!--Snackbar-->
+        <activity android:name=".materialdesign.snackbar.SnackbarActivity"
+            android:theme="@style/MaterialAppTheme_NoActionBar"/>
+
+
+
     </application>
 
 </manifest>

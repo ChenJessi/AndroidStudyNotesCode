@@ -44,12 +44,12 @@ class DrawerLayoutActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        navView.setNavigationItemSelectedListener(object : NavigationView.OnNavigationItemSelectedListener{
-            override fun onNavigationItemSelected(item: MenuItem): Boolean {
-
-                return true
-            }
-        })
+//        navView.setNavigationItemSelectedListener(object : NavigationView.OnNavigationItemSelectedListener{
+//            override fun onNavigationItemSelected(item: MenuItem): Boolean {
+//
+//                return true
+//            }
+//        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

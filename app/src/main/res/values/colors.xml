@@ -17,6 +17,7 @@
     <color name="color_image_bg">#ffc020</color>
     <color name="color2">#00000000</color>
     <color name="color3">#000000</color>
-
-
+    <color name="color4">#afbfff</color>
+    <color name="color5">#5677fc</color>
+    <color name="color6">#0a7e07</color>
 </resources>

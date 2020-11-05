@@ -72,6 +72,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAllCaps="false"
-        android:text="DrawerLayout"/>
+        android:text="MaterialButton"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="InputText"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="Navigation"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="Snackbar"/>
+
 
 </com.chencc.androidstudynotescode.customview.flowLayout.FlowLayout>

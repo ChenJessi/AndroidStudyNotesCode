@@ -24,14 +24,16 @@ class ChipsActivity : AppCompatActivity(){
         setContentView(R.layout.activity_chips)
 
         chip0.setOnClickListener {
-            val chipsDrawable = ChipDrawable.createFromResource(this@ChipsActivity, R.xml.chip_test)
-            chipsDrawable.setBounds(0,0, chipsDrawable.intrinsicWidth, chipsDrawable.intrinsicHeight)
-            val span = ImageSpan(chipsDrawable)
-            val text = etTest.text
-            val newInputText = text.substring(mPreSelectionEnd, text.length)
-            chipsDrawable.text = newInputText
-            text.setSpan(span, mPreSelectionEnd, text.length, SPAN_EXCLUSIVE_EXCLUSIVE)
-            mPreSelectionEnd = text.length
+            if (etTest.text.isNotEmpty()){
+                val chipsDrawable = ChipDrawable.createFromResource(this@ChipsActivity, R.xml.chip_test)
+                chipsDrawable.setBounds(0,0, chipsDrawable.intrinsicWidth, chipsDrawable.intrinsicHeight)
+                val span = ImageSpan(chipsDrawable)
+                val text = etTest.text
+                val newInputText = text.substring(mPreSelectionEnd, text.length)
+                chipsDrawable.text = newInputText
+                text.setSpan(span, mPreSelectionEnd, text.length, SPAN_EXCLUSIVE_EXCLUSIVE)
+                mPreSelectionEnd = text.length
+            }
         }
 
         seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{

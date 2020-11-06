@@ -3,7 +3,7 @@
     <string name="title_activity_lazy_fragment1">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_notifications">Notice</string>
 
     <string name="favorite">favorite</string>
     <string name="settings">settings</string>

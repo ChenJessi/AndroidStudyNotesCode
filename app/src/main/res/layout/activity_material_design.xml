@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.chencc.androidstudynotescode.customview.flowLayout.FlowLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<com.chencc.androidstudynotescode.customview.flowLayout.FlowLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
@@ -8,92 +8,100 @@
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:text="CoordinatorLayout"/>
+        android:text="CoordinatorLayout"
+        android:textAllCaps="false" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:text="Toolbar"/>
+        android:text="Toolbar"
+        android:textAllCaps="false" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:text="ViewPager2"/>
+        android:text="ViewPager2"
+        android:textAllCaps="false" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:text="CardView"/>
+        android:text="CardView"
+        android:textAllCaps="false" />
 
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:text="BottomAppBar"/>
+        android:text="BottomAppBar"
+        android:textAllCaps="false" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:text="BottomSheet"/>
+        android:text="BottomSheet"
+        android:textAllCaps="false" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:text="Chipe*Edittext"/>
-     <com.google.android.material.button.MaterialButton
+        android:text="Chipe*Edittext"
+        android:textAllCaps="false" />
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:text="FloatActionButton"/>
+        android:text="FloatActionButton"
+        android:textAllCaps="false" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:text="DrawerLayout"/>
+        android:text="DrawerLayout"
+        android:textAllCaps="false" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:text="MaterialButton"/>
+        android:text="MaterialButton"
+        android:textAllCaps="false" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:text="InputText"/>
+        android:text="InputText"
+        android:textAllCaps="false" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:text="Navigation"/>
+        android:text="Navigation"
+        android:textAllCaps="false" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:text="Snackbar"/>
+        android:text="Snackbar"
+        android:textAllCaps="false" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TabLayout"
+        android:textAllCaps="false" />
 
 
 </com.chencc.androidstudynotescode.customview.flowLayout.FlowLayout>

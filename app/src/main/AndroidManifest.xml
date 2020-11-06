@@ -103,10 +103,14 @@
 
         <!--Navigation-->
         <activity android:name=".materialdesign.navigation.NavigationActivity"
-            android:theme="@style/MaterialAppTheme_NoActionBar"/>
+            android:theme="@style/TranslucentTheme"/>
 
         <!--Snackbar-->
         <activity android:name=".materialdesign.snackbar.SnackbarActivity"
+            android:theme="@style/MaterialAppTheme_NoActionBar"/>
+
+        <!--TabLayout-->
+        <activity android:name=".materialdesign.tab.TabActivity"
             android:theme="@style/MaterialAppTheme_NoActionBar"/>
 
 

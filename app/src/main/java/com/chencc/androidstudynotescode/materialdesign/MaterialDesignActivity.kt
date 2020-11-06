@@ -15,6 +15,7 @@ import com.chencc.androidstudynotescode.materialdesign.materialbutton.MaterialBu
 import com.chencc.androidstudynotescode.materialdesign.materialtext.MaterialTextActivity
 import com.chencc.androidstudynotescode.materialdesign.navigation.NavigationActivity
 import com.chencc.androidstudynotescode.materialdesign.snackbar.SnackbarActivity
+import com.chencc.androidstudynotescode.materialdesign.tab.TabActivity
 import com.chencc.androidstudynotescode.materialdesign.toolbar.ToolbarActivity
 import com.chencc.androidstudynotescode.materialdesign.viewpager2.ViewPager2Activity
 import kotlinx.android.synthetic.main.activity_material_design.*
@@ -67,5 +68,19 @@ class MaterialDesignActivity : AppCompatActivity(){
         button13.setOnClickListener {
             startActivity(Intent(this@MaterialDesignActivity, SnackbarActivity::class.java))
         }
+        button14.setOnClickListener {
+            startActivity(Intent(this@MaterialDesignActivity, TabActivity::class.java))
+        }
+        /**
+         * This behavior is assigned to our dummy, MATCH_PARENT view inside this bottom sheet layout.
+         * Through this behavior the dummy view can listen to touch/scroll events.
+         * Our goal is to propagate them to the parent stream.
+         *
+         * It has to be done manually because by default CoordinatorLayouts don't propagate scroll events
+         * to their parent. This is bad for CoordinatorLayouts inside other CoordinatorLayouts, since
+         * the coordination works relies heavily on scroll events.
+         *DummyBehavior
+         * @param <DummyView> make sure it's not a nested-scrolling-enabled view or this will break.
+         */
     }
 }

@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
@@ -34,6 +35,9 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import java.util.zip.ZipFile
+
+private const val TAG = "MainActivity"
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -77,6 +81,8 @@ class MainActivity : AppCompatActivity() {
         text8.setOnClickListener {
             startActivity(Intent(this@MainActivity, MaterialDesignActivity::class.java))
         }
+
+
     }
 
 

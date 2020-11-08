@@ -116,24 +116,52 @@ class MyNestedScrollChildL : LinearLayout, NestedScrollingChild{
                 val x = event.rawX
                 val y = event.rawY
                 val dx = mLastTouchX - x
-                val dy = mLastTouchY - y
+                var dy = mLastTouchY - y
                 mLastTouchX = x.toInt()
                 mLastTouchY = y.toInt()
-
+                /**
+                 * 如果父View 消耗了事件，及可以嵌套滚动
+                 * 则先滚动父View 父View
+                 * 滚动完成之后，剩余的距离交给子View进行滚动
+                 *  consumed  父View 消耗的 x y 的距离
+                 */
                 if (dispatchNestedPreScroll(dx.toInt(), dy.toInt(), consumed, null)){
+                    Log.i(TAG, "onTouchEvent:  dy : $dy   consumed : $consumed")
+                    dy -= consumed[1]
+                    when (dy) {
+                        0f -> {
+                            Log.i(TAG, "onTouchEvent:  1111 dy =====>>> : $dy")
+                            return  true
+                        }
+                        else -> {
+                            Log.i(TAG, "onTouchEvent:  2222 dy =====>>> : $dy ")
+                            scrollBy(0, dy.toInt())
+                        }
+                    }
 
                 }
 
             }
             MotionEvent.ACTION_UP , MotionEvent.ACTION_CANCEL -> {
-
+                stopNestedScroll()
             }
         }
         return true
     }
 
     override fun scrollTo(x: Int, y: Int) {
-        super.scrollTo(x, y)
+        Log.i("onMeasure","y:  $y  , getScrollY:    $scrollY  , height:  $height    , realHeight:  $realHeight   , --   ${(realHeight - height)}")
+        var sy = y
+        if (sy < 0){
+            sy = 0
+        }
+        if (sy > realHeight){
+            sy = realHeight
+        }
+        if (sy != scrollY){
+            Log.i(TAG, "scrollTo:  $y")
+            super.scrollTo(x, y)
+        }
     }
 
 

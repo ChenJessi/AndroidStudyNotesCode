@@ -1,6 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<com.chencc.androidstudynotescode.materialdesign.nestedscroll.view.MyNestedScrollParentL
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:src="@drawable/image_head" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#f0f"
+        android:text="@string/app_name" />
+
+    <com.chencc.androidstudynotescode.materialdesign.nestedscroll.view.MyNestedScrollChildL
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="@string/app_name"
+            android:background="@color/color_bg"
+            android:textColor="@color/color_text"
+            android:textSize="24sp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="@string/app_name"
+            android:background="@color/color_button_bg2"
+            android:textColor="@color/color_text"
+            android:textSize="24sp" />
+
+    </com.chencc.androidstudynotescode.materialdesign.nestedscroll.view.MyNestedScrollChildL>
+</com.chencc.androidstudynotescode.materialdesign.nestedscroll.view.MyNestedScrollParentL>

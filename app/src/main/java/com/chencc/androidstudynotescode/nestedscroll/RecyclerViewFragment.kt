@@ -56,7 +56,7 @@ class RecyclerViewFragment : Fragment() {
 
     private fun getData(): MutableList<String> {
         val data = mutableListOf<String>()
-        for ( index in 0..3){
+        for ( index in 0..19){
             data.add("ChildView item $index")
         }
         return data

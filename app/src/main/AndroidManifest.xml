@@ -113,6 +113,10 @@
         <activity android:name=".materialdesign.tab.TabActivity"
             android:theme="@style/MaterialAppTheme_NoActionBar"/>
 
+        <!--NestScroll-->
+        <activity android:name=".materialdesign.nestedscroll.NestScrollActivity"
+            android:theme="@style/MaterialAppTheme_NoActionBar"/>
+
 
 
     </application>

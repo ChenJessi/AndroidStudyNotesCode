@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.core.view.NestedScrollingParent
 import androidx.core.view.NestedScrollingParentHelper
+import com.qmuiteam.qmui.util.QMUIDisplayHelper
 
 /**
  * @author Created by CHEN on 2020/11/8
@@ -105,12 +106,13 @@ class MyNestedScrollParentL : LinearLayout, NestedScrollingParent{
      *
      */
     override fun onNestedPreScroll(target: View, dx: Int, dy: Int, consumed: IntArray) {
-        val show = showImg(dy)
+        val show = showImg(target ,dy)
         val hide = hideImg(dy)
         Log.i(TAG, "onNestedPreScroll:   show : $show  hide : $hide  dy : $dy")
+        Log.i(TAG, "onNestedPreScroll:   target : ${target.scrollY}")
         if (show || hide){
             consumed[1] = dy
-            scrollBy(dx, dy)
+            scrollBy(0, dy)
             Log.i(TAG, "Parent 滑动 :  $dy")
         }
         Log.i(TAG, "onNestedPreScroll:  scrollY  $scrollY  target : $target   dy : $dy  consumed[1] : ${consumed[1]}")
@@ -166,12 +168,12 @@ class MyNestedScrollParentL : LinearLayout, NestedScrollingParent{
 
 
 
-    private fun showImg(dy : Int) : Boolean{
+    private fun showImg(target : View ,dy : Int) : Boolean{
         val view = getChildAt(0)
         Log.i(TAG, "showImg:  dy : $dy  scrollY : $scrollY   view.canScrollVertically  ${view.canScrollVertically(-1)}")
         return when {
-            dy < 0 && scrollY > 0 &&  !view.canScrollVertically(-1) -> {
-                //  向下滚动并且 视图顶部在屏幕内 并且 子View 不可以向上滚动
+            dy < 0 && scrollY > 0 &&  !view.canScrollVertically(-1) && target.scrollY == 0 -> {
+                //  向下滚动并且 视图顶部在屏幕内 并且 子View 不可以向上滚动   target 已经滑到底部
                 true
             }
             else -> false
@@ -183,7 +185,7 @@ class MyNestedScrollParentL : LinearLayout, NestedScrollingParent{
         val view = getChildAt(0)
         Log.i(TAG, "hideImg:  dy : $dy  scrollY : $scrollY   view.height  ${view.height}")
         return when{
-            dy > 0 && scrollY > view.height -> {
+            dy > 0 && scrollY < view.height -> {
                 // 向上滚动并且 视图顶部的位置大于 view 高度
                 true
             }

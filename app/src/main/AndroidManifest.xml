@@ -116,6 +116,12 @@
         <!--NestScroll-->
         <activity android:name=".materialdesign.nestedscroll.NestScrollActivity"
             android:theme="@style/MaterialAppTheme_NoActionBar"/>
+        <!--NestedTradition-->
+        <activity android:name=".materialdesign.md2.tradition.NestedTraditionActivity"
+            android:theme="@style/MaterialAppTheme_NoActionBar"/>
+        <!--NestedScrolling1-->
+        <activity android:name=".materialdesign.md2.nestedscrolling.NestedScrolling1Activity"
+            android:theme="@style/MaterialAppTheme_NoActionBar"/>
 
 
 

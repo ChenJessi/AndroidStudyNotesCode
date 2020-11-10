@@ -18,7 +18,6 @@ val Float.dp2px get() = TypedValue.applyDimension(
     TypedValue.COMPLEX_UNIT_DIP,
     this,
     Resources.getSystem().displayMetrics
-
 )
 
 /**
@@ -29,4 +28,7 @@ val Float.px2dp get() = this * Resources.getSystem().displayMetrics.density + 0.
 /**
  * sp 转 px
  */
-val Float.sp2px get() = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, this, Resources.getSystem().displayMetrics);
+val Float.sp2px get() = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, this, Resources.getSystem().displayMetrics)
+
+
+val String?.a get() = ""

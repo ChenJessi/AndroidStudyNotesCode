@@ -81,8 +81,6 @@ class MainActivity : AppCompatActivity() {
         text8.setOnClickListener {
             startActivity(Intent(this@MainActivity, MaterialDesignActivity::class.java))
         }
-
-
     }
 
 

@@ -13,6 +13,8 @@ import com.chencc.androidstudynotescode.materialdesign.drawer.DrawerLayoutActivi
 import com.chencc.androidstudynotescode.materialdesign.floatingactionbutton.FloatActionButtonActivity
 import com.chencc.androidstudynotescode.materialdesign.materialbutton.MaterialButtonActivity
 import com.chencc.androidstudynotescode.materialdesign.materialtext.MaterialTextActivity
+import com.chencc.androidstudynotescode.materialdesign.md2.nestedscrolling.NestedScrolling1Activity
+import com.chencc.androidstudynotescode.materialdesign.md2.tradition.NestedTraditionActivity
 import com.chencc.androidstudynotescode.materialdesign.navigation.NavigationActivity
 import com.chencc.androidstudynotescode.materialdesign.nestedscroll.NestScrollActivity
 import com.chencc.androidstudynotescode.materialdesign.snackbar.SnackbarActivity
@@ -75,6 +77,12 @@ class MaterialDesignActivity : AppCompatActivity(){
         }
         button15.setOnClickListener {
             startActivity(Intent(this@MaterialDesignActivity, NestScrollActivity::class.java))
+        }
+        button16.setOnClickListener {
+            startActivity(Intent(this@MaterialDesignActivity, NestedTraditionActivity::class.java))
+        }
+        button17.setOnClickListener {
+            startActivity(Intent(this@MaterialDesignActivity, NestedScrolling1Activity::class.java))
         }
     }
 }

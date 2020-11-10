@@ -46,7 +46,7 @@ class ColorChangeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_color_change)
 
-        viewPager.adapter = ViewPager2Adapter(this@ColorChangeActivity, initReacyclerViewData())
+        viewPager.adapter = ViewPager2Adapter(this@ColorChangeActivity, initRecyclerViewData())
         viewPager.registerOnPageChangeCallback(initChangeCallback())
 
 //        tvColorChange.setDirection(DIRECTION_BOTTOM)
@@ -58,7 +58,7 @@ class ColorChangeActivity : AppCompatActivity() {
         mViewList.add(tvColorChange3)
     }
 
-    private fun initReacyclerViewData(): MutableList<Fragment> {
+    private fun initRecyclerViewData(): MutableList<Fragment> {
         return mutableListOf<Fragment>().apply {
             add(RecyclerViewFragment())
             add(RecyclerViewFragment())

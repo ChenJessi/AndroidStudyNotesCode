@@ -1,10 +1,9 @@
-package com.chencc.androidstudynotescode.materialdesign.md2.study
+package com.chencc.androidstudynotescode.materialdesign.nestedscroll.study
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
-import androidx.core.view.NestedScrollingChildHelper
 import androidx.core.view.NestedScrollingParent3
 import androidx.core.view.NestedScrollingParentHelper
 

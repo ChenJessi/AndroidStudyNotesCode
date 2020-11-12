@@ -13,15 +13,14 @@ import com.chencc.androidstudynotescode.materialdesign.drawer.DrawerLayoutActivi
 import com.chencc.androidstudynotescode.materialdesign.floatingactionbutton.FloatActionButtonActivity
 import com.chencc.androidstudynotescode.materialdesign.materialbutton.MaterialButtonActivity
 import com.chencc.androidstudynotescode.materialdesign.materialtext.MaterialTextActivity
-import com.chencc.androidstudynotescode.materialdesign.md2.nestedscrolling.NestedScrolling1Activity
-import com.chencc.androidstudynotescode.materialdesign.md2.tradition.NestedTraditionActivity
+import com.chencc.androidstudynotescode.materialdesign.nestedscroll.nestedscrolling.NestedScrolling1Activity
+import com.chencc.androidstudynotescode.materialdesign.nestedscroll.tradition.NestedTraditionActivity
 import com.chencc.androidstudynotescode.materialdesign.navigation.NavigationActivity
 import com.chencc.androidstudynotescode.materialdesign.nestedscroll.NestScrollActivity
 import com.chencc.androidstudynotescode.materialdesign.snackbar.SnackbarActivity
 import com.chencc.androidstudynotescode.materialdesign.tab.TabActivity
 import com.chencc.androidstudynotescode.materialdesign.toolbar.ToolbarActivity
 import com.chencc.androidstudynotescode.materialdesign.viewpager2.ViewPager2Activity
-import com.chencc.androidstudynotescode.nestedscroll.NestedScrollActivity
 import kotlinx.android.synthetic.main.activity_material_design.*
 
 

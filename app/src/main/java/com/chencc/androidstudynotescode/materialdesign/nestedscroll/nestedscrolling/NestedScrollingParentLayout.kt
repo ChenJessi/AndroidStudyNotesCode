@@ -1,18 +1,15 @@
-package com.chencc.androidstudynotescode.materialdesign.md2.nestedscrolling
+package com.chencc.androidstudynotescode.materialdesign.nestedscroll.nestedscrolling
 
 import android.animation.ValueAnimator
 import android.content.Context
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
-import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
 import android.widget.LinearLayout
-import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.NestedScrollingParent
 import androidx.core.view.NestedScrollingParentHelper
 import androidx.core.view.ViewCompat
-import com.google.android.material.appbar.AppBarLayout
 import kotlin.math.abs
 import kotlin.math.roundToLong
 

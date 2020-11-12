@@ -56,10 +56,24 @@
         <activity android:name=".lazyfragment.LazyFragment1Activity" />
         <!-- MaterialDesign 练习 -->
         <activity android:name=".materialdesign.MaterialDesignActivity" />
+
+
         <!-- CoordinatorLayout 练习 -->
+        <activity
+            android:name=".materialdesign.coordinator.CoordinatorLayoutActivity"
+            android:theme="@style/TranslucentTheme" />
+        <!-- CoordinatorLayout  -->
         <activity
             android:name=".materialdesign.coordinator.CoordinatorActivity"
             android:theme="@style/TranslucentTheme" />
+        <!-- behavior 跟随 变色-->
+        <activity
+            android:name=".materialdesign.coordinator.Behavior1Activity"
+            android:theme="@style/TranslucentTheme" />
+
+
+
+
         <!-- Toolbar 练习 -->
         <activity
             android:name=".materialdesign.toolbar.ToolbarActivity"
@@ -117,10 +131,10 @@
         <activity android:name=".materialdesign.nestedscroll.NestScrollActivity"
             android:theme="@style/MaterialAppTheme_NoActionBar"/>
         <!--NestedTradition-->
-        <activity android:name=".materialdesign.md2.tradition.NestedTraditionActivity"
+        <activity android:name="com.chencc.androidstudynotescode.materialdesign.nestedscroll.tradition.NestedTraditionActivity"
             android:theme="@style/MaterialAppTheme_NoActionBar"/>
         <!--NestedScrolling1-->
-        <activity android:name=".materialdesign.md2.nestedscrolling.NestedScrolling1Activity"
+        <activity android:name="com.chencc.androidstudynotescode.materialdesign.nestedscroll.nestedscrolling.NestedScrolling1Activity"
             android:theme="@style/MaterialAppTheme_NoActionBar"/>
 
 

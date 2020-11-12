@@ -1,4 +1,4 @@
-package com.chencc.androidstudynotescode.materialdesign.md2.tradition
+package com.chencc.androidstudynotescode.materialdesign.nestedscroll.nestedscrolling
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -8,28 +8,26 @@ import com.chencc.androidstudynotescode.R
 import com.chencc.androidstudynotescode.adapter.ViewPager2Adapter
 import com.chencc.androidstudynotescode.view_dispatch.RecyclerViewFragment
 import com.google.android.material.tabs.TabLayoutMediator
-import kotlinx.android.synthetic.main.activity_nested_tradition.*
+import kotlinx.android.synthetic.main.activity_nested_scrolling1.*
 
 
 /**
- * 传统嵌套滑动
+ *
  */
-class NestedTraditionActivity : AppCompatActivity(){
+class NestedScrolling1Activity : AppCompatActivity() {
+
     val titles = listOf("第一页", "第二页", "第三页")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_nested_tradition_test)
-        setContentView(R.layout.activity_nested_tradition)
+        setContentView(R.layout.activity_nested_scrolling1)
 
         viewPager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-        viewPager.adapter = ViewPager2Adapter(this@NestedTraditionActivity ,initRecyclerViewData())
+        viewPager.adapter = ViewPager2Adapter(this@NestedScrolling1Activity ,initRecyclerViewData())
 
         TabLayoutMediator(tabLayout, viewPager, TabLayoutMediator.TabConfigurationStrategy { tab, position ->
             tab.text = titles[position]
         }).attach()
-
-
     }
 
 

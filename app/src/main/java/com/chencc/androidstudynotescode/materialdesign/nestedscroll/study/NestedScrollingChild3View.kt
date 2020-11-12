@@ -1,4 +1,4 @@
-package com.chencc.androidstudynotescode.materialdesign.md2.study
+package com.chencc.androidstudynotescode.materialdesign.nestedscroll.study
 
 import android.content.Context
 import android.util.AttributeSet

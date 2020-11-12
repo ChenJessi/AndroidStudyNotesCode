@@ -111,8 +111,13 @@ class MyNestedScrollParentL : LinearLayout, NestedScrollingParent{
         Log.i(TAG, "onNestedPreScroll:   show : $show  hide : $hide  dy : $dy")
         Log.i(TAG, "onNestedPreScroll:   target : ${target.scrollY}")
         if (show || hide){
-            consumed[1] = dy
-            scrollBy(0, dy)
+            var scrolldy = getChildAt(0).height - scrollY
+            var tmp = dy
+            if (scrolldy < dy){
+                tmp = scrolldy
+            }
+            consumed[1] = tmp
+            scrollBy(0, tmp)
             Log.i(TAG, "Parent 滑动 :  $dy")
         }
         Log.i(TAG, "onNestedPreScroll:  scrollY  $scrollY  target : $target   dy : $dy  consumed[1] : ${consumed[1]}")

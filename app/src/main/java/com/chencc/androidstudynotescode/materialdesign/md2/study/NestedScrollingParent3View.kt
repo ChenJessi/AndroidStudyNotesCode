@@ -44,34 +44,64 @@ class NestedScrollingParent3View : LinearLayout, NestedScrollingParent3 {
         return true
     }
 
+    /**
+     * 嵌套滑动的子 View 滑动之前，判断父 View 是否优先于子View 处理 ( 也就是父View 可以先消耗，然后给子View 消耗)
+     * @param target 嵌套滑动的 子View
+     * @param dx 水平方向嵌套滑动的子View 想要滑动的距离
+     * @param dy 垂直方向嵌套滑动的子View 想要滑动的距离
+     * @param 【输出参数】 这个参数要在我们实现这个函数的时候就指定，回头告诉子View当前父View 消耗的距离
+     *          consumed[0] 水平消耗的距离  consumed[1] 垂直消耗的距离  好让子View 做出相应的调整
+     *
+     * @param type 滑动类型，ViewCompat.TYPE_NON_TOUCH fling 效果  ViewCompat.TYPE_TOUCH 手势滑动
+     */
     override fun onNestedPreScroll(target: View, dx: Int, dy: Int, consumed: IntArray, type: Int) {
-        TODO("Not yet implemented")
+        // 自己逻辑的处理
     }
 
-    override fun onNestedScroll(
-        target: View,
-        dxConsumed: Int,
-        dyConsumed: Int,
-        dxUnconsumed: Int,
-        dyUnconsumed: Int,
-        type: Int,
-        consumed: IntArray
-    ) {
-        TODO("Not yet implemented")
+    /**
+     * 嵌套滑动的子View 滑动之后，判断父View 是否继续处理，(也就是父View 消耗一定距离之后，子View 再消耗，最后再判断父View 消耗不)
+     * @param target 嵌套滑动的子View
+     * @param dxConsumed 嵌套滑动的子View 在水平方向的滑动距离(消耗的距离)
+     * @param dyConsumed 嵌套滑动的子View 在垂直方向的滑动距离(消耗的距离)
+     * @param dxUnconsumed 嵌套滑动的子View 在水平方向的未滑动的距离(未消耗的距离)
+     * @param dyUnconsumed 嵌套滑动的子View 在垂直方向的未滑动的距离(未消耗的距离)
+     * @param type 滑动类型  ViewCompat.TYPE_NON_TOUCH fling 效果    ViewCompat.TYPE_TOUCH 手势滑动
+     * @param consumed 【输出参数】
+     */
+    override fun onNestedScroll(target: View, dxConsumed: Int, dyConsumed: Int, dxUnconsumed: Int, dyUnconsumed: Int, type: Int, consumed: IntArray) {
+
     }
 
-    override fun onNestedScroll(
-        target: View,
-        dxConsumed: Int,
-        dyConsumed: Int,
-        dxUnconsumed: Int,
-        dyUnconsumed: Int,
-        type: Int
-    ) {
-        TODO("Not yet implemented")
+    /**
+     * 嵌套滑动的子View 滑动之后，判断父View 是否继续处理，(也就是父View 消耗一定距离之后，子View 再消耗，最后再判断父View 消耗不)
+     * @param target 嵌套滑动的子View
+     * @param dxConsumed 嵌套滑动的子View 在水平方向的滑动距离(消耗的距离)
+     * @param dyConsumed 嵌套滑动的子View 在垂直方向的滑动距离(消耗的距离)
+     * @param dxUnconsumed 嵌套滑动的子View 在水平方向的未滑动的距离(未消耗的距离)
+     * @param dyUnconsumed 嵌套滑动的子View 在垂直方向的未滑动的距离(未消耗的距离)
+     * @param type 滑动类型  ViewCompat.TYPE_NON_TOUCH fling 效果    ViewCompat.TYPE_TOUCH 手势滑动
+     */
+    override fun onNestedScroll(target: View, dxConsumed: Int, dyConsumed: Int, dxUnconsumed: Int, dyUnconsumed: Int, type: Int) {
+
     }
 
+    /**
+     *  嵌套滑动结束
+     *  @param type 滑动类型 ViewCompat.TYPE_NON_TOUCH fling 效果  ViewCompat.TYPE_TOUCH 手势滑动
+     */
     override fun onStopNestedScroll(target: View, type: Int) {
-        TODO("Not yet implemented")
+
+    }
+
+    override fun onNestedPreFling(target: View, velocityX: Float, velocityY: Float): Boolean {
+        return false
+    }
+
+    override fun onNestedFling(target: View, velocityX: Float, velocityY: Float, consumed: Boolean): Boolean {
+        return false
+    }
+
+    override fun getNestedScrollAxes(): Int {
+        return helper.nestedScrollAxes
     }
 }

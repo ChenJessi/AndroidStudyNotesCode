@@ -8,9 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.DecelerateInterpolator
 import android.widget.LinearLayout
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.NestedScrollingParent
 import androidx.core.view.NestedScrollingParentHelper
 import androidx.core.view.ViewCompat
+import com.google.android.material.appbar.AppBarLayout
 import kotlin.math.abs
 import kotlin.math.roundToLong
 
@@ -65,8 +67,13 @@ class NestedScrollingParentLayout : LinearLayout, NestedScrollingParent{
         val isHideTop = dy > 0 && scrollY < mTopViewHeight
         val isShowTop = dy < 0 && scrollY > 0 &&  !target.canScrollVertically(-1) && target.scrollY == 0
         if (isShowTop || isHideTop){
-            scrollBy(0, dy)
-            consumed[1] = dy
+            var scrolldy = mTopViewHeight - scrollY
+            var tmp = dy
+            if (scrolldy < dy){
+                tmp = scrolldy
+            }
+            scrollBy(0, tmp)
+            consumed[1] = tmp
         }
     }
 

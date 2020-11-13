@@ -22,4 +22,6 @@ class BrotherFollowBehavior(var mContext : Context, var attrs : AttributeSet) : 
         return true
     }
 
+
+
 }

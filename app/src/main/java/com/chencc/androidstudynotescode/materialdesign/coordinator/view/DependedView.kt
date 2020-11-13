@@ -2,6 +2,7 @@ package com.chencc.androidstudynotescode.materialdesign.coordinator.view
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
@@ -12,6 +13,7 @@ import kotlin.math.abs
  * 可以拖动的View
  * 演示 behavior 专用
  */
+private const val TAG = "DependedView"
 class DependedView : View{
 
     private var mDragSlop : Int = 0
@@ -26,24 +28,26 @@ class DependedView : View{
 
 
     init {
-        mDragSlop = ViewConfiguration.get(context).scaledTouchSlop
+//        mDragSlop = ViewConfiguration.get(context).scaledTouchSlop
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         when(event?.action){
             MotionEvent.ACTION_DOWN -> {
-                mLastX = x
-                mLastY = y
+                mLastX = event.x
+                mLastY = event.y
+
             }
             MotionEvent.ACTION_MOVE -> {
-                val dx =  x - mLastX
-                val dy =  y - mLastY
+                val dx =  event.x - mLastX
+                val dy =  event.y - mLastY
+                mLastX = event.x
+                mLastY = event.y
+                Log.i(TAG, "onTouchEvent:  ACTION_MOVE     $dx  $dy  $x  $y  $mLastY    $mLastX")
                 if (abs(dx) > mDragSlop || abs(dy) > mDragSlop){
                     ViewCompat.offsetLeftAndRight(this, dx.toInt())
                     ViewCompat.offsetTopAndBottom(this, dy.toInt())
                 }
-                mLastX = x
-                mLastY = y
             }
             MotionEvent.ACTION_UP -> {}
         }

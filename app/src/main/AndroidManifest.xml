@@ -70,6 +70,10 @@
         <activity
             android:name=".materialdesign.coordinator.Behavior1Activity"
             android:theme="@style/TranslucentTheme" />
+        <!--Behavior的嵌套滑动展示-->
+        <activity
+            android:name=".materialdesign.coordinator.Behavior2Activity"
+            android:theme="@style/TranslucentTheme" />
 
 
 

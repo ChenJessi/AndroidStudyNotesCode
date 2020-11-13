@@ -17,5 +17,15 @@ class CoordinatorActivity : AppCompatActivity() {
         button1.setOnClickListener {
             startActivity(Intent(this@CoordinatorActivity, CoordinatorLayoutActivity::class.java))
         }
+
+        button2.setOnClickListener {
+            startActivity(Intent(this@CoordinatorActivity, Behavior1Activity::class.java))
+        }
+        button3.setOnClickListener {
+            startActivity(Intent(this@CoordinatorActivity, Behavior2Activity::class.java))
+        }
+
+
+
     }
 }

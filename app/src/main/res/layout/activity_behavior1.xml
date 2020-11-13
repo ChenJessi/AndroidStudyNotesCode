@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.chencc.androidstudynotescode.materialdesign.coordinator.view.DependedView
+        android:id="@+id/dependedView"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:background="@color/color_bg"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="跟随"
+        android:textColor="@color/color_bg"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_behavior=".materialdesign.coordinator.behavior.BrotherFollowBehavior"/>
+
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="变色"
+        android:background="@color/color_bg"
+        app:layout_behavior=".materialdesign.coordinator.behavior.BrotherChameleonBehavior"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

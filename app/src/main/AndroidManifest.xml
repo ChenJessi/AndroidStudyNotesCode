@@ -49,6 +49,10 @@
         <activity android:name=".customview.decoration.DecorationActivity" />
         <!-- 自定义LayoutManager 滑动卡片布局 练习 -->
         <activity android:name=".customview.layoutManager.SlideCardActivity" />
+        <!--MultiTouchEvent-->
+        <activity android:name=".customview.photoView.MultiTouchEventActivity" />
+        <!--PhotoView-->
+        <activity android:name=".customview.photoView.PhotoViewActivity" />
         <!-- 懒加载fragment   ViewPager1 -->
         <activity android:name=".lazyfragment.LazyFragmentActivity" />
 

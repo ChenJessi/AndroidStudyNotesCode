@@ -9,11 +9,12 @@ import com.chencc.androidstudynotescode.customview.decoration.DecorationActivity
 import com.chencc.androidstudynotescode.customview.fishview.FishActivity
 import com.chencc.androidstudynotescode.customview.flowLayout.TestFlowActivity
 import com.chencc.androidstudynotescode.customview.layoutManager.SlideCardActivity
+import com.chencc.androidstudynotescode.customview.photoView.PhotoViewActivity
 import com.chencc.androidstudynotescode.customview.viewpager.TestViewPagerActivity
 import kotlinx.android.synthetic.main.activity_customview.*
 
 /**
- * ×Ô¶¨ÒåView Á·Ï°
+ * ï¿½Ô¶ï¿½ï¿½ï¿½View ï¿½ï¿½Ï°
  *
  */
 class CustomViewActivity  : AppCompatActivity() {
@@ -36,6 +37,8 @@ class CustomViewActivity  : AppCompatActivity() {
         button5.setOnClickListener {
             startActivity(Intent(this@CustomViewActivity, SlideCardActivity::class.java))
         }
-
+        button6.setOnClickListener {
+            startActivity(Intent(this@CustomViewActivity, PhotoViewActivity::class.java))
+        }
     }
 }

@@ -1,6 +1,5 @@
 package com.chencc.androidstudynotescode.utils
 
-import android.content.Context
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -21,7 +20,7 @@ import java.io.RandomAccessFile
 
 
 
-    fun getBitmap(res : Resources, @DrawableRes id : Int, width : Int) : Bitmap{
+    fun getBitmap(res: Resources, @DrawableRes id: Int, width: Int) : Bitmap{
         val option = BitmapFactory.Options()
         option.inJustDecodeBounds = true
         BitmapFactory.decodeResource(res, id, option)

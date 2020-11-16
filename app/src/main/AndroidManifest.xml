@@ -51,6 +51,8 @@
         <activity android:name=".customview.layoutManager.SlideCardActivity" />
         <!-- 懒加载fragment   ViewPager1 -->
         <activity android:name=".lazyfragment.LazyFragmentActivity" />
+        <!--PhtotView-->
+        <activity android:name=".customview.photoView.PhotoViewActivity" />
 
         <!-- ViewPager1 -->
         <activity android:name=".lazyfragment.LazyFragment1Activity" />

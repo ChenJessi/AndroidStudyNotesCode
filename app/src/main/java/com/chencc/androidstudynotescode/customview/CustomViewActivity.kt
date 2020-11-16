@@ -3,12 +3,12 @@ package com.chencc.androidstudynotescode.customview
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.RecyclerView
 import com.chencc.androidstudynotescode.R
 import com.chencc.androidstudynotescode.customview.decoration.DecorationActivity
 import com.chencc.androidstudynotescode.customview.fishview.FishActivity
 import com.chencc.androidstudynotescode.customview.flowLayout.TestFlowActivity
 import com.chencc.androidstudynotescode.customview.layoutManager.SlideCardActivity
+import com.chencc.androidstudynotescode.customview.photoView.MultiTouchEventActivity
 import com.chencc.androidstudynotescode.customview.photoView.PhotoViewActivity
 import com.chencc.androidstudynotescode.customview.viewpager.TestViewPagerActivity
 import kotlinx.android.synthetic.main.activity_customview.*
@@ -39,6 +39,9 @@ class CustomViewActivity  : AppCompatActivity() {
         }
         button6.setOnClickListener {
             startActivity(Intent(this@CustomViewActivity, PhotoViewActivity::class.java))
+        }
+        button7.setOnClickListener {
+            startActivity(Intent(this@CustomViewActivity, MultiTouchEventActivity::class.java))
         }
     }
 }

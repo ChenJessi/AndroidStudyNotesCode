@@ -20,6 +20,8 @@ import kotlin.math.min
 
 /**
  * PhotoView
+ *
+ * 缩放偏移的滚动边界需要优化
  */
 private const val TAG = "PhotoView"
 class PhotoView(var mContext : Context, attrs : AttributeSet? = null)  : View(mContext,attrs) {
@@ -64,10 +66,15 @@ class PhotoView(var mContext : Context, attrs : AttributeSet? = null)  : View(mC
      */
     private var isEnlarge = false
 
-    override fun onDraw(canvas: Canvas) {
 
+
+    override fun onDraw(canvas: Canvas) {
+        // 当前缩放比例
+        val scaleFaction = (currentScale - smallScale) / (bigScale - smallScale)
+        Log.i(TAG, "onDraw:  offsetX :  ${offsetX}    offsetY :: ${offsetY} ")
         // 根据当前缩放比例设置偏移量
-        canvas.translate(offsetX , offsetY)
+
+        canvas.translate(offsetX * scaleFaction , offsetY * scaleFaction )
         canvas.scale(currentScale, currentScale, width / 2f, height / 2f)
         canvas.drawBitmap(bitmap, originalOffsetX, originalOffsetY, paint)
 
@@ -116,15 +123,6 @@ class PhotoView(var mContext : Context, attrs : AttributeSet? = null)  : View(mC
     }
 
     /**
-     * 缩放计算偏移量
-     * 偏移量 * 缩放倍数 = 实际偏移量
-     */
-    fun calculateOffset(){
-        val scaleFaction = (currentScale - smallScale) / (bigScale - smallScale)
-        offsetX *= scaleFaction
-        offsetY *= scaleFaction
-    }
-    /**
      * offset的边界处理
      */
     private fun fixOffsets(){
@@ -159,17 +157,27 @@ class PhotoView(var mContext : Context, attrs : AttributeSet? = null)  : View(mC
          */
         override fun onFling(e1: MotionEvent?, e2: MotionEvent?, velocityX: Float, velocityY: Float): Boolean {
             if (isEnlarge){
+                val scaleFaction = (currentScale - smallScale) / (bigScale - smallScale)
+
+                val fixVelocityX = if (bitmap.width * currentScale > width) velocityX.toInt() else 0
+                val fixVelocityY = if (bitmap.height * currentScale > height) velocityY.toInt() else 0
+
+                val minX = if (bitmap.width * currentScale > width)  ((-(bitmap.width * currentScale - width) / 2 / scaleFaction).toInt())  else  0
+                val maxX = if (bitmap.width * currentScale > width)  (((bitmap.width * currentScale - width) / 2 / scaleFaction).toInt())  else  0
+
+                val minY = if (bitmap.height * currentScale > height) ( (-(bitmap.height * currentScale - height) / 2 / scaleFaction).toInt() ) else 0
+                val maxY = if (bitmap.height * currentScale > height) ( ((bitmap.height * currentScale - height) / 2 / scaleFaction).toInt() ) else 0
+
                 overScroller.fling(
-                    offsetX.toInt(), offsetY.toInt(), velocityX.toInt(), velocityY.toInt(),
-                    (-(bitmap.width * bigScale - width) / 2).toInt(),
-                    ((bitmap.width * bigScale - width) / 2).toInt(),
-                    (-(bitmap.height * bigScale - height) / 2).toInt(),
-                    ((bitmap.height * bigScale - height) / 2).toInt(),
+                    offsetX.toInt(), offsetY.toInt(), fixVelocityX, fixVelocityY,
+                    minX,
+                    maxX,
+                    minY,
+                    maxY,
                     0 , 0
                 )
                 postOnAnimation(FlingRunner())
             }
-
 
             return super.onFling(e1, e2, velocityX, velocityY)
         }
@@ -179,12 +187,12 @@ class PhotoView(var mContext : Context, attrs : AttributeSet? = null)  : View(mC
          * 双击的触发时间 40ms - 300ms
          */
         override fun onDoubleTap(e: MotionEvent): Boolean {
+
             isEnlarge = !isEnlarge
             if (isEnlarge){
                 // 缩小状态的距离 - 放大状态距离 = 偏移量
                 offsetX = (e.x - width / 2f)  - (e.x - width / 2f) * bigScale / smallScale
                 offsetY = (e.y - height / 2f)  - (e.y - height / 2f) * bigScale / smallScale
-                calculateOffset()
                 fixOffsets()
                 getScaleAnimation().start()
             }else{
@@ -201,13 +209,39 @@ class PhotoView(var mContext : Context, attrs : AttributeSet? = null)  : View(mC
          * @param distanceY 偏移量
          */
         override fun onScroll(e1: MotionEvent?, e2: MotionEvent?, distanceX: Float, distanceY: Float): Boolean {
-//            if (isEnlarge){
-//                offsetX -= distanceX
-//                offsetY -= distanceY
-//
-//                fixOffsets()
-//                invalidate()
-//            }
+            Log.i(TAG, "onScroll:   distanceX : $distanceX    distanceY  :  $distanceY")
+            if (isEnlarge){
+                val scaleFaction = (currentScale - smallScale) / (bigScale - smallScale)
+
+                if (bitmap.width * currentScale > width){
+                    val maxOffset = (bitmap.width * currentScale - width) / 2
+                    offsetX -= distanceX
+                    val realOffset = offsetX * scaleFaction
+
+                    if (realOffset < -maxOffset ){
+                        offsetX = -maxOffset / scaleFaction
+                    }
+                    if (realOffset > maxOffset){
+                        offsetX = maxOffset / scaleFaction
+                    }
+                }
+                if (bitmap.height * currentScale > height){
+
+                    val maxOffset = (bitmap.height * currentScale - height) / 2
+                    val realOffset = offsetY * scaleFaction
+
+                    offsetY -= distanceY
+
+                    if (realOffset < -maxOffset ){
+                        offsetY = -maxOffset / scaleFaction
+                    }
+                    if (realOffset > maxOffset ){
+                        offsetY = maxOffset / scaleFaction
+                    }
+                }
+                fixOffsets()
+                invalidate()
+            }
             return super.onScroll(e1, e2, distanceX, distanceY)
         }
 
@@ -265,14 +299,21 @@ class PhotoView(var mContext : Context, attrs : AttributeSet? = null)  : View(mC
 
         override fun onScale(detector: ScaleGestureDetector): Boolean {
             // 当前缩放倍数 大于最小倍数 并且不是放大，就重置为放大模式
+            if (!isEnlarge){
+                offsetX = 0f
+                offsetY = 0f
+            }
             if ((currentScale >= smallScale && !isEnlarge)
-                        || (currentScale == smallScale) && isEnlarge){
+                || (currentScale == smallScale && isEnlarge)){
                 isEnlarge = !isEnlarge
+                if (!isEnlarge){
+                    offsetX = 0f
+                    offsetY = 0f
+                }
             }
             // 初始倍数大小 * 放大因子 = 缩放的倍数
             currentScale = min(bigScale , (initScale * detector.scaleFactor))
             currentScale = max(currentScale , smallScale)
-            calculateOffset()
             invalidate()
             return false
         }
@@ -282,9 +323,9 @@ class PhotoView(var mContext : Context, attrs : AttributeSet? = null)  : View(mC
     inner class FlingRunner : Runnable{
         override fun run() {
             if (overScroller.computeScrollOffset()) {
-                offsetX = overScroller.currX.toFloat()
-                offsetY = overScroller.currY.toFloat()
-                invalidate();
+                offsetX = overScroller.currX.toFloat();
+                offsetY = overScroller.currY.toFloat();
+                invalidate()
                 // 下一帧动画的时候执行
                 postOnAnimation(this);
             }

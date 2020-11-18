@@ -274,7 +274,7 @@ class PhotoViewStudy(var mContext : Context, attrs : AttributeSet? = null)  : Vi
             if (overScroller.computeScrollOffset()) {
                 offsetX = overScroller.currX.toFloat();
                 offsetY = overScroller.currY.toFloat();
-                invalidate();
+                invalidate()
                 // 下一帧动画的时候执行
                 postOnAnimation(this);
             }

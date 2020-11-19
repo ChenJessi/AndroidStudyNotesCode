@@ -5,6 +5,7 @@ package com.chencc.androidstudynotescode.utils
 import java.io.*
 import java.util.zip.*
 import kotlin.Exception
+import kotlin.jvm.Throws
 
 /**
  * 压缩解压工具

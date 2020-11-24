@@ -8,6 +8,7 @@ import com.chencc.androidstudynotescode.materialdesign.bottomappbar.BottomAppBar
 import com.chencc.androidstudynotescode.materialdesign.bottomsheets.BottomSheetsActivity
 import com.chencc.androidstudynotescode.materialdesign.cardview.CardViewActivity
 import com.chencc.androidstudynotescode.materialdesign.chips.ChipsActivity
+import com.chencc.androidstudynotescode.materialdesign.constraintlayout.ConstraintLayoutActivity
 import com.chencc.androidstudynotescode.materialdesign.coordinator.CoordinatorActivity
 import com.chencc.androidstudynotescode.materialdesign.drawer.DrawerLayoutActivity
 import com.chencc.androidstudynotescode.materialdesign.floatingactionbutton.FloatActionButtonActivity
@@ -82,6 +83,10 @@ class MaterialDesignActivity : AppCompatActivity(){
         }
         button17.setOnClickListener {
             startActivity(Intent(this@MaterialDesignActivity, NestedScrolling1Activity::class.java))
+        }
+
+        button18.setOnClickListener {
+            startActivity(Intent(this@MaterialDesignActivity, ConstraintLayoutActivity::class.java))
         }
     }
 }

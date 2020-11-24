@@ -55,6 +55,14 @@
         <activity android:name=".customview.photoView.PhotoViewActivity" />
         <!-- 懒加载fragment   ViewPager1 -->
         <activity android:name=".lazyfragment.LazyFragmentActivity" />
+        <!--ConstraintLayoutActivity-->
+        <activity android:name=".materialdesign.constraintlayout.ConstraintLayoutActivity" />
+        <!--CircularRevealHelperActivity-->
+        <activity android:name=".materialdesign.constraintlayout.CircularRevealHelperActivity" />
+        <!--Flow-->
+        <activity android:name=".materialdesign.constraintlayout.FlowConstraintActivity" />
+        <!--Layer-->
+        <activity android:name=".materialdesign.constraintlayout.LayerConstraintActivity" />
 
         <!-- ViewPager1 -->
         <activity android:name=".lazyfragment.LazyFragment1Activity" />

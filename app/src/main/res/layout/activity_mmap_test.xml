@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="click"
+            type="com.chencc.androidstudynotescode.binder.mmap.MmapTestActivity" />
+    </data>
+
+    <com.chencc.androidstudynotescode.customview.flowLayout.FlowLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="write"
+            android:onClick="@{()->click.write()}"
+            android:textAllCaps="false" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="read"
+            android:onClick="@{()->click.read()}"
+            android:textAllCaps="false" />
+
+    </com.chencc.androidstudynotescode.customview.flowLayout.FlowLayout>
+</layout>

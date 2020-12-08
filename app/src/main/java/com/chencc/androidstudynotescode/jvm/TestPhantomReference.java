@@ -4,7 +4,7 @@ import java.lang.ref.PhantomReference;
 import java.lang.ref.ReferenceQueue;
 
 /**
- * ĞéÒıÓÃ PhantomReference ²âÊÔÓÃÀı
+ * è™šå¼•ç”¨ PhantomReference æµ‹è¯•ç”¨ä¾‹
  *
  */
 public class TestPhantomReference {

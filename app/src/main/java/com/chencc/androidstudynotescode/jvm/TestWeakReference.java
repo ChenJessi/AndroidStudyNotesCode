@@ -3,7 +3,7 @@ package com.chencc.androidstudynotescode.jvm;
 import java.lang.ref.WeakReference;
 
 /**
- * ÈõÒıÓÃ²âÊÔÓÃÀı
+ *å¼±å¼•ç”¨æµ‹è¯•ç”¨ä¾‹
  *-Xms10m  -Xmx10m -XX:+PrintGC
  */
 public class TestWeakReference {
@@ -11,9 +11,9 @@ public class TestWeakReference {
     public static void main(String[] args) {
         User user = new User(18, "chen");
         WeakReference<User> userWeak = new WeakReference<User>(user);
-        user = null;  // ¸ÉµôÇ¿ÒıÓÃ£¬È·±£Õâ¸öÊµÀıÖ»ÓĞÈõÒıÓÃ
+        user = null;  // å¹²æ‰å¼ºå¼•ç”¨ï¼Œç¡®ä¿è¿™ä¸ªå®ä¾‹åªæœ‰å¼±å¼•ç”¨
         System.out.println(userWeak.get());
-        System.gc();            //ÊÖ¶¯
+        System.gc();            //æ‰‹åŠ¨
         System.out.println("After GC");
         System.out.println(userWeak.get());
     }

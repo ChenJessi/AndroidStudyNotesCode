@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
-    compileOptions.encoding = "UTF-8"
     defaultConfig {
         applicationId "com.chencc.androidstudynotescode"
         minSdkVersion 23
@@ -19,7 +19,9 @@ android {
             }
         }
     }
-
+//    tasks.withType(JavaCompile) {//解决编码错误: 编码UTF-8的不可映射字
+//        options.encoding = "UTF-8"
+//    }
     buildFeatures{
         dataBinding = true
     }

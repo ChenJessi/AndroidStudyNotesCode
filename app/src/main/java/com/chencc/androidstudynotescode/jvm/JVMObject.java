@@ -3,27 +3,27 @@ package com.chencc.androidstudynotescode.jvm;
 
 
 /**
- *´Óµ×²ãÉîÈëÀí½âÔËĞĞÊ±Êı¾İÇø
+ *ä»åº•å±‚æ·±å…¥ç†è§£è¿è¡Œæ—¶æ•°æ®åŒº
  * -Xms30m -Xmx30m    -XX:+UseConcMarkSweepGC -XX:-UseCompressedOops
  * -Xss1m
  */
 
 public class JVMObject {
-    public final static String MAN_TYPE = "man"; // ³£Á¿
-    public static String WOMAN_TYPE = "woman";  // ¾²Ì¬±äÁ¿
+    public final static String MAN_TYPE = "man"; // å¸¸é‡
+    public static String WOMAN_TYPE = "woman";  // é™æ€å˜é‡
     public static void main(String[] args) throws InterruptedException {
-        Teacher T1 = new Teacher();//¶ÑÖĞ   T1 ÊÇ¾Ö²¿±äÁ¿
+        Teacher T1 = new Teacher();//å †ä¸­   T1 æ˜¯å±€éƒ¨å˜é‡
         T1.setName("chencc");
         T1.setSexType(MAN_TYPE);
         T1.setAge(18);
-        for (int i=0;i<15;i++){//½øĞĞ15´ÎÀ¬»ø»ØÊÕ
-            System.gc();//À¬»ø»ØÊÕ
+        for (int i=0;i<15;i++){//è¿›è¡Œ15æ¬¡åƒåœ¾å›æ”¶
+            System.gc();//åƒåœ¾å›æ”¶
         }
         Teacher T2 = new Teacher();
         T2.setName("chency");
         T2.setSexType(MAN_TYPE);
         T2.setAge(20);
-        Thread.sleep(Integer.MAX_VALUE);//Ïß³ÌĞİÃßºÜ¾ÃºÜ¾Ã
+        Thread.sleep(Integer.MAX_VALUE);//çº¿ç¨‹ä¼‘çœ å¾ˆä¹…å¾ˆä¹…
     }
 
 }
@@ -31,7 +31,7 @@ public class JVMObject {
 class Teacher{
     String name;
     String sexType;
-    int age;//¶Ñ
+    int age;//å †
 
     public String getName() {
         return name;

@@ -1,10 +1,10 @@
 package com.chencc.androidstudynotescode.jvm;
 
 /**
- *ÌÓÒİ·ÖÎö²âÊÔÓÃÀı
- * ÈÕÖ¾ £º -XX:+PrintGC
- * ÆôÓÃ  £º -XX:+DoEscapeAnalysis
- * ²»ÆôÓÃ £º -XX:-DoEscapeAnalysis
+ *é€ƒé€¸åˆ†ææµ‹è¯•ç”¨ä¾‹
+ * æ—¥å¿— ï¼š -XX:+PrintGC
+ * å¯ç”¨  ï¼š -XX:+DoEscapeAnalysis
+ * ä¸å¯ç”¨ ï¼š -XX:-DoEscapeAnalysis
  */
 public class TestEscapeAnalysis {
 
@@ -18,7 +18,7 @@ public class TestEscapeAnalysis {
     }
 
 
-    static void allocate() {//Âú×ãÌÓÒİ·ÖÎö£¨²»»áÌÓÒİ³ö·½·¨£©
+    static void allocate() {//æ»¡è¶³é€ƒé€¸åˆ†æï¼ˆä¸ä¼šé€ƒé€¸å‡ºæ–¹æ³•ï¼‰
         MyObject myObject = new MyObject(2020, 2020.6);
     }
 

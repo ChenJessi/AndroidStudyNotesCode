@@ -12,15 +12,15 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * assets Ä¿Â¼ÎÄ¼ş¹¤¾ßÀà
+ * assets ç›®å½•æ–‡ä»¶å·¥å…·ç±»
  */
 public class AssetsUtil {
     private static final String TAG = "AssetsUtil";
     /**
-     * »ñÈ¡assetsÄ¿Â¼ÏÂµÄÍ¼Æ¬
-     * @param context ÉÏÏÂÎÄ
-     * @param fileName  ÎÄ¼şÃû
-     * @return  BitmapÍ¼Æ¬
+     * è·å–assetsç›®å½•ä¸‹çš„å›¾ç‰‡
+     * @param context ä¸Šä¸‹æ–‡
+     * @param fileName  æ–‡ä»¶å
+     * @return  Bitmapå›¾ç‰‡
      */
     public static Bitmap getImageFromAssetsFile(Context context, String fileName){
         Bitmap bitmap = null;
@@ -37,11 +37,11 @@ public class AssetsUtil {
     }
 
     /**
-     * »ñÈ¡assetsÄ¿Â¼ÏÂµÄµ¥¸öÎÄ¼ş
-     * ÕâÖÖ·½Ê½Ö»ÄÜÓÃÓÚwebview¼ÓÔØ
-     * ¶ÁÈ¡ÎÄ¼ş¼Ğ£¬Ö±½ÓÈ¡Â·¾¶ÊÇ²»ĞĞµÄ
-     * @param context ÉÏÏÂÎÄ
-     * @param fileName  ÎÄ¼ş¼ĞÃû
+     * è·å–assetsç›®å½•ä¸‹çš„å•ä¸ªæ–‡ä»¶
+     * è¿™ç§æ–¹å¼åªèƒ½ç”¨äºwebviewåŠ è½½
+     * è¯»å–æ–‡ä»¶å¤¹ï¼Œç›´æ¥å–è·¯å¾„æ˜¯ä¸è¡Œçš„
+     * @param context ä¸Šä¸‹æ–‡
+     * @param fileName  æ–‡ä»¶å¤¹å
      * @return File
      */
     public static File getFileFromAssetsFile(Context context, String fileName){
@@ -51,10 +51,10 @@ public class AssetsUtil {
     }
 
     /**
-     * »ñÈ¡assetsÄ¿Â¼ÏÂËùÓĞÎÄ¼ş
-     * @param context  ÉÏÏÂÎÄ
-     * @param path  ÎÄ¼şµØÖ·
-     * @return files[] ÎÄ¼şÁĞ±í
+     * è·å–assetsç›®å½•ä¸‹æ‰€æœ‰æ–‡ä»¶
+     * @param context  ä¸Šä¸‹æ–‡
+     * @param path  æ–‡ä»¶åœ°å€
+     * @return files[] æ–‡ä»¶åˆ—è¡¨
      */
     public static String[] getFilesFromAssets(Context context, String path){
         AssetManager assetManager = context.getAssets();
@@ -74,63 +74,63 @@ public class AssetsUtil {
     }
 
     /**
-     * ½«assetsÏÂµÄÎÄ¼ş·Åµ½sdÖ¸¶¨Ä¿Â¼ÏÂ
-     * @param context     ÉÏÏÂÎÄ
-     * @param assetsPath  assetsÏÂµÄÂ·¾¶
+     * å°†assetsä¸‹çš„æ–‡ä»¶æ”¾åˆ°sdæŒ‡å®šç›®å½•ä¸‹
+     * @param context     ä¸Šä¸‹æ–‡
+     * @param assetsPath  assetsä¸‹çš„è·¯å¾„
      */
     public static void putAssetsToSDCard(Context context, String assetsPath){
         putAssetsToSDCard(context, assetsPath, context.getExternalFilesDir(null).getAbsolutePath());
     }
 
     /**
-     * ½«assetsÏÂµÄÎÄ¼ş·Åµ½sdÖ¸¶¨Ä¿Â¼ÏÂ
-     * @param context      ÉÏÏÂÎÄ
-     * @param assetsPath   assetsÏÂµÄÂ·¾¶
-     * @param sdCardPath   sd¿¨µÄÂ·¾¶
+     * å°†assetsä¸‹çš„æ–‡ä»¶æ”¾åˆ°sdæŒ‡å®šç›®å½•ä¸‹
+     * @param context      ä¸Šä¸‹æ–‡
+     * @param assetsPath   assetsä¸‹çš„è·¯å¾„
+     * @param sdCardPath   sdå¡çš„è·¯å¾„
      */
     public static void putAssetsToSDCard(Context context, String assetsPath, String sdCardPath){
         AssetManager assetManager = context.getAssets();
         try {
             String files[] = assetManager.list(assetsPath);
             if (files.length == 0) {
-                // ËµÃ÷assetsPathÎª¿Õ,»òÕßassetsPathÊÇÒ»¸öÎÄ¼ş
+                // è¯´æ˜assetsPathä¸ºç©º,æˆ–è€…assetsPathæ˜¯ä¸€ä¸ªæ–‡ä»¶
                 InputStream is = assetManager.open(assetsPath);
                 byte[] mByte = new byte[1024];
                 int bt = 0;
                 File file = new File(sdCardPath + File.separator
                         + assetsPath.substring(assetsPath.lastIndexOf('/')));
                 if (!file.exists()) {
-                    // ´´½¨ÎÄ¼ş
+                    // åˆ›å»ºæ–‡ä»¶
                     file.createNewFile();
                 } else {
-                    //ÒÑ¾­´æÔÚÖ±½ÓÍË³ö
+                    //å·²ç»å­˜åœ¨ç›´æ¥é€€å‡º
                     return;
                 }
 
-                // Ğ´ÈëÁ÷
+                // å†™å…¥æµ
                 FileOutputStream fos = new FileOutputStream(file);
-                // assetsÎªÎÄ¼ş,´ÓÎÄ¼şÖĞ¶ÁÈ¡Á÷
+                // assetsä¸ºæ–‡ä»¶,ä»æ–‡ä»¶ä¸­è¯»å–æµ
                 while ((bt = is.read(mByte)) != -1) {
-                    // Ğ´ÈëÁ÷µ½ÎÄ¼şÖĞ
+                    // å†™å…¥æµåˆ°æ–‡ä»¶ä¸­
                     fos.write(mByte, 0, bt);
                 }
 
-                // Ë¢ĞÂ»º³åÇø
+                // åˆ·æ–°ç¼“å†²åŒº
                 fos.flush();
-                // ¹Ø±Õ¶ÁÈ¡Á÷
+                // å…³é—­è¯»å–æµ
                 is.close();
-                // ¹Ø±ÕĞ´ÈëÁ÷
+                // å…³é—­å†™å…¥æµ
                 fos.close();
             } else {
-                // µ±mString³¤¶È´óÓÚ0,ËµÃ÷ÆäÎªÎÄ¼ş¼Ğ
+                // å½“mStringé•¿åº¦å¤§äº0,è¯´æ˜å…¶ä¸ºæ–‡ä»¶å¤¹
                 sdCardPath = sdCardPath + File.separator + assetsPath;
                 File file = new File(sdCardPath);
                 if (!file.exists()) {
-                    // ÔÚsdÏÂ´´½¨Ä¿Â¼
+                    // åœ¨sdä¸‹åˆ›å»ºç›®å½•
                     file.mkdirs();
                 }
 
-                // ½øĞĞµİ¹é
+                // è¿›è¡Œé€’å½’
                 for (String stringFile : files) {
                     putAssetsToSDCard(context, assetsPath + File.separator
                             + stringFile, sdCardPath);

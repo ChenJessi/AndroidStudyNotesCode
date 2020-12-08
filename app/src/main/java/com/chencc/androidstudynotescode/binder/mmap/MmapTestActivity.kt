@@ -21,11 +21,9 @@ class MmapTestActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil.setContentView<ActivityMmapTestBinding>(this, R.layout.activity_mmap_test)
         binding.button1.setOnClickListener {
-            Log.e("aaaa", "write: ======>>>>>> ")
             writeTest()
         }
         binding.button2.setOnClickListener {
-            Log.e("aaaa", "read: ======>>>>>> ")
             readTest()
         }
     }

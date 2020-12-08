@@ -26,7 +26,7 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        SkinManager.INSTANCE.init(this);
+//        SkinManager.INSTANCE.init(this);
 
 
 

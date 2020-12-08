@@ -21,13 +21,13 @@ import dalvik.system.PathClassLoader;
 public class NewClassLoaderInjector {
 
     public static ClassLoader inject(Application application, ClassLoader oldClassLoader, List<File> files) throws NoSuchFieldException, IllegalAccessException {
-        // ·Ö·¢¼ÓÔØÈÎÎñµÄ¼ÓÔØÆ÷£¬×÷ÎªÎÒÃÇ×Ô¼º¼ÓÔØÆ÷µÄ¸¸¼ÓÔØÆ÷
+        // åˆ†å‘åŠ è½½ä»»åŠ¡çš„åŠ è½½å™¨ï¼Œä½œä¸ºæˆ‘ä»¬è‡ªå·±åŠ è½½å™¨çš„çˆ¶åŠ è½½å™¨
         DispatchClassLoader dispatchClassLoader = new DispatchClassLoader(oldClassLoader, application.getClass().getName());
 
-        // ´´½¨×Ô¼ºµÄ¼ÓÔØÆ÷
+        // åˆ›å»ºè‡ªå·±çš„åŠ è½½å™¨
         ClassLoader newClassLoader = createNewClassLoader(application, oldClassLoader, dispatchClassLoader, files);
         dispatchClassLoader.setNewClassLoader(newClassLoader);
-        // ½«×Ô¼ºµÄ ¼ÓÔØÆ÷  newClassLoader ×¢Èë application
+        // å°†è‡ªå·±çš„ åŠ è½½å™¨  newClassLoader æ³¨å…¥ application
         doInject(application, newClassLoader);
         return null;
     }
@@ -37,7 +37,7 @@ public class NewClassLoaderInjector {
 
     private static ClassLoader createNewClassLoader(Context context, ClassLoader oldClassLoader, ClassLoader dispatchClassLoader, List<File> patchs) throws NoSuchFieldException, IllegalAccessException {
 
-        // µÃµ½ pathList
+        // å¾—åˆ° pathList
         Field pathListField = ShareReflectUtil.findField(oldClassLoader, "pathList");
         Object oldPathList = pathListField.get(oldClassLoader);
 
@@ -46,10 +46,10 @@ public class NewClassLoaderInjector {
 
         Object[] oldDexElemtnts = (Object[]) dexElementsField.get(oldPathList);
 
-        // ´Ó elements ÖĞµÃµ½ dexFile
+        // ä» elements ä¸­å¾—åˆ° dexFile
         Field dexFileField = ShareReflectUtil.findField(oldDexElemtnts[0], "dexFile");
 
-        // »ñµÃÔ­Ê¼µÄ dexPath ÓÃÓÚ¹¹Ôì calssLoader
+        // è·å¾—åŸå§‹çš„ dexPath ç”¨äºæ„é€  calssLoader
         StringBuilder dexPathBuilder = new StringBuilder();
         String packageName = context.getPackageName();
         boolean isFirstItem = true;
@@ -86,7 +86,7 @@ public class NewClassLoaderInjector {
 
         final String combinedDexPath = dexPathBuilder.toString();
 
-        // apkÖĞµÄnative ¿â £¨so£© ÎÄ¼şÄ¿Â¼£¬ÓÃÓÚ¹¹Ôì classloader
+        // apkä¸­çš„native åº“ ï¼ˆsoï¼‰ æ–‡ä»¶ç›®å½•ï¼Œç”¨äºæ„é€  classloader
 
         Field nativeLibraryDirectoriesField = ShareReflectUtil.findField(oldPathList, "nativeLibraryDirectories");
         List<File> oldNativeLibraryDirectories = (List<File>) nativeLibraryDirectoriesField.get(oldPathList);
@@ -107,7 +107,7 @@ public class NewClassLoaderInjector {
 
         String combinedLibraryPath = libraryPathBuilder.toString();
 
-        // ´´½¨×Ô¼ºidÀà¼ÓÔØÆ÷
+        // åˆ›å»ºè‡ªå·±idç±»åŠ è½½å™¨
         ClassLoader result = new PathClassLoader(combinedDexPath, combinedLibraryPath, dispatchClassLoader);
 
         ShareReflectUtil.findField(oldPathList, "definingContext").set(oldPathList, result);
@@ -177,12 +177,12 @@ public class NewClassLoaderInjector {
                 return null;
             }
 
-            // 1. application ²»ĞèÒªĞŞ¸´ Ê¹ÓÃÔ­±¾µÄÀà¼ÓÔØÆ÷»ñµÃ
+            // 1. application ä¸éœ€è¦ä¿®å¤ ä½¿ç”¨åŸæœ¬çš„ç±»åŠ è½½å™¨è·å¾—
             if (name.equals(mApplicationClassName)){
                 return findClass(oldClassLoader, name);
             }
 
-            // 2. ¼ÓÔØÈÈĞŞ¸´¿ò¼ÜµÄÀà£¬ ²»ĞèÒªĞŞ¸´£¬Ê¹ÓÃÔ­±¾µÄÀà¼ÓÔØÆ÷»ñµÃ
+            // 2. åŠ è½½çƒ­ä¿®å¤æ¡†æ¶çš„ç±»ï¼Œ ä¸éœ€è¦ä¿®å¤ï¼Œä½¿ç”¨åŸæœ¬çš„ç±»åŠ è½½å™¨è·å¾—
             if (name.startsWith("com.chencc.androidstudynotescode.androidjvm_class.")){
                 return findClass(oldClassLoader, name);
             }
@@ -197,7 +197,7 @@ public class NewClassLoaderInjector {
 
         private Class<?> findClass(ClassLoader classLoader, String name) throws ClassNotFoundException {
             try {
-                // Ë«Ç×Î¯ÍĞ  ËùÒÔ¿ÉÄÜ»ástackoverflowËÀÑ­»· ·ÀÖ¹Õâ¸öÇé¿ö
+                // åŒäº²å§”æ‰˜  æ‰€ä»¥å¯èƒ½ä¼šstackoverflowæ­»å¾ªç¯ é˜²æ­¢è¿™ä¸ªæƒ…å†µ
                 mCallFindClassOfLeafDirectly.set(true);
                 return classLoader.loadClass(name);
             } finally {

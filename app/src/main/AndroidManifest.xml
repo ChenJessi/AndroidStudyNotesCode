@@ -156,6 +156,9 @@
         <!--mmap读写文件测试-->
          <activity android:name="com.chencc.androidstudynotescode.binder.mmap.MmapTestActivity"
             android:theme="@style/MaterialAppTheme_NoActionBar"/>
+        <!--binder原理测试-->
+        <activity android:name="com.chencc.androidstudynotescode.binder.binder.client.ClientActivity"
+            android:theme="@style/MaterialAppTheme_NoActionBar"/>
 
 
 

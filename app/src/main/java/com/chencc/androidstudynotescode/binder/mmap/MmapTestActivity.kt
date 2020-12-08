@@ -1,6 +1,7 @@
 package com.chencc.androidstudynotescode.binder.mmap
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.chencc.androidstudynotescode.R
@@ -19,11 +20,16 @@ class MmapTestActivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil.setContentView<ActivityMmapTestBinding>(this, R.layout.activity_mmap_test)
-
+        binding.button1.setOnClickListener {
+            Log.e("aaaa", "write: ======>>>>>> ")
+            writeTest()
+        }
+        binding.button2.setOnClickListener {
+            Log.e("aaaa", "read: ======>>>>>> ")
+            readTest()
+        }
     }
 
-    fun write(){}
-    fun read(){}
     external fun writeTest()
     external fun readTest()
 }

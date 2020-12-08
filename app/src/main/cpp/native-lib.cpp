@@ -30,7 +30,7 @@ Java_com_chencc_androidstudynotescode_binder_mmap_MmapTestActivity_writeTest(JNI
     m_ptr = (int8_t *) mmap(0, m_size, PROT_READ | PROT_WRITE, MAP_SHARED, m_fd,
                             0);
 
-    std::string data("leo老师刚刚写入的数据");
+    std::string data("刚刚写入的数据");
     //将 data 的 data.size() 个数据 拷贝到 m_ptr
     //Java 类似的：
 //        byte[] src = new byte[10];
@@ -38,7 +38,7 @@ Java_com_chencc_androidstudynotescode_binder_mmap_MmapTestActivity_writeTest(JNI
 //        System.arraycopy(src, 0, dst, 0, src.length);
     memcpy(m_ptr, data.data(), data.size());
 
-    __android_log_print(ANDROID_LOG_ERROR, "leo", "写入数据:%s", data.c_str());
+    __android_log_print(ANDROID_LOG_ERROR, "ccc", "写入数据:%s", data.c_str());
 }
 
 extern "C"
@@ -50,7 +50,7 @@ Java_com_chencc_androidstudynotescode_binder_mmap_MmapTestActivity_readTest(JNIE
     memcpy(buf, m_ptr, 100);
 
     std::string result(buf);
-    __android_log_print(ANDROID_LOG_ERROR, "leo", "读取数据:%s", result.c_str());
+    __android_log_print(ANDROID_LOG_ERROR, "ccc", "读取数据:%s", result.c_str());
 
     //取消映射
     munmap(m_ptr, m_size);

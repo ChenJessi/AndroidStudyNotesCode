@@ -33,6 +33,32 @@ fun main() {
 }
 
 
+ class CQueue {
+    //两个栈，一个出栈，一个入栈
+    private val stack1: Stack<Int> = Stack()
+    private val stack2: Stack<Int> = Stack()
+    fun appendTail(value: Int) {
+        stack1.push(value)
+    }
+
+    fun deleteHead(): Int {
+        return if (!stack2.isEmpty()) {
+            stack2.pop()
+        } else {
+            while (!stack1.isEmpty()) {
+                stack2.push(stack1.pop())
+            }
+            if (stack2.isEmpty()) -1 else stack2.pop()
+        }
+    }
+
+}
+
+
+
+
+
+
 /**
  * 重建二叉树
  */

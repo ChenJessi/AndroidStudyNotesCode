@@ -17,7 +17,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="write"
-            android:onClick="@{()->click.write()}"
             android:textAllCaps="false" />
 
         <com.google.android.material.button.MaterialButton
@@ -25,7 +24,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="read"
-            android:onClick="@{()->click.read()}"
             android:textAllCaps="false" />
 
     </com.chencc.androidstudynotescode.customview.flowLayout.FlowLayout>

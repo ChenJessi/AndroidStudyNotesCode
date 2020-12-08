@@ -153,6 +153,11 @@
         <activity android:name="com.chencc.androidstudynotescode.materialdesign.nestedscroll.nestedscrolling.NestedScrolling1Activity"
             android:theme="@style/MaterialAppTheme_NoActionBar"/>
 
+        <!--mmap读写文件测试-->
+         <activity android:name="com.chencc.androidstudynotescode.binder.mmap.MmapTestActivity"
+            android:theme="@style/MaterialAppTheme_NoActionBar"/>
+
+
 
 
     </application>

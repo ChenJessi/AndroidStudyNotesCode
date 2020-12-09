@@ -33,6 +33,21 @@ fun main() {
 }
 
 
+fun fib(n: Int): Int {
+    var a = 0
+    var b = 1
+    var sum: Int
+    for (i in 0 until n) {
+        sum = (a + b) % 1000000007
+        a = b
+        b = sum
+    }
+    return a
+}
+
+
+
+
  class CQueue {
     //两个栈，一个出栈，一个入栈
     private val stack1: Stack<Int> = Stack()

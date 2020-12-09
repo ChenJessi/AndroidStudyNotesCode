@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.chencc.androidstudynotescode.androidjvm_class_test.Test
 import com.chencc.androidstudynotescode.androidjvm_class_test.Test.test
+import com.chencc.androidstudynotescode.binder.binder.client.ClientActivity
 import com.chencc.androidstudynotescode.binder.mmap.MmapTestActivity
 import com.chencc.androidstudynotescode.customview.CustomViewActivity
 import com.chencc.androidstudynotescode.customview.flowLayout.TestFlowActivity
@@ -83,11 +84,18 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this@MainActivity, MaterialDesignActivity::class.java))
         }
         /**
-         * binder
+         * binder mmap
          */
         button1.setOnClickListener {
             startActivity(Intent(this@MainActivity, MmapTestActivity::class.java))
         }
+        /**
+         * binder
+         */
+        button2.setOnClickListener {
+            startActivity(Intent(this@MainActivity, ClientActivity::class.java))
+        }
+
     }
 
 

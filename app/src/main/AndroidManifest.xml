@@ -163,6 +163,18 @@
 
 
 
+
+
+        <service
+            android:name=".binder.binder.server.RemoteService"
+            android:exported="true"
+            android:process=":remote">
+            <intent-filter>
+                <action android:name="com.chencc.androidstudynotescode.binder.binder" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+
     </application>
 
 </manifest>

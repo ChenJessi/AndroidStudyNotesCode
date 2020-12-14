@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.chencc.androidstudynotescode.R
 import com.chencc.androidstudynotescode.databinding.ActivityMmapTestBinding
+import com.chencc.androidstudynotescode.utils.JNIUtils
 
 /**
  * @author Created by CHEN on 2020/12/7
@@ -14,20 +15,17 @@ import com.chencc.androidstudynotescode.databinding.ActivityMmapTestBinding
  */
 class MmapTestActivity : AppCompatActivity(){
 
-    init {
-        System.loadLibrary("native-lib")
-    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil.setContentView<ActivityMmapTestBinding>(this, R.layout.activity_mmap_test)
         binding.button1.setOnClickListener {
-            writeTest()
+            JNIUtils.writeTest()
         }
         binding.button2.setOnClickListener {
-            readTest()
+            JNIUtils.readTest()
         }
     }
 
-    external fun writeTest()
-    external fun readTest()
+
 }

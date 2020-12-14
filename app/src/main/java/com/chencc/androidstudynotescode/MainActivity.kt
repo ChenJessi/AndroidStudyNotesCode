@@ -2,41 +2,33 @@ package com.chencc.androidstudynotescode
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent.*
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
-
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
-import androidx.core.view.ViewCompat
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager.widget.ViewPager
-import com.chencc.androidstudynotescode.androidjvm_class_test.Test
-import com.chencc.androidstudynotescode.androidjvm_class_test.Test.test
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.FileProvider
 import com.chencc.androidstudynotescode.binder.binder.client.ClientActivity
 import com.chencc.androidstudynotescode.binder.mmap.MmapTestActivity
 import com.chencc.androidstudynotescode.customview.CustomViewActivity
-import com.chencc.androidstudynotescode.customview.flowLayout.TestFlowActivity
-import com.chencc.androidstudynotescode.customview.viewpager.TestViewPagerActivity
 import com.chencc.androidstudynotescode.draw_text.DrawTextActivity
 import com.chencc.androidstudynotescode.lazyfragment.LazyFragmentActivity
 import com.chencc.androidstudynotescode.materialdesign.MaterialDesignActivity
 import com.chencc.androidstudynotescode.nestedscroll.NestedScrollActivity
 import com.chencc.androidstudynotescode.skin.SkinTestActivity
-import com.chencc.androidstudynotescode.utils.getResId
+import com.chencc.androidstudynotescode.utils.JNIUtils
 import com.chencc.androidstudynotescode.view_dispatch.ViewDispatchActivity
-import com.qmuiteam.qmui.util.QMUIDrawableHelper
-import dalvik.system.DexClassLoader
 import dalvik.system.PathClassLoader
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
-import java.util.zip.ZipFile
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.withContext
+import java.io.BufferedInputStream
+import java.io.BufferedOutputStream
+import java.io.File
+import java.io.FileOutputStream
+
 
 private const val TAG = "MainActivity"
 
@@ -95,50 +87,137 @@ class MainActivity : AppCompatActivity() {
         button2.setOnClickListener {
             startActivity(Intent(this@MainActivity, ClientActivity::class.java))
         }
-
-    }
-
-
-    fun text0() {
-        GlobalScope.launch {
-            flow<Int> {
-                (60 downTo 0).forEach {
-                    delay(1000)
-                    emit(it)
-                }
-            }
-                .flowOn(Dispatchers.Main)
-                .collect {
-                    Log.e("TAG", "text0:   $it")
-                }
+        /**
+         * BSPatch测试
+         */
+        button3.setOnClickListener {
+            patch()
         }
-    }
-    fun launchUI(block : suspend ()->Unit){
-        GlobalScope.launch {
-            block.invoke()
-        }
-    }
-
-    fun test2(){
-        launchUI {
-            flow<Int> {
-                (60 downTo 0).forEach {
-                    delay(1000)
-                    emit(it)
-                }
-            }
-                .flowOn(Dispatchers.Main)
-                .collect {
-                    Log.e("TAG", "text0:   $it")
-                }
-        }
+        Log.e(TAG, "onCreate: ${getExternalFilesDir("")?.absolutePath}")
     }
 
 
+
+  // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  增量更新测试  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     /**
-     * 测试协程
+     * 增量更新测试
      */
-    fun test1() {
+
+    private fun patch(){
+        val newFile = File(getExternalFilesDir("apk"), "app.apk")
+//        val patchFile = File(getExternalFilesDir("apk"), "patch.apk")
+        val patchFile = File("/sdcard/Android/data/patch.apk")
+        Log.e(TAG, "patch: sourceDir : ${applicationInfo.sourceDir}   ${newFile.absolutePath}   ${patchFile.absolutePath}" )
+        val result = JNIUtils.patch(applicationInfo.sourceDir, newFile.absolutePath, patchFile.absolutePath)
+        if (result == 0){
+            install(newFile)
+        }
+    }
+
+
+    private fun install(file : File){
+        val intent = Intent(ACTION_VIEW).apply {
+            addFlags(FLAG_ACTIVITY_NEW_TASK)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {// 7.0+
+                val apkUri = FileProvider.getUriForFile(this@MainActivity, "$packageName.fileprovider", file)
+                addFlags(FLAG_GRANT_READ_URI_PERMISSION)
+                setDataAndType(apkUri, "application/vnd.android.package-archive");
+            }else{
+                setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
+            }
+        }
+        startActivity(intent)
+    }
+
+
+    private fun testDiff(){
+        val file = copy4Assets()
+        val pathClassLoader = PathClassLoader(file.absolutePath, classLoader)
+        try {
+            val test = pathClassLoader.loadClass("Test")
+            val main = test.getDeclaredMethod("test")
+            main.invoke(null)
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+    }
+
+
+    private fun copy4Assets() : File{
+        val externalFilesDir = getExternalFilesDir("")
+        val dexFile = File(externalFilesDir, "new.dex")
+        if (!dexFile.exists()){
+            var bufferedInputStream : BufferedInputStream? = null
+            var bufferedOutputStream : BufferedOutputStream? = null
+
+            try {
+                bufferedInputStream = BufferedInputStream(assets.open("new.dex"))
+                bufferedOutputStream = BufferedOutputStream(FileOutputStream(dexFile))
+                val buffer = ByteArray(4096)
+                var len = 0
+                while ( bufferedInputStream.read(buffer).also { len = it } != -1){
+                    bufferedOutputStream.write(buffer, 0, len)
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            } finally {
+                try {
+                    bufferedInputStream?.close()
+                    bufferedOutputStream?.close()
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+        }
+        return dexFile
+    }
+
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  增量更新测试结束  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+//
+//    fun text0() {
+//        GlobalScope.launch {
+//            flow<Int> {
+//                (60 downTo 0).forEach {
+//                    delay(1000)
+//                    emit(it)
+//                }
+//            }
+//                .flowOn(Dispatchers.Main)
+//                .collect {
+//                    Log.e("TAG", "text0:   $it")
+//                }
+//        }
+//    }
+//    fun launchUI(block : suspend ()->Unit){
+//        GlobalScope.launch {
+//            block.invoke()
+//        }
+//    }
+//
+//    fun test2(){
+//        launchUI {
+//            flow<Int> {
+//                (60 downTo 0).forEach {
+//                    delay(1000)
+//                    emit(it)
+//                }
+//            }
+//                .flowOn(Dispatchers.Main)
+//                .collect {
+//                    Log.e("TAG", "text0:   $it")
+//                }
+//        }
+//    }
+//
+//
+//    /**
+//     * 测试协程
+//     */
+//    fun test1() {
 //        GlobalScope.launch {
 //
 //            launch {
@@ -176,7 +255,7 @@ class MainActivity : AppCompatActivity() {
 
 
 //        MLog("test11111===========2 : ${Thread.currentThread().name}")
-    }
+//    }
 
 
 //    fun testView() {

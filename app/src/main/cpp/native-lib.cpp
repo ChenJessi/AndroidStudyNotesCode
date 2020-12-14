@@ -6,13 +6,21 @@
 #include <sys/mman.h>
 #include <android/log.h>
 
+extern "C"
+{
+extern int executePatch(int argc, char * argv[]);
+}
+
+
+
+
 int8_t *m_ptr;
 int32_t m_size;
 int m_fd;
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_chencc_androidstudynotescode_binder_mmap_MmapTestActivity_writeTest(JNIEnv *env, jobject thiz) {
+Java_com_chencc_androidstudynotescode_utils_JNIUtils_writeTest(JNIEnv *env, jobject thiz) {
     std::string file = "/sdcard/a.txt";
 
     //打开文件
@@ -43,7 +51,7 @@ Java_com_chencc_androidstudynotescode_binder_mmap_MmapTestActivity_writeTest(JNI
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_chencc_androidstudynotescode_binder_mmap_MmapTestActivity_readTest(JNIEnv *env, jobject thiz) {
+Java_com_chencc_androidstudynotescode_utils_JNIUtils_readTest(JNIEnv *env, jobject thiz) {
     //申请内存
     char *buf = static_cast<char *>(malloc(100));
 
@@ -56,4 +64,25 @@ Java_com_chencc_androidstudynotescode_binder_mmap_MmapTestActivity_readTest(JNIE
     munmap(m_ptr, m_size);
     //关闭文件
     close(m_fd);
+}
+
+extern "C"
+JNIEXPORT int JNICALL
+Java_com_chencc_androidstudynotescode_utils_JNIUtils_patch(JNIEnv *env, jobject thiz,
+                                                           jstring old_apk, jstring new_apk,
+                                                           jstring patch_file) {
+    int args = 4;
+    char *argv[args];
+    argv[0] = "bspatch";
+
+    argv[1] = const_cast<char *>(env->GetStringUTFChars(old_apk, 0));
+    argv[2] = const_cast<char *>(env->GetStringUTFChars(new_apk, 0));
+    argv[3] = const_cast<char *>(env->GetStringUTFChars(patch_file, 0));
+
+    int result = executePatch(args, argv);
+
+    env->ReleaseStringUTFChars(old_apk, argv[1]);
+    env->ReleaseStringUTFChars(new_apk, argv[2]);
+    env->ReleaseStringUTFChars(patch_file, argv[3]);
+    return result;
 }

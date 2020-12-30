@@ -159,7 +159,10 @@
         <!--binder原理测试-->
         <activity android:name="com.chencc.androidstudynotescode.binder.binder.client.ClientActivity"
             android:theme="@style/MaterialAppTheme_NoActionBar"/>
-
+        <!--activity hook测试-->
+        <activity android:name=".hook.activityhook.MainHookActivity"/>
+        <!--hook 测试占位activity-->
+        <activity android:name=".hook.activityhook.StubActivity"/>
 
 
 

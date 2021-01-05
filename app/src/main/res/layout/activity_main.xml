@@ -109,6 +109,13 @@
             android:text="BSPatch更新后"
             android:textAllCaps="false" />
 
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hook测试"
+            android:textAllCaps="false" />
+
     </com.chencc.androidstudynotescode.customview.flowLayout.FlowLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

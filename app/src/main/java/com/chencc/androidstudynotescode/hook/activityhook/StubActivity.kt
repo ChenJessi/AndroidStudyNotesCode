@@ -2,6 +2,7 @@ package com.chencc.androidstudynotescode.hook.activityhook
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.chencc.androidstudynotescode.R
 
 /**
  * @author Created by CHEN on 2020/12/30
@@ -11,5 +12,6 @@ import androidx.appcompat.app.AppCompatActivity
 class StubActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_stub)
     }
 }

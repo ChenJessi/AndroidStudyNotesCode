@@ -13,6 +13,7 @@ import com.chencc.androidstudynotescode.binder.binder.client.ClientActivity
 import com.chencc.androidstudynotescode.binder.mmap.MmapTestActivity
 import com.chencc.androidstudynotescode.customview.CustomViewActivity
 import com.chencc.androidstudynotescode.draw_text.DrawTextActivity
+import com.chencc.androidstudynotescode.hook.activityhook.MainHookActivity
 import com.chencc.androidstudynotescode.lazyfragment.LazyFragmentActivity
 import com.chencc.androidstudynotescode.materialdesign.MaterialDesignActivity
 import com.chencc.androidstudynotescode.nestedscroll.NestedScrollActivity
@@ -93,6 +94,13 @@ class MainActivity : AppCompatActivity() {
         button3.setOnClickListener {
             patch()
         }
+        /**
+         * hook
+         */
+        button4.setOnClickListener {
+            startActivity(Intent(this@MainActivity, MainHookActivity::class.java))
+        }
+
         Log.e(TAG, "onCreate: ${getExternalFilesDir("")?.absolutePath}")
     }
 

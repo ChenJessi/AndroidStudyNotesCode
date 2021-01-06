@@ -254,15 +254,21 @@ private class ProxyInstrumentation(val mBase : Instrumentation) : Instrumentatio
 }
 
 fun hookActivityThreadInstrumentation(){
-    //todo
     try {
         val activityThreadClass = Class.forName("android.app.ActivityThread")
         val currentActivityThreadMethod = activityThreadClass.getDeclaredMethod("currentActivityThread").apply {
             isAccessible = true
         }
+        // threadActivity 对象
         val currentActivityThread = currentActivityThreadMethod.invoke(null)
 
-        val mInstrumentationField = activityThreadClass.getDeclaredField("mInstrumentation")
+        val mInstrumentationField = activityThreadClass.getDeclaredField("mInstrumentation").apply {
+            isAccessible = true
+        }
+        val mInstrumentation = mInstrumentationField.get(currentActivityThread) as Instrumentation
+        val instrumentationProxy = ProxyInstrumentation(mInstrumentation)
+        mInstrumentationField.set(currentActivityThread, instrumentationProxy)
+
     } catch (e: Exception) {
         e.printStackTrace()
     }

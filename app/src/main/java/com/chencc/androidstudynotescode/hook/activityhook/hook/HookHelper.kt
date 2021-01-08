@@ -127,7 +127,6 @@ private fun hookIActivityManager(){
 }
 
 
-
 fun hookHandler(){
     try {
         val forName = Class.forName("android.app.ActivityThread")
@@ -144,7 +143,7 @@ fun hookHandler(){
             isAccessible = true
         }.set(mH, object : Handler.Callback {
             override fun handleMessage(msg: Message): Boolean {
-                Log.i(TAG, "handleMessage:  what :  ${msg.what}  obj  : ${msg?.obj::class?.java?.canonicalName}")
+                Log.i(TAG, "handleMessage:  what :  ${msg.what}  obj  : ${msg?.obj}")
                 when(msg.what){
                     //从AndroidP开始重构了状态模式
                     //public static final int EXECUTE_TRANSACTION = 159;
@@ -154,8 +153,10 @@ fun hookHandler(){
                     //在Android 9.0 改成了全部由EXECUTE_TRANSACTION来处理
                     //所以这里第一次mActivityCallbacks是MainActivity的生命周期回调的
                     100 ->{
-                        val className = "android.app.ActivityThread.ActivityClientRecord"
+
                         val obj = msg.obj
+                        Log.i(TAG, "handleMessage:  obj : $obj")
+                        val className = "android.app.ActivityThread.ActivityClientRecord"
                         if (obj::class.java.canonicalName == className){
                             val intentField =  obj::class.java.getDeclaredField("intent").apply {
                                 isAccessible = true

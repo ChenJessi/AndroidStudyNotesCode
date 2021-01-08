@@ -164,6 +164,9 @@
         <!--hook 测试占位activity-->
         <activity android:name=".hook.activityhook.StubActivity"/>
 
+        <!--pkms练习-->
+        <activity android:name=".framework.pkms.PKMSActivity"/>
+
 
 
 

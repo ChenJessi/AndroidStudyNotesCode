@@ -13,7 +13,10 @@ import com.chencc.androidstudynotescode.binder.binder.client.ClientActivity
 import com.chencc.androidstudynotescode.binder.mmap.MmapTestActivity
 import com.chencc.androidstudynotescode.customview.CustomViewActivity
 import com.chencc.androidstudynotescode.draw_text.DrawTextActivity
+import com.chencc.androidstudynotescode.framework.pkms.PKMSActivity
 import com.chencc.androidstudynotescode.hook.activityhook.MainHookActivity
+import com.chencc.androidstudynotescode.hook.activityhook.hook.hookAMSAidl
+import com.chencc.androidstudynotescode.hook.activityhook.hook.hookHandler
 import com.chencc.androidstudynotescode.lazyfragment.LazyFragmentActivity
 import com.chencc.androidstudynotescode.materialdesign.MaterialDesignActivity
 import com.chencc.androidstudynotescode.nestedscroll.NestedScrollActivity
@@ -99,6 +102,12 @@ class MainActivity : AppCompatActivity() {
          */
         button4.setOnClickListener {
             startActivity(Intent(this@MainActivity, MainHookActivity::class.java))
+        }
+        /**
+         * pkms
+         */
+        button5.setOnClickListener {
+            startActivity(Intent(this@MainActivity, PKMSActivity::class.java))
         }
 
         Log.e(TAG, "onCreate: ${getExternalFilesDir("")?.absolutePath}")

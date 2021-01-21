@@ -18,6 +18,7 @@ import com.chencc.androidstudynotescode.hook.activityhook.hook.hookAMSAidl
 import com.chencc.androidstudynotescode.hook.activityhook.hook.hookHandler
 import com.chencc.androidstudynotescode.lazyfragment.LazyFragmentActivity
 import com.chencc.androidstudynotescode.materialdesign.MaterialDesignActivity
+import com.chencc.androidstudynotescode.mvvm.view.JingziqiActivity
 import com.chencc.androidstudynotescode.nestedscroll.NestedScrollActivity
 import com.chencc.androidstudynotescode.skin.SkinTestActivity
 import com.chencc.androidstudynotescode.utils.JNIUtils
@@ -106,7 +107,7 @@ class MainActivity : AppCompatActivity() {
          *
          */
         button5.setOnClickListener {
-
+            startActivity(Intent(this@MainActivity, JingziqiActivity::class.java))
         }
 
         Log.e(TAG, "onCreate: ${getExternalFilesDir("")?.absolutePath}")

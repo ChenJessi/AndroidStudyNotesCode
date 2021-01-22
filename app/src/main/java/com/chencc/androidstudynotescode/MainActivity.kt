@@ -111,6 +111,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         Log.e(TAG, "onCreate: ${getExternalFilesDir("")?.absolutePath}")
+
     }
 
 

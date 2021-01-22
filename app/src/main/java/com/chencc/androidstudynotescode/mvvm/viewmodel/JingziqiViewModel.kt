@@ -1,5 +1,6 @@
 package com.chencc.androidstudynotescode.mvvm.viewmodel
 
+import android.util.Log
 import androidx.databinding.ObservableArrayMap
 import androidx.databinding.ObservableField
 import com.chencc.androidstudynotescode.mvvm.model.Board
@@ -18,8 +19,9 @@ class JingziqiViewModel {
 
     fun onClickedCellAt(row : Int, col : Int){
         val playerThatMoved = model.mark(row, col)
+        Log.i("TAG", "onClickedCellAt:   row : $row  col : $col    $playerThatMoved")
         if (playerThatMoved != null){
-            cells.put((row + col).toString(), playerThatMoved.toString())
+            cells["$row$col"] = playerThatMoved.toString()
             winner.set(model.getWinner()?.toString())
         }
     }

@@ -4,8 +4,10 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.view.WindowManager
 import android.widget.FrameLayout
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.setPadding
@@ -14,9 +16,11 @@ import com.chencc.androidstudynotescode.R
 import com.chencc.androidstudynotescode.adapter.ViewPager2Adapter
 import com.chencc.androidstudynotescode.nestedscroll.RecyclerViewFragment
 import com.chencc.androidstudynotescode.utils.dp2px
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper
+import kotlinx.android.synthetic.main.activity_snackbar.*
 import kotlinx.android.synthetic.main.activity_viewpager2.*
 
 /**

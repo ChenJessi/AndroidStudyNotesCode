@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
+import com.chencc.androidstudynotescode.androidapi.ActivityResultTestActivity
 import com.chencc.androidstudynotescode.binder.binder.client.ClientActivity
 import com.chencc.androidstudynotescode.binder.mmap.MmapTestActivity
 import com.chencc.androidstudynotescode.customview.CustomViewActivity
@@ -104,10 +105,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this@MainActivity, MainHookActivity::class.java))
         }
         /**
-         *
+         *  ActivityResult
          */
         button5.setOnClickListener {
-            startActivity(Intent(this@MainActivity, JingziqiActivity::class.java))
+            startActivity(Intent(this@MainActivity, ActivityResultTestActivity::class.java))
         }
 
         Log.e(TAG, "onCreate: ${getExternalFilesDir("")?.absolutePath}")

@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -165,6 +167,9 @@
         <activity android:name=".hook.activityhook.StubActivity"/>
         <!--mvvm-->
         <activity android:name=".mvvm.view.JingziqiActivity"/>
+        <!--ActivityResult-->
+        <activity android:name=".androidapi.ActivityResultTestActivity"/>
+        <activity android:name=".androidapi.ActivityResultSecondTestActivity"/>
 
 
 

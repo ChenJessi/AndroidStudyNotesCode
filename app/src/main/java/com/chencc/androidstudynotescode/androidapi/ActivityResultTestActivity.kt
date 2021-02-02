@@ -2,21 +2,19 @@ package com.chencc.androidstudynotescode.androidapi
 
 import android.Manifest.permission.*
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.provider.ContactsContract
-import android.provider.MediaStore
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.chencc.androidstudynotescode.R
 import com.chencc.androidstudynotescode.databinding.ActivityActivityResultSecondTestBinding
 import com.chencc.androidstudynotescode.databinding.ActivityActivityResultTestBinding
+import java.io.File
+import java.net.URI
 
 /**
  *
@@ -33,7 +31,9 @@ class ActivityResultTestActivity : AppCompatActivity() {
 //            takePicturePreview()      // 拍照，返回 bitmap
 //            requestPermission()       // 单个权限请求
 //            requestMultiplePermissions()      //单个权限请求
-            pickContact()        //  多个权限请求
+//            pickContact()        //  多个权限请求
+//            openDocument()          // 选择文件
+            getContent()          // 选择文件
         }
     }
 
@@ -89,19 +89,50 @@ class ActivityResultTestActivity : AppCompatActivity() {
     fun pickContact(){
         registerForActivityResult(ActivityResultContracts.PickContact()) {
             if (it != null){
+//                ContactsContract.CommonDataKinds.Phone.CONTENT_URI
                 val cursor = contentResolver.query(it, null, null, null, null)?.apply {
                     if (moveToFirst()){
                         val name = getString(getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME))
+                        val id = getString(getColumnIndex(ContactsContract.Contacts._ID))
+
+                        Log.e(TAG, "pickContact:   id : $id   name : $name ")
+
+//                        val displayName: String = getString(getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME))
+//                        val number: String = getString(getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
+//                        Log.e(TAG, "pickContact:   displayName : $displayName  number : $number")
+
 
                     }
                 }
-
             }
-
         }.launch(null)
     }
 
+    /**
+     * 打开文件
+     */
+    fun openDocument(){
+        registerForActivityResult(ActivityResultContracts.OpenDocument()) {
+            Log.e(TAG, "openDocument:  uri : $it")
+        }.launch(arrayOf("image/*", "text/plain"))
+    }
 
+    /**
+     * 选择文件
+     */
+    fun getContent(){
+        registerForActivityResult(ActivityResultContracts.GetContent()){
+            Log.e(TAG, "getContent:  uri : $it  uri ${it.path}" )
+            val file = File(URI(it.toString()))
+            Log.e(TAG, "getContent:  file : ${file.exists()}  ${file.absolutePath}" )
+        }.launch("image/*")
+    }
+
+    fun a(){
+        registerForActivityResult(ActivityResultContracts.CreateDocument()){
+
+        }.launch("")
+    }
 }
 
 

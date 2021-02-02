@@ -13,7 +13,7 @@ fun main() {
 //    ]
 
 
-    val array = intArrayOf()
+//    val array = intArrayOf()
 
 
 
@@ -25,10 +25,13 @@ fun main() {
 //
 //    println("reversePrint  :   ${reversePrint(a)?.toList()}")
 
-    val a = intArrayOf(3,9,12,20,15,7)
-    val b = intArrayOf(12,9,3,15,20,7)
+//    val a = intArrayOf(3,9,12,20,15,7)
+//    val b = intArrayOf(12,9,3,15,20,7)
 
-    println("======>>>>>>   ${buildTree(a, b)}")
+    val a = 10000
+    val b : Int = a
+    val c : Int = a
+    println("======>>>>>>   ${b == c}   ${b === c}")
 
 }
 

@@ -31,4 +31,3 @@ val Float.px2dp get() = this * Resources.getSystem().displayMetrics.density + 0.
 val Float.sp2px get() = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, this, Resources.getSystem().displayMetrics)
 
 
-val String?.a get() = ""

@@ -404,7 +404,6 @@ fun View.toBitmap() : Bitmap {
 fun convertViewToBitmap(view: View){
     view.apply {
         isDrawingCacheEnabled = true
-        QMUIDrawableHelper.createBitmapFromView()
     }
 }
 

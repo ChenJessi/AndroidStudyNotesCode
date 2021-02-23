@@ -15,14 +15,11 @@ import com.chencc.androidstudynotescode.binder.mmap.MmapTestActivity
 import com.chencc.androidstudynotescode.customview.CustomViewActivity
 import com.chencc.androidstudynotescode.draw_text.DrawTextActivity
 import com.chencc.androidstudynotescode.hook.activityhook.MainHookActivity
-import com.chencc.androidstudynotescode.hook.activityhook.hook.hookAMSAidl
-import com.chencc.androidstudynotescode.hook.activityhook.hook.hookHandler
 import com.chencc.androidstudynotescode.lazyfragment.LazyFragmentActivity
 import com.chencc.androidstudynotescode.materialdesign.MaterialDesignActivity
-import com.chencc.androidstudynotescode.mvvm.view.JingziqiActivity
 import com.chencc.androidstudynotescode.nestedscroll.NestedScrollActivity
 import com.chencc.androidstudynotescode.skin.SkinTestActivity
-import com.chencc.androidstudynotescode.utils.JNIUtils
+import com.chencc.androidstudynotescode.utils.*
 import com.chencc.androidstudynotescode.view_dispatch.ViewDispatchActivity
 import dalvik.system.PathClassLoader
 import kotlinx.android.synthetic.main.activity_main.*

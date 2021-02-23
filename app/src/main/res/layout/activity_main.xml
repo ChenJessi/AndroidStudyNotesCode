@@ -122,6 +122,11 @@
             android:layout_height="wrap_content"
             android:text="ActivityResult"
             android:textAllCaps="false" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"/>
     </com.chencc.androidstudynotescode.customview.flowLayout.FlowLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

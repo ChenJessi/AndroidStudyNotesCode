@@ -7,7 +7,6 @@ import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.media.ExifInterface
 import android.view.View
-import com.qmuiteam.qmui.util.QMUIDrawableHelper
 import java.io.*
 import kotlin.math.round
 
@@ -321,12 +320,53 @@ fun Bitmap.compress(quality : Int = 50) : Bitmap? {
 
 /**
  * 图片缩放
+ * 等比倍数缩放
  */
 fun Bitmap.toScale(scale :Float) : Bitmap {
     val matrix = Matrix().apply {
         postScale(scale, scale)     //  宽高等比例缩放
     }
     return Bitmap.createBitmap(this, 0, 0, width, height, matrix, true)
+}
+
+/**
+ * 缩放到给定宽高
+ */
+fun Bitmap.toZoom(width : Int, height : Int) : Bitmap {
+    val matrix  = Matrix().apply {
+        postScale(width.toFloat() / getWidth(), height.toFloat() / getHeight())
+    }
+    return Bitmap.createBitmap(this, 0, 0, getWidth(), getHeight(), matrix, true)
+}
+
+
+/**
+ * 圆角 bitmap
+ */
+fun Bitmap.toRoundCorner(round : Float) : Bitmap {
+    val outPut = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+    val canvas = Canvas(outPut)
+    val color = 0xff424242
+
+    val paint = Paint()
+    val rect = Rect(0, 0, width, height)
+    val rectF = RectF(rect)
+    paint.isAntiAlias = true
+    canvas.drawARGB(0, 0, 0, 0)
+    paint.color = color.toInt()
+    canvas.drawRoundRect(rectF, round, round, paint)
+
+    paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
+    canvas.drawBitmap(outPut, rect, rect, paint)
+
+    return outPut
+}
+
+/**
+ * Bitmap 裁剪
+ */
+fun Bitmap.toClip(x : Int, y : Int, width: Int, height: Int) : Bitmap {
+    return Bitmap.createBitmap(this, x, y, width ,height)
 }
 
 
@@ -400,10 +440,16 @@ fun View.toBitmap() : Bitmap {
 /**
  * View 转 Bitmap
  * 从 View 缓存 Cache 中获取
+ * 不建议使用
  */
-fun convertViewToBitmap(view: View){
+@Deprecated("不推荐使用")
+fun convertViewToBitmap(view: View) : Bitmap {
     view.apply {
         isDrawingCacheEnabled = true
+        measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED), View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED))
+        layout(0,0, measuredWidth,  measuredHeight)
     }
+    return view.drawingCache
 }
+
 

@@ -1,9 +1,9 @@
 package com.chencc.androidstudynotescode.performance.memory.leakcanarytest
 
-import kotlinx.coroutines.delay
 import java.lang.ref.ReferenceQueue
 import java.util.*
 import java.util.concurrent.Executors
+import kotlin.collections.HashMap
 
 class Watcher {
     // 观察列表
@@ -38,15 +38,29 @@ class Watcher {
         // 5. 过 5 秒之后看是否还在观察列表，如果还在，就加入到怀疑列表
         val executor= Executors.newSingleThreadExecutor()
         executor.execute {
-
+            sleep(5000)
+            moveToRetained(key)
         }
 
     }
 
 
+    /**
+     *  根据 key 把对应的容器加入到怀疑列表
+     */
+    @Synchronized
+    private fun moveToRetained(key: String) {
+        println("加入到怀疑列表......")
+        // 加入怀疑列表之前，做一次清理工作
+        removeWeaklyReachableReferences()
 
-
-
+        // 根据 key 从观察列表中去找盛放对象的容器，如果被找到，说明到目前为止，key 对应的对象还没有被释放
+        val retainedRef = watchedReferences.remove(key)
+        if (retainedRef != null){
+            // 把从观察列表中移除出来的对象加入到怀疑列表
+            retainedReferences[key] = retainedRef
+        }
+    }
 
     /**
      * 清理观察列表和怀疑列表的引用容器
@@ -65,12 +79,19 @@ class Watcher {
                 val removeRef = watchedReferences.remove(findRef.key)
                 // 如果 removeRef == null 那么有可能已经被放入怀疑列表了
                 // 那么从怀疑列表移除
-                if (removeRef != null){
+                if (removeRef == null){
                     retainedReferences.remove(findRef.key)
                 }
             }
         }while (findRef != null)  // 获取所有放到 referenceQueue 队列的引用容器
     }
 
+
+    fun getRetainedReferences() : HashMap<String, KeyWeakReference<Any>> {
+        retainedReferences.forEach {
+            println("retainedReferences :  key : ${it.key}  value : ${it.value}")
+        }
+        return retainedReferences
+    }
 
 }

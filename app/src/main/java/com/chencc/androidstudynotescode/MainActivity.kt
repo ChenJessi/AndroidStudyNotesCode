@@ -7,7 +7,10 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.asynclayoutinflater.view.AsyncLayoutInflater
 import androidx.core.content.FileProvider
 import com.chencc.androidstudynotescode.androidapi.ActivityResultTestActivity
 import com.chencc.androidstudynotescode.binder.binder.client.ClientActivity
@@ -39,13 +42,29 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+//        setContentView(R.layout.activity_main)
+
+        AsyncLayoutInflater(this).inflate(R.layout.activity_main, null, object : AsyncLayoutInflater.OnInflateFinishedListener{
+            override fun onInflateFinished(view: View, resid: Int, parent: ViewGroup?) {
+                Log.e("MainActivity", "setContentView")
+                setContentView(view)
+                initListener()
+            }
+        })
+
 
         Log.e("MainActivity", "Activity.class 由： + ${Activity::class.java.classLoader} + 加载")
         Log.e("MainActivity", "MainActivity.class 由： + $classLoader + 加载")
 
 //        Test.test()
 //        test1()
+
+
+    }
+
+
+
+    private fun initListener(){
         text1.setOnClickListener {
             startActivity(Intent(this@MainActivity, SkinTestActivity::class.java))
         }
@@ -109,8 +128,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         Log.e(TAG, "onCreate: ${getExternalFilesDir("")?.absolutePath}")
-
     }
+
+
+
+
 
     // 内存不足
     override fun onTrimMemory(level: Int) {

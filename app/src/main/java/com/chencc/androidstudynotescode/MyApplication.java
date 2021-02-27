@@ -15,6 +15,18 @@ import java.io.File;
 
 public class MyApplication extends Application {
     private static final String TAG = "MyApplication";
+
+
+
+    public MyApplication(){
+        // 需要手动开启存储权限
+//        Debug.startMethodTracingSampling(new File(Environment.getExternalStorageDirectory(),
+//                "jessi").getAbsolutePath(), 8 * 1024 * 1024, 1_000);
+//        Debug.startMethodTracing(new File(Environment.getExternalStorageDirectory(),
+//                "jessi").getAbsolutePath());
+    }
+
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void attachBaseContext(Context base) {

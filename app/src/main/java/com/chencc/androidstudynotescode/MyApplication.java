@@ -4,11 +4,13 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Build;
 import android.os.StrictMode;
+import android.os.SystemClock;
 import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
 import com.chencc.androidstudynotescode.skin.SkinManager;
+import com.chencc.androidstudynotescode.utils.anr.ANRWatchDog;
 
 
 import java.io.File;
@@ -55,6 +57,8 @@ public class MyApplication extends Application {
                     .penaltyLog()       // 违规打印日志
                     .penaltyDeath()     // 违规崩溃
                     .build());
+
+
         }
 
 

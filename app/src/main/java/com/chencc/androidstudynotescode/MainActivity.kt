@@ -23,6 +23,7 @@ import com.chencc.androidstudynotescode.materialdesign.MaterialDesignActivity
 import com.chencc.androidstudynotescode.nestedscroll.NestedScrollActivity
 import com.chencc.androidstudynotescode.skin.SkinTestActivity
 import com.chencc.androidstudynotescode.utils.*
+import com.chencc.androidstudynotescode.utils.battery.BatteryActivity
 import com.chencc.androidstudynotescode.view_dispatch.ViewDispatchActivity
 import dalvik.system.PathClassLoader
 import kotlinx.android.synthetic.main.activity_main.*
@@ -127,6 +128,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this@MainActivity, ActivityResultTestActivity::class.java))
         }
 
+        /**
+         * Battary
+         */
+        button7.setOnClickListener {
+            startActivity(Intent(this@MainActivity, BatteryActivity::class.java))
+        }
         Log.e(TAG, "onCreate: ${getExternalFilesDir("")?.absolutePath}")
     }
 

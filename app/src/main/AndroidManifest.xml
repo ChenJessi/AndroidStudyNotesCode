@@ -8,6 +8,8 @@
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+
     <application
         android:name=".MyApplication"
         android:allowBackup="true"
@@ -171,6 +173,8 @@
         <!--ActivityResult-->
         <activity android:name=".androidapi.ActivityResultTestActivity"/>
         <activity android:name=".androidapi.ActivityResultSecondTestActivity"/>
+
+        <activity android:name=".utils.battery.BatteryActivity"/>
 
 
 

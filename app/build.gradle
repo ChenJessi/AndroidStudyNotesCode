@@ -84,5 +84,8 @@ dependencies {
 
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.6'
     implementation 'com.squareup.leakcanary:leakcanary-object-watcher-android:2.6'
+
+
+    implementation "androidx.work:work-runtime-ktx:2.5.0"
     
 }

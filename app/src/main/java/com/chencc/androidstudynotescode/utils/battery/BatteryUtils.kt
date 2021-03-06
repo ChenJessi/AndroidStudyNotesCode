@@ -42,6 +42,7 @@ fun addWhileList(context : Context) {
 }
 
 /**
+ * 鸡肋
  * 唤醒 CPU
  */
 fun wakeLock(context: Context) : PowerManager.WakeLock? {
@@ -57,10 +58,12 @@ fun wakeLock(context: Context) : PowerManager.WakeLock? {
     // 支持 CPU 唤醒， 才保持唤醒
     if (isWakeLockLevelSupported){
         // 创建只唤醒 CPU 的唤醒锁
-        wakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK , "example:WAKE_LOCK")
+        wakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "example:WAKE_LOCK")
+//        wakeLock = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK or PowerManager.ACQUIRE_CAUSES_WAKEUP , "example:WAKE_LOCK")
         // 开始唤醒 CPU
         wakeLock.acquire()
     }
+
     return wakeLock
 }
 
@@ -107,10 +110,29 @@ fun checkBattery(context: Context){
     val batteryStatus = context.registerReceiver(null, filter)
 
     // 是否正在充电
-    val status = batteryStatus?.getIntExtra(BatteryManager.EXTRA_STATUS, -1)
+    val status = batteryStatus?.getIntExtra(BatteryManager.EXTRA_STATUS, -1) ?: -1
     val isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING || status == BatteryManager.BATTERY_STATUS_FULL
 
     //  什么方式充电
-    val chargePlug = batteryStatus?.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1)
+    val chargePlug = batteryStatus?.getIntExtra(BatteryManager.EXTRA_PLUGGED, -1) ?: -1
+
+    // USB
+    val usbCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_USB
+    // 充电器
+    val acCharge = chargePlug == BatteryManager.BATTERY_PLUGGED_AC
+
+    // 获得电量
+    // 电量百分比
+    val level = batteryStatus?.getIntExtra(BatteryManager.EXTRA_LEVEL, -1) ?: -1
+    val scale = batteryStatus?.getIntExtra(BatteryManager.EXTRA_STATUS, -1) ?: -1
+
+    val batteryPct = level * 100 / scale.toFloat()
+
+    Log.i(TAG, "checkBattery:   isCharging : $isCharging   usbCharge : $usbCharge  acCharge : $acCharge")
+    Log.i(TAG, "checkBattery:  当前电量 : $batteryPct  level : $level  scale : $scale")
+
 }
+
+
+
 

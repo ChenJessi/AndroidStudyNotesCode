@@ -3,6 +3,89 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
+apply plugin: 'com.google.protobuf'
+
+apply plugin: 'AndResGuard'
+
+andResGuard {
+    // mappingFile = file("./resource_mapping.txt")
+    mappingFile = null
+    use7zip = true
+    useSign = true
+    // 打开这个开关，会keep住所有资源的原始路径，只混淆资源的名字
+    keepRoot = false
+    // 设置这个值，会把arsc name列混淆成相同的名字，减少string常量池的大小
+//    fixedResName = "arg"
+    // 打开这个开关会合并所有哈希值相同的资源，但请不要过度依赖这个功能去除去冗余资源
+    mergeDuplicatedRes = true
+    whiteList = [
+            // for your icon
+            "R.drawable.ic_launcher",
+            "R.drawable.ic_launcher_round",
+            // for fabric
+            "R.string.com.crashlytics.*",
+            // for google-services
+            "R.string.google_app_id",
+            "R.string.gcm_defaultSenderId",
+            "R.string.default_web_client_id",
+            "R.string.ga_trackingId",
+            "R.string.firebase_database_url",
+            "R.string.google_api_key",
+            "R.string.google_crash_reporting_api_key"
+    ]
+    compressFilePattern = [
+            "*.png",
+            "*.jpg",
+            "*.jpeg",
+            "*.gif",
+    ]
+    sevenzip {
+        artifact = 'com.tencent.mm:SevenZip:1.2.19'
+        //path = "/usr/local/bin/7za"
+    }
+
+    /**
+     * 可选： 如果不设置则会默认覆盖assemble输出的apk
+     **/
+    // finalApkBackupPath = "${project.rootDir}/final.apk"
+
+    /**
+     * 可选: 指定v1签名时生成jar文件的摘要算法
+     * 默认值为“SHA-1”
+     **/
+    // digestalg = "SHA-256"
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+protobuf {
+    protoc {
+        artifact = 'com.google.protobuf:protoc:3.11.0'
+    }
+    generateProtoTasks {
+        all().each { task ->
+            task.builtins {
+                java {
+                    option "lite"
+                }
+            }
+        }
+    }
+}
+
+
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -14,10 +97,11 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-        ndk{
-            abiFilters  'armeabi-v7a'
-        }
+        // 只保留简体中文
+        resConfigs "zh-rCN"
+//        ndk{
+//            abiFilters  'armeabi-v7a'
+//        }
         externalNativeBuild {
             cmake {
                 cppFlags ""
@@ -34,7 +118,9 @@ android {
 
     buildTypes {
         release {
+//            signingConfig signingConfigs.config
             minifyEnabled false
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -50,6 +136,42 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+//    signingConfigs {
+//        config {
+//            keyAlias 'jessi'
+//            keyPassword '123456'
+//            storeFile file('')
+//            storePassword '123456'
+//        }
+//    }
+
+
+    //    flavorDimensions "default"
+//    productFlavors{
+//        arm32{
+//            dimension "default"
+//            ndk{
+//                abiFilters "armeabi-v7a"
+//            }
+//        }
+//        arm64{
+//            dimension "default"
+//            ndk{
+//                abiFilters "arm64-v8a"
+//            }
+//        }
+//    }
+//
+    splits {
+        abi {
+            enable true
+            reset()
+            include 'armeabi-v7a', 'arm64-v8a'
+//      exclude 'armeabi'
+            universalApk false  //是否打包一个包含所有so的apk
+        }
     }
 
 }
@@ -87,5 +209,7 @@ dependencies {
 
 
     implementation "androidx.work:work-runtime-ktx:2.5.0"
+
+    implementation 'com.google.protobuf:protobuf-javalite:3.11.0'
     
 }

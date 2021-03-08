@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+option java_package = "com.chencc.androidstudynotescode";
+
+package helloworld; //对于c++即命名空间，对于java则为生成的类名Helloworld
+
+// 生成 Helloworld.HelloRequest 类
+message HelloRequest {
+  string name = 1;
+  int32 age = 2;
+}
+
+//
+message HelloReply {
+  repeated string message = 1;
+}

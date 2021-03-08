@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools"
+
+    tools:keep="@layout/l_used*_c,@layout/l_used_a,@layout/l_used_b*,@drawable/image_head"
+    tools:discard="@layout/unused2"/>
+
+    <!-- 可以用通配符-->
+    <!-- tools:keep 属性中指定每个要保留的资源-->
+    <!-- tools:discard 属性中指定每个要舍弃的资源-->

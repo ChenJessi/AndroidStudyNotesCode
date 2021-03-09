@@ -11,6 +11,7 @@ import androidx.annotation.RequiresApi;
 
 import com.chencc.androidstudynotescode.skin.SkinManager;
 import com.chencc.androidstudynotescode.utils.anr.ANRWatchDog;
+import com.jessi.crash.CrashReport;
 
 
 import java.io.File;
@@ -41,6 +42,8 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        CrashReport.INSTANCE.init(this);
+
 //        SkinManager.INSTANCE.init(this);
 
         if (BuildConfig.DEBUG){

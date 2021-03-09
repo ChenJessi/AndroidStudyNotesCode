@@ -25,6 +25,7 @@ import com.chencc.androidstudynotescode.skin.SkinTestActivity
 import com.chencc.androidstudynotescode.utils.*
 import com.chencc.androidstudynotescode.utils.battery.BatteryActivity
 import com.chencc.androidstudynotescode.view_dispatch.ViewDispatchActivity
+import com.qmuiteam.qmui.util.QMUIStatusBarHelper
 import dalvik.system.PathClassLoader
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.Dispatchers
@@ -135,6 +136,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this@MainActivity, BatteryActivity::class.java))
         }
         Log.e(TAG, "onCreate: ${getExternalFilesDir("")?.absolutePath}")
+
     }
 
 

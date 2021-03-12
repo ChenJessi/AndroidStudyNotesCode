@@ -1,11 +1,15 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
 
-apply plugin: 'com.google.protobuf'
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-android-extensions'
+    id 'com.google.protobuf'
+    id 'AndResGuard'
+//    id 'kotlin-parcelize'
+}
 
-apply plugin: 'AndResGuard'
+
 
 andResGuard {
     // mappingFile = file("./resource_mapping.txt")
@@ -119,8 +123,8 @@ android {
     buildTypes {
         release {
 //            signingConfig signingConfigs.config
-            minifyEnabled true
-            shrinkResources true
+            minifyEnabled false
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -168,7 +172,7 @@ android {
         abi {
             enable true
             reset()
-            include 'armeabi-v7a', 'arm64-v8a'
+            include 'armeabi-v7a'
 //      exclude 'armeabi'
             universalApk false  //是否打包一个包含所有so的apk
         }

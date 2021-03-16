@@ -164,7 +164,7 @@ fun hookHandler(){
                             val intent = intentField.get(obj) as Intent
                             intent.apply {
                                 val targetIntent = getParcelableExtra<Intent>(EXTRA_TARGET_INTENT)
-                                intent.component = targetIntent.component
+                                intent.component = targetIntent?.component
                             }
                         }
                     }
@@ -188,7 +188,7 @@ fun hookHandler(){
                                     val intent = intentField.get(obj) as Intent
                                     intent.apply {
                                         val targetIntent = getParcelableExtra<Intent>(EXTRA_TARGET_INTENT)
-                                        intent.component = targetIntent.component
+                                        intent.component = targetIntent?.component
                                     }
                                 }
                             }

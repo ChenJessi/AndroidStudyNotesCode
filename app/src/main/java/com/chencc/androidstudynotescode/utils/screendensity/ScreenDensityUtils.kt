@@ -48,7 +48,7 @@ object ScreenDensityUtils {
         // 注意这个是获取系统的displayMetrics
         val displayMetrics = application.resources.displayMetrics
 
-        if (::sMatchInfo.isInitialized){
+        if (!::sMatchInfo.isInitialized){
             // 记录系统的原始值
             sMatchInfo = MatchInfo().apply {
                 screenWidth = displayMetrics.widthPixels

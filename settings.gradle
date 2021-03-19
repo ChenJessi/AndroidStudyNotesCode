@@ -1,3 +1,4 @@
+include ':arouter_annotation'
 include ':crash'
 include ':network'
 include ':skinlib'

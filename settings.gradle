@@ -1,3 +1,5 @@
+include ':arouter_api'
+include ':lib'
 include ':arouter_annotation'
 include ':arouter_annotation'
 include ':crash'

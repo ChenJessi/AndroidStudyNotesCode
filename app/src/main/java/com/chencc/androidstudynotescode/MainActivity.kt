@@ -25,6 +25,7 @@ import com.chencc.androidstudynotescode.skin.SkinTestActivity
 import com.chencc.androidstudynotescode.utils.*
 import com.chencc.androidstudynotescode.utils.battery.BatteryActivity
 import com.chencc.androidstudynotescode.view_dispatch.ViewDispatchActivity
+import com.jessi.arouter_annotation_java.ARouter
 import com.jessi.crash.CrashReport
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper
 import dalvik.system.PathClassLoader

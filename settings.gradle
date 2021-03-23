@@ -1,3 +1,7 @@
+include ':arouter_compiler_java'
+include ':arouter_api_java'
+include ':arouter_annotation_java'
+include ':arouter_compiler'
 include ':arouter_api'
 include ':lib'
 include ':arouter_annotation'

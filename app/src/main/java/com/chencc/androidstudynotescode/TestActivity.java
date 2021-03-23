@@ -9,10 +9,11 @@ import androidx.core.text.StringKt;
 
 import com.chencc.androidstudynotescode.androidjvm_class_test.Test;
 import com.chencc.androidstudynotescode.kotlin.Simple1Kt;
+import com.jessi.arouter_annotation_java.ARouter;
 
 import kotlin.io.FilesKt;
 
-
+@ARouter(path = "/app/MainActivity", group = "app")
 public class TestActivity extends AppCompatActivity {
 
 

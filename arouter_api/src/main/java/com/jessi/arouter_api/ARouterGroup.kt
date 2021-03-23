@@ -11,5 +11,5 @@ interface ARouterGroup {
     /**
      * @return  key:"user"      value:系列的 user 组下面所有的（path---class）
      */
-    fun getGroupMap() :  Map<String, Class<out ARouterPath>?>
+    fun getGroupMap() :  Map<String, Class<out ARouterPath>>
 }

@@ -4,6 +4,9 @@
 
 ext{
 
+    // 定义一个包名，用于存放APT生成的所有类文件
+    packageNameForAPT = "com.chencc.androidstudynotescode";
+
     // 是否是正式环境
     isRelease = true
     //  测试环境，正式环境 URL

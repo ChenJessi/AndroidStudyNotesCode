@@ -101,7 +101,7 @@ protobuf {
 android {
     compileSdkVersion app_android.compileSdkVersion
     buildToolsVersion app_android.buildToolsVersion
-    compileOptions.encoding = "GBK"
+//    compileOptions.encoding = "GBK"
     defaultConfig {
         applicationId app_android.applicationId
         minSdkVersion app_android.minSdkVersion
@@ -127,6 +127,12 @@ android {
         //  注意：不能在 android 根节点，只能在 defaultConfig 或者 buildTypes 的节点下
         buildConfigField("boolean", "isRelease", String.valueOf(isRelease))
 
+
+        javaCompileOptions{
+            annotationProcessorOptions{
+                arguments = [moduleName: project.name, packageNameForAPT: packageNameForAPT]
+            }
+        }
     }
 //    tasks.withType(JavaCompile) {//解决编码错误: 编码UTF-8的不可映射字
 //        options.encoding = "UTF-8"
@@ -225,6 +231,13 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    //  arouter 专用 注解模块
+    implementation project(':arouter_annotation_java')
+//    implementation project(":arouter_api_java")
+    // arouter 专用 注解处理器
+    // 注意  kapt 环境下  WARNING 级别以下的日志不打印
+    kapt project(':arouter_compiler_java')
 
     app_implementation.each{
         k, v -> implementation v

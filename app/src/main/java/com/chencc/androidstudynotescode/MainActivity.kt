@@ -23,11 +23,10 @@ import com.chencc.androidstudynotescode.materialdesign.MaterialDesignActivity
 import com.chencc.androidstudynotescode.nestedscroll.NestedScrollActivity
 import com.chencc.androidstudynotescode.skin.SkinTestActivity
 import com.chencc.androidstudynotescode.utils.*
-import com.chencc.androidstudynotescode.utils.battery.BatteryActivity
 import com.chencc.androidstudynotescode.view_dispatch.ViewDispatchActivity
-import com.jessi.arouter_annotation_java.ARouter
+import com.jessi.arouter_annotation.ARouter
+
 import com.jessi.crash.CrashReport
-import com.qmuiteam.qmui.util.QMUIStatusBarHelper
 import dalvik.system.PathClassLoader
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.Dispatchers
@@ -41,20 +40,23 @@ import java.io.FileOutputStream
 
 private const val TAG = "MainActivity"
 
-
+@ARouter(path = "/app/MainActivity", group = "app")
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_main)
 
-        AsyncLayoutInflater(this).inflate(R.layout.activity_main, null, object : AsyncLayoutInflater.OnInflateFinishedListener{
-            override fun onInflateFinished(view: View, resid: Int, parent: ViewGroup?) {
-                Log.e("MainActivity", "setContentView")
-                setContentView(view)
-                initListener()
-            }
-        })
+        AsyncLayoutInflater(this).inflate(
+            R.layout.activity_main,
+            null,
+            object : AsyncLayoutInflater.OnInflateFinishedListener {
+                override fun onInflateFinished(view: View, resid: Int, parent: ViewGroup?) {
+                    Log.e("MainActivity", "setContentView")
+                    setContentView(view)
+                    initListener()
+                }
+            })
 
 
         Log.e("MainActivity", "Activity.class 由： + ${Activity::class.java.classLoader} + 加载")
@@ -170,19 +172,30 @@ class MainActivity : AppCompatActivity() {
         val newFile = File(getExternalFilesDir("apk"), "app.apk")
 //        val patchFile = File(getExternalFilesDir("apk"), "patch.apk")
         val patchFile = File("/sdcard/Android/data/patch.apk")
-        Log.e(TAG, "patch: sourceDir : ${applicationInfo.sourceDir}   ${newFile.absolutePath}   ${patchFile.absolutePath}" )
-        val result = JNIUtils.patch(applicationInfo.sourceDir, newFile.absolutePath, patchFile.absolutePath)
+        Log.e(
+            TAG,
+            "patch: sourceDir : ${applicationInfo.sourceDir}   ${newFile.absolutePath}   ${patchFile.absolutePath}"
+        )
+        val result = JNIUtils.patch(
+            applicationInfo.sourceDir,
+            newFile.absolutePath,
+            patchFile.absolutePath
+        )
         if (result == 0){
             install(newFile)
         }
     }
 
 
-    private fun install(file : File){
+    private fun install(file: File){
         val intent = Intent(ACTION_VIEW).apply {
             addFlags(FLAG_ACTIVITY_NEW_TASK)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {// 7.0+
-                val apkUri = FileProvider.getUriForFile(this@MainActivity, "$packageName.fileprovider", file)
+                val apkUri = FileProvider.getUriForFile(
+                    this@MainActivity,
+                    "$packageName.fileprovider",
+                    file
+                )
                 addFlags(FLAG_GRANT_READ_URI_PERMISSION)
                 setDataAndType(apkUri, "application/vnd.android.package-archive");
             }else{

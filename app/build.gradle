@@ -232,13 +232,27 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
+
+    /**
+     * JavaPoet
+     */
+//    //  arouter 专用 注解模块
+//    implementation project(':arouter_annotation_java')
+//    // arouter 专用 注解处理器
+//    // 注意  kapt 环境下  WARNING 级别以下的日志不打印
+//    kapt project(':arouter_compiler_java')
+
+    /**
+     * kotlinPoet
+     */
     //  arouter 专用 注解模块
-    implementation project(':arouter_annotation_java')
-//    implementation project(":arouter_api_java")
+    implementation project(':arouter_annotation')
     // arouter 专用 注解处理器
     // 注意  kapt 环境下  WARNING 级别以下的日志不打印
-    kapt project(':arouter_compiler_java')
+    kapt project(':arouter_compiler')
 
+
+    // 第三方
     app_implementation.each{
         k, v -> implementation v
     }

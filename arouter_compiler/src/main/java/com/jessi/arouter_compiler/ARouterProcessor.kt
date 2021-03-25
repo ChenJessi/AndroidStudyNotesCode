@@ -5,8 +5,8 @@ import com.jessi.arouter_annotation.ARouter
 import com.jessi.arouter_compiler.utils.APT_PACKAGE
 import com.jessi.arouter_compiler.utils.AROUTER_PACKAGE
 import com.jessi.arouter_compiler.utils.OPTIONS
-import com.squareup.kotlinpoet.FunSpec
-import com.squareup.kotlinpoet.KModifier
+import com.squareup.kotlinpoet.*
+import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import javax.annotation.processing.*
 import javax.lang.model.SourceVersion
 import javax.lang.model.element.Modifier
@@ -108,12 +108,37 @@ class ARouterProcessor : AbstractProcessor() {
             }
          *
          */
+
+
+        val string = ClassName("kotlin", "String")
+        val array = ClassName("kotlin", "Array")
+        val arrayString = array.parameterizedBy(string)
+
+        // 生成方法
         val funSpec = FunSpec.builder("main")
-            .addModifiers(KModifier.FUN)
-            .returns(Unit.javaClass)
-            .addParameter("args", Array<String>::class)
+//            .addModifiers(KModifier.FUN)
+//            .returns(Unit.javaClass)
+            .addParameter("args", ARRAY.parameterizedBy(STRING))
             .addStatement("println(%S)", "Hello, KotlinPoet!")
             .build()
+        // 生成类
+//        val helloWorld = TypeSpec.classBuilder("HelloWorld")
+//            .addFunction(funSpec)
+//            .build()
+        // 生成文件
+        val kotlinFile = FileSpec.builder("com.example.helloworld.kotlin", "HelloWorld")
+            .addFunction(funSpec)
+//            .addType(helloWorld)
+            .build()
+
+        try {
+            kotlinFile.writeTo(mFiler)
+            println(kotlinFile)
+        } catch (e: Exception) {
+            e.printStackTrace();
+            message.printMessage(Diagnostic.Kind.WARNING, "生成失败，请检查代码...");
+        }
     }
+
 }
 

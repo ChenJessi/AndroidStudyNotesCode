@@ -31,7 +31,7 @@ fun hashmap(){
 
 }
 
-fun sparseArray(){
+fun sparseArray1(){
     val t1 = System.currentTimeMillis()
     val array = SparseArray<String>()
     for (i in 0..10000){

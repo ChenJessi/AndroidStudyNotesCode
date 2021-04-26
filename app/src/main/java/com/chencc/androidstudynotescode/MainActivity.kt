@@ -24,7 +24,7 @@ import com.chencc.androidstudynotescode.nestedscroll.NestedScrollActivity
 import com.chencc.androidstudynotescode.skin.SkinTestActivity
 import com.chencc.androidstudynotescode.utils.*
 import com.chencc.androidstudynotescode.view_dispatch.ViewDispatchActivity
-import com.jessi.arouter_annotation.ARouter
+import com.jessi.arouter_annotation_java.ARouter
 
 import com.jessi.crash.CrashReport
 import dalvik.system.PathClassLoader
@@ -40,7 +40,7 @@ import java.io.FileOutputStream
 
 private const val TAG = "MainActivity"
 
-@ARouter(path = "/app/MainActivity", group = "app")
+//@ARouter(path = "/app/MainActivity", group = "app")
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

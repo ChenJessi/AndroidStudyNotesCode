@@ -2,10 +2,13 @@ package com.jessi.arouter_compiler_java;
 
 import com.google.auto.service.AutoService;
 import com.jessi.arouter_annotation_java.ARouter;
+import com.jessi.arouter_annotation_java.bean.RouterBean;
 import com.jessi.arouter_compiler_java.utils.ProcessorConfig;
+import com.jessi.arouter_compiler_java.utils.ProcessorUtils;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeSpec;
+import com.sun.xml.internal.ws.util.StringUtils;
 
 import java.io.IOException;
 import java.util.Set;
@@ -23,6 +26,7 @@ import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.Modifier;
 import javax.lang.model.element.TypeElement;
+import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.Elements;
 import javax.lang.model.util.Types;
 import javax.tools.Diagnostic;
@@ -37,7 +41,7 @@ import javax.tools.Diagnostic;
 @SupportedAnnotationTypes({ProcessorConfig.AROUTER_PACKAGE})
 
 // 指定 JDK 编译版本
-@SupportedSourceVersion(SourceVersion.RELEASE_7)
+@SupportedSourceVersion(SourceVersion.RELEASE_8)
 
 // 注解处理器接收的参数
 @SupportedOptions({ ProcessorConfig.OPTIONS, ProcessorConfig.APT_PACKAGE})
@@ -92,6 +96,12 @@ public class ARouterProcessor extends AbstractProcessor {
 
         // 获取所有被 @ARouter 注解的元素集合
         Set<? extends Element> elements = roundEnvironment.getElementsAnnotatedWith(ARouter.class);
+
+        // 通过 element工具类，获取Activity Callback 类型
+        TypeElement activityType = elementTool.getTypeElement(ProcessorConfig.ACTIVITY_PACKAGE);
+        // 显示类信息，（获取被注解的节点，类节点）也叫自描述
+        TypeMirror activityMirror = activityType.asType();
+
         // 遍历所有类节点
         for (Element element : elements){
 
@@ -102,13 +112,75 @@ public class ARouterProcessor extends AbstractProcessor {
 
             messager.printMessage(Diagnostic.Kind.WARNING, ">>>>>>>>>>>>>> 被@ARetuer注解的类有：" + packageName + "  " +className ); // 打印出 就证明APT没有问题
 
-            /**
-             *  JavaPoet 练习
-             */
-            JavaPoetTest();
+//            /**
+//             *  JavaPoet 练习
+//             */
+//            JavaPoetTest();
+            // 获取注解
+            ARouter aRouter = element.getAnnotation(ARouter.class);
+
+            // 封装路由对象
+            RouterBean routerBean = new RouterBean.Builder()
+                    .addGroup(aRouter.group())
+                    .addPath(aRouter.path())
+                    .addElement(element)
+                    .build();
+            // 校验
+            // ARouter 注解类必须继承 Activity
+            TypeMirror typeMirror = element.asType();
+            if (typeTool.isSubtype(typeMirror, activityMirror)){
+                // 是activity
+                routerBean.setTypeEnum(RouterBean.TypeEnum.ACTIVITY);
+                messager.printMessage(Diagnostic.Kind.WARNING, ">>>>>>>>>>>>>> s是   activity" ); // 打印出 就证明APT没有问题
+            }else {
+                // 不匹配抛出异常
+                messager.printMessage(Diagnostic.Kind.WARNING, ">>>>>>>>>>>>>> s是  ================ activity" ); // 打印出 就证明APT没有问题
+
+                throw new RuntimeException("@ARouter注解目前仅限用于Activity类之上");
+            }
+
+
+            if (checkRouterPath(routerBean)){
+
+            }
+
 
         }
 
+        return true;
+    }
+
+    /**
+     * 校验 @ARouter 注解的值，如果group未填写就从必填项 path 中截取
+     * @param routerBean 路由详细信息，最终实体封装类
+     * @return
+     */
+    private boolean checkRouterPath(RouterBean bean){
+        String group = bean.getGroup();
+        String path = bean.getPath();
+
+        // 校验
+        // @ARouter 注解中的path值，必须要以 / 开头
+        if (ProcessorUtils.isEmpty(path) || !path.startsWith("/")){
+            messager.printMessage(Diagnostic.Kind.ERROR,  "@ARouter注解中的path值，必须要以 / 开头");
+            return false;
+        }
+
+        if (path.lastIndexOf("/")){
+            messager.printMessage(Diagnostic.Kind.ERROR, "@ARouter注解未按规范配置，如：/app/MainActivity");
+            return false;
+        }
+
+        String finalGroup = path.substring(1, path.lastIndexOf("/", 1));
+
+        // @ARouter 注解中的group有赋值
+        if(!ProcessorUtils.isEmpty(group) && group.equals(options)){
+            messager.printMessage(Diagnostic.Kind.ERROR, "@ARouter注解中的group值必须和子模块名一致！");
+            return false;
+        }else {
+            bean.setGroup(finalGroup);
+        }
+        // group 没问题，返回true
         return true;
     }
 

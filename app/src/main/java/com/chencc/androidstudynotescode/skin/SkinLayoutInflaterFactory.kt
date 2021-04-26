@@ -23,22 +23,22 @@ class SkinLayoutInflaterFactory(var activity: Activity) : LayoutInflater.Factory
         "android.view."
     )
 
-    // ¼ÇÂ¼¶ÔÓ¦ View µÄ¹¹Ôìº¯Êı
+    // è®°å½•å¯¹åº” View çš„æ„é€ å‡½æ•°
     private val sConstructorMap = mutableMapOf<String, Constructor<out View?>>()
     private val mConstructorSignature = arrayOf<Class<*>>(Context::class.java, AttributeSet::class.java)
-    // ĞèÒª²éÕÒÌæ»»view µÄÊôĞÔ
+    // éœ€è¦æŸ¥æ‰¾æ›¿æ¢view çš„å±æ€§
     val skinAttribute = SkinAttribute()
 
     override fun onCreateView(parent: View?, name: String, context: Context, attrs: AttributeSet): View? {
-        // »»·ô¾ÍÊÇÔÚÕâÀïÌæ»»viewµÄÊôĞÔ×ÊÔ´
-        // ËùÒÔÔÚÕâÀï´´½¨view ĞŞ¸ÄÊôĞÔ
-        //  ÔÚ name Ç°ÃæÆ´Ç°×º£¬·´Éä´´½¨ SDKÄÚ²¿µÄView  Èç TextView , ImageView µÈ
+        // æ¢è‚¤å°±æ˜¯åœ¨è¿™é‡Œæ›¿æ¢viewçš„å±æ€§èµ„æº
+        // æ‰€ä»¥åœ¨è¿™é‡Œåˆ›å»ºview ä¿®æ”¹å±æ€§
+        //  åœ¨ name å‰é¢æ‹¼å‰ç¼€ï¼Œåå°„åˆ›å»º SDKå†…éƒ¨çš„View  å¦‚ TextView , ImageView ç­‰
         var view = createSDKView(name, context, attrs)
-        // Èç¹û view == null  ËµÃ÷ ÊÇ androidx Ö§³Ö°ü»òÕßÎÒÃÇµÄ×Ô¶¨Òåview ²»ÓÃÆ´Ç°×ºÖ±½Ó·´Éä´´½¨
+        // å¦‚æœ view == null  è¯´æ˜ æ˜¯ androidx æ”¯æŒåŒ…æˆ–è€…æˆ‘ä»¬çš„è‡ªå®šä¹‰view ä¸ç”¨æ‹¼å‰ç¼€ç›´æ¥åå°„åˆ›å»º
         if (view == null){
             view = createView(name, context, attrs)
         }
-        // view ²»Îª¿Õ£¬ÊÕ¼¯View ĞèÒª»»·ôµÄÊôĞÔ²¢±£´æ
+        // view ä¸ä¸ºç©ºï¼Œæ”¶é›†View éœ€è¦æ¢è‚¤çš„å±æ€§å¹¶ä¿å­˜
         if (view != null){
             skinAttribute.look(view, attrs)
         }
@@ -50,16 +50,16 @@ class SkinLayoutInflaterFactory(var activity: Activity) : LayoutInflater.Factory
     }
 
     /**
-     * ´´½¨ SDK ÖĞµÄ View
-     * Èç £º TextView  ImageView µÈ
-     * Âß¼­²Î¿¼ LayoutInflater.createViewFromTag(...)
+     * åˆ›å»º SDK ä¸­çš„ View
+     * å¦‚ ï¼š TextView  ImageView ç­‰
+     * é€»è¾‘å‚è€ƒ LayoutInflater.createViewFromTag(...)
      */
     private fun createSDKView(name: String, context: Context, attrs: AttributeSet): View? {
-        // Èç¹û°üº¬ . Ôò²»ÊÇSDK ÖĞµÄView( Èç TextView µÈ)   ¿ÉÄÜÊÇ  androidx Ö§³Ö°ü»òÕßÎÒÃÇµÄ×Ô¶¨Òåview
+        // å¦‚æœåŒ…å« . åˆ™ä¸æ˜¯SDK ä¸­çš„View( å¦‚ TextView ç­‰)   å¯èƒ½æ˜¯  androidx æ”¯æŒåŒ…æˆ–è€…æˆ‘ä»¬çš„è‡ªå®šä¹‰view
         if (-1 != name.indexOf(".")) {
             return null
         }
-        // ²»°üº¬µÄ»°¾ÍÒªÔÚ½âÎöµÄ½Úµã name Ö®Ç° Æ´ÉÏ  android.widget.  ³¢ÊÔÈ¥·´Éä ´´½¨
+        // ä¸åŒ…å«çš„è¯å°±è¦åœ¨è§£æçš„èŠ‚ç‚¹ name ä¹‹å‰ æ‹¼ä¸Š  android.widget.  å°è¯•å»åå°„ åˆ›å»º
         mClassPrefixList.forEachIndexed { index, s ->
             val view = createView(s + name, context, attrs)
             if (view != null){
@@ -70,7 +70,7 @@ class SkinLayoutInflaterFactory(var activity: Activity) : LayoutInflater.Factory
     }
 
     /**
-     * ·´Éä»ñÈ¡view µÄ¹¹Ôìº¯Êı
+     * åå°„è·å–view çš„æ„é€ å‡½æ•°
      *
      */
     private fun findConstructor(name: String, context: Context) : Constructor<out View>? {
@@ -90,7 +90,7 @@ class SkinLayoutInflaterFactory(var activity: Activity) : LayoutInflater.Factory
     }
 
     /**
-     *  ·´Éä´´½¨ View
+     *  åå°„åˆ›å»º View
      */
     private fun createView(name: String, context: Context, attrs: AttributeSet) : View? {
         val constructor = findConstructor(name, context)
@@ -102,7 +102,7 @@ class SkinLayoutInflaterFactory(var activity: Activity) : LayoutInflater.Factory
         return null
     }
 
-    // ½ÓÊÕµ½±»¹Û²ìÕß·¢ËÍµÄÏûÏ¢£¬Ö´ĞĞ  ¸Ä±äviewÆ¤·ô
+    // æ¥æ”¶åˆ°è¢«è§‚å¯Ÿè€…å‘é€çš„æ¶ˆæ¯ï¼Œæ‰§è¡Œ  æ”¹å˜viewçš®è‚¤
     override fun update(o: Observable?, arg: Any?) {
         skinAttribute.applySkin()
     }

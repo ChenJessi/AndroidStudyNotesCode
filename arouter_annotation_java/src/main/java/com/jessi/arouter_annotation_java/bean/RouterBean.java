@@ -14,7 +14,27 @@ public class RouterBean {
     private Class<?> myClass; // 被注解的 Class对象 例如： MainActivity.class  Main2Activity.class  Main3Activity.class
     private String path; // 路由地址  例如：/app/MainActivity
     private String group; // 路由组  例如：app  order  personal
-    
+
+    public void setTypeEnum(TypeEnum typeEnum) {
+        this.typeEnum = typeEnum;
+    }
+
+    public void setElement(Element element) {
+        this.element = element;
+    }
+
+    public void setMyClass(Class<?> myClass) {
+        this.myClass = myClass;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
+    }
+
     public TypeEnum getTypeEnum() {
         return typeEnum;
     }
@@ -73,7 +93,7 @@ public class RouterBean {
         private String path;
         // 路由组
         private String group;
-
+        public Builder(){};
         public Builder addType(TypeEnum type) {
             this.type = type;
             return this;

@@ -18,7 +18,7 @@ import com.chencc.androidstudynotescode.utils.getResId
 private const val TAG = "SkinAttribute"
 
 /**
- * Òª»»·ôµÄ View µÄÊôĞÔ
+ * è¦æ¢è‚¤çš„ View çš„å±æ€§
  */
 class SkinAttribute {
     private val mAttribute = mutableListOf<String>(
@@ -37,30 +37,30 @@ class SkinAttribute {
     private val mSkinViews = mutableListOf<SkinView>()
 
     /**
-     * ±éÀúÃ¿¸ö view µÄËùÓĞÊôĞÔ
-     * ÕÒ³öĞèÒª»»·ôµÄÊôĞÔ²¢¼ÇÂ¼ ÊôĞÔÃû³Æ ºÍ ×ÊÔ´id
+     * éå†æ¯ä¸ª view çš„æ‰€æœ‰å±æ€§
+     * æ‰¾å‡ºéœ€è¦æ¢è‚¤çš„å±æ€§å¹¶è®°å½• å±æ€§åç§° å’Œ èµ„æºid
      */
     fun look(view: View, attr: AttributeSet) {
         val mSkinPairs = mutableListOf<SkinPair>()
         for (i in 0 until attr.attributeCount) {
-            // »ñÈ¡ÊôĞÔÃû
+            // è·å–å±æ€§å
             val attributeName = attr.getAttributeName(i)
-            // ÓĞ¼¯ºÏÖĞµÄÊôĞÔ²ÅĞèÒª»»·ô
+            // æœ‰é›†åˆä¸­çš„å±æ€§æ‰éœ€è¦æ¢è‚¤
             if (mAttribute.contains(attributeName)) {
                 val attributeValue = attr.getAttributeValue(i)
-                //  xml Ğ´ËÀµÄÑÕÉ«²»ÄÜ»»·ô #
+                //  xml å†™æ­»çš„é¢œè‰²ä¸èƒ½æ¢è‚¤ #
                 if (attributeValue.startsWith("#")) {
                     continue
                 }
                 var resId: Int
-                // £¿¿ªÍ·µÄ±íÊ¾ÏµÍ³×ÊÔ´
+                // ï¼Ÿå¼€å¤´çš„è¡¨ç¤ºç³»ç»Ÿèµ„æº
                 if (attributeValue.startsWith("?")) {
-                    // »ñÈ¡id
+                    // è·å–id
                     val attrId = attributeValue.substring(1).toInt()
                     resId = getResId(view.context, IntArray(1) { attrId })[0]
                     Log.e("TAG", "look:  attrId ====  $attrId   ${attributeValue}")
                 } else {
-                    // Ê£ÏÂµÄ ÊÇÒÔ @ ¿ªÍ·µÄ ÎÒÃÇ×Ô¼ºµÄ×ÊÔ´
+                    // å‰©ä¸‹çš„ æ˜¯ä»¥ @ å¼€å¤´çš„ æˆ‘ä»¬è‡ªå·±çš„èµ„æº
                     resId = attributeValue.substring(1).toInt()
                     Log.e("TAG", "look:  $resId   ${attributeValue}")
 
@@ -71,17 +71,17 @@ class SkinAttribute {
                 mSkinPairs.add(SkinPair(attributeName, resId))
             }
         }
-        // Èç¹ûÓĞĞèÒª»»·ôµÄÊôĞÔ »òÕß ÊµÏÖÁË SkinViewSupport ½Ó¿Ú¶¼±íÊ¾ĞèÒª»»·ô
+        // å¦‚æœæœ‰éœ€è¦æ¢è‚¤çš„å±æ€§ æˆ–è€… å®ç°äº† SkinViewSupport æ¥å£éƒ½è¡¨ç¤ºéœ€è¦æ¢è‚¤
         if (mSkinPairs.isNotEmpty() || view is SkinViewSupport) {
             val skinView = SkinView(view, mSkinPairs)
-            //  Èç¹ûÑ¡Ôñ»»·ô ÏÈµ÷ÓÃÒ»´Î ¼ÓÔØÆ¤·ôµÄ×ÊÔ´
+            //  å¦‚æœé€‰æ‹©æ¢è‚¤ å…ˆè°ƒç”¨ä¸€æ¬¡ åŠ è½½çš®è‚¤çš„èµ„æº
             skinView.applySkin()
             mSkinViews.add(skinView)
         }
     }
 
     /**
-     * ¶ÔËùÓĞ View ½øĞĞ»»·ô
+     * å¯¹æ‰€æœ‰ View è¿›è¡Œæ¢è‚¤
      */
     fun applySkin() {
         mSkinViews.forEach {
@@ -91,15 +91,15 @@ class SkinAttribute {
 }
 
 /**
- * Òª»»·ôµÄView
- * View ĞèÒª¸ü»»µÄÊôĞÔºÍ×ÊÔ´id¼¯ºÏ
+ * è¦æ¢è‚¤çš„View
+ * View éœ€è¦æ›´æ¢çš„å±æ€§å’Œèµ„æºidé›†åˆ
  */
 class SkinView(var view: View, var mSkinPairs: MutableList<SkinPair> = mutableListOf()) :
     SkinViewSupport {
 
-    /**±éÀúËùÓĞĞèÒªĞŞ¸ÄµÄÊôĞÔ
+    /**éå†æ‰€æœ‰éœ€è¦ä¿®æ”¹çš„å±æ€§
      *
-     * ¶ÔviewµÄÃ¿Ò»¸öÊôĞÔ½øĞĞĞŞ¸Ä
+     * å¯¹viewçš„æ¯ä¸€ä¸ªå±æ€§è¿›è¡Œä¿®æ”¹
      */
     override fun applySkin() {
         mSkinPairs.forEach {
@@ -112,7 +112,7 @@ class SkinView(var view: View, var mSkinPairs: MutableList<SkinPair> = mutableLi
             when (attributeName) {
                 "background" -> {
                     val background = SkinResources.getBackground(it.resId)
-                    // background Îª color Ê± Îª int ÀàĞÍ
+                    // background ä¸º color æ—¶ ä¸º int ç±»å‹
                     if (background is Int) {
                         view.setBackgroundColor(background)
                     } else if (background is Drawable) {
@@ -161,7 +161,7 @@ class SkinView(var view: View, var mSkinPairs: MutableList<SkinPair> = mutableLi
 }
 
 /**
- * ĞŞ¸ÄÊµÏÖÁË SkinViewSupport µÄviewÊôĞÔ
+ * ä¿®æ”¹å®ç°äº† SkinViewSupport çš„viewå±æ€§
  */
 private fun applySkinSupport() {
     if (view is SkinViewSupport) {
@@ -171,8 +171,8 @@ private fun applySkinSupport() {
 }
 
 /**
- * Òª»»·ôµÄÊôĞÔ¼¯ºÏ
- * ÊôĞÔÃû-×ÊÔ´id
+ * è¦æ¢è‚¤çš„å±æ€§é›†åˆ
+ * å±æ€§å-èµ„æºid
  */
 data class SkinPair(var attributeName: String, var resId: Int)
 

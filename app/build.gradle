@@ -236,20 +236,20 @@ dependencies {
     /**
      * JavaPoet
      */
-//    //  arouter 专用 注解模块
-//    implementation project(':arouter_annotation_java')
-//    // arouter 专用 注解处理器
-//    // 注意  kapt 环境下  WARNING 级别以下的日志不打印
-//    kapt project(':arouter_compiler_java')
+    //  arouter 专用 注解模块
+    implementation project(':arouter_annotation_java')
+    // arouter 专用 注解处理器
+    // 注意  kapt 环境下  WARNING 级别以下的日志不打印
+    kapt project(':arouter_compiler_java')
 
     /**
      * kotlinPoet
      */
-    //  arouter 专用 注解模块
-    implementation project(':arouter_annotation')
-    // arouter 专用 注解处理器
-    // 注意  kapt 环境下  WARNING 级别以下的日志不打印
-    kapt project(':arouter_compiler')
+//    //  arouter 专用 注解模块
+//    implementation project(':arouter_annotation')
+//    // arouter 专用 注解处理器
+//    // 注意  kapt 环境下  WARNING 级别以下的日志不打印
+//    kapt project(':arouter_compiler')
 
 
     // 第三方

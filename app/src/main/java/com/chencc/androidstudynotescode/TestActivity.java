@@ -9,7 +9,7 @@ import androidx.core.text.StringKt;
 
 import com.chencc.androidstudynotescode.androidjvm_class_test.Test;
 import com.chencc.androidstudynotescode.kotlin.Simple1Kt;
-import com.jessi.arouter_annotation.ARouter;
+import com.jessi.arouter_annotation_java.ARouter;
 
 import kotlin.io.FilesKt;
 

@@ -10,4 +10,6 @@ public interface ProcessorConfig {
     // 接收参数的TAG标记
     String OPTIONS = "moduleName"; // 目的是接收 每个module名称
     String APT_PACKAGE = "packageNameForAPT"; // 目的是接收 包名（APT 存放的包名）
+
+    String ACTIVITY_PACKAGE = "android.app.Activity"; // Activity 包名
 }

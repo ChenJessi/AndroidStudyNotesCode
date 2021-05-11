@@ -40,7 +40,7 @@ import java.io.FileOutputStream
 
 private const val TAG = "MainActivity"
 
-//@ARouter(path = "/app/MainActivity", group = "app")
+@ARouter(path = "/app/MainActivity", group = "app")
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

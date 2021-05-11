@@ -241,6 +241,7 @@ dependencies {
     // arouter 专用 注解处理器
     // 注意  kapt 环境下  WARNING 级别以下的日志不打印
     kapt project(':arouter_compiler_java')
+    implementation project(":arouter_api_java")
 
     /**
      * kotlinPoet

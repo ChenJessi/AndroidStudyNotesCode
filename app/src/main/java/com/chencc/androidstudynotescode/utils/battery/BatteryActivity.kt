@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import com.chencc.androidstudynotescode.R
 import com.chencc.androidstudynotescode.databinding.ActivityBatteryBinding
 import com.chencc.androidstudynotescode.utils.network.NetSpeed
+import com.jessi.arouter_annotation_java.ARouter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
@@ -18,6 +19,7 @@ private const val TAG = "BatteryActivity"
 /**
  * 电量优化
  */
+@ARouter(path = "/optimization/ActivityResultTestActivity", group = "optimization")
 class BatteryActivity : AppCompatActivity() , CoroutineScope by MainScope() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -3,6 +3,9 @@ package com.jessi.crash
 import android.content.Context
 import java.io.File
 
+/**
+ * native bug 收集测试
+ */
 object CrashReport{
 
     init {

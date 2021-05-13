@@ -23,8 +23,11 @@ import com.chencc.androidstudynotescode.materialdesign.MaterialDesignActivity
 import com.chencc.androidstudynotescode.nestedscroll.NestedScrollActivity
 import com.chencc.androidstudynotescode.skin.SkinTestActivity
 import com.chencc.androidstudynotescode.utils.*
+import com.chencc.androidstudynotescode.utils.battery.BatteryActivity
 import com.chencc.androidstudynotescode.view_dispatch.ViewDispatchActivity
 import com.jessi.arouter_annotation_java.ARouter
+import com.jessi.arouter_api_java.ARouterGroup
+import com.jessi.arouter_api_java.RouterManager
 
 import com.jessi.crash.CrashReport
 import dalvik.system.PathClassLoader
@@ -130,15 +133,18 @@ class MainActivity : AppCompatActivity() {
          *  ActivityResult
          */
         button5.setOnClickListener {
-            startActivity(Intent(this@MainActivity, ActivityResultTestActivity::class.java))
+//            startActivity(Intent(this@MainActivity, ActivityResultTestActivity::class.java))
+            RouterManager.getInstance().build("/result/ActivityResultTestActivity").navigation(this@MainActivity)
         }
 
         /**
-         * Battary
+         * Battary 电量优化
          */
         button7.setOnClickListener {
 //            startActivity(Intent(this@MainActivity, BatteryActivity::class.java))
-            CrashReport.testNativeCrash()
+            RouterManager.getInstance().build("/optimization/ActivityResultTestActivity").navigation(this@MainActivity)
+
+//            CrashReport.testNativeCrash()
         }
         Log.e(TAG, "onCreate: ${getExternalFilesDir("")?.absolutePath}")
 

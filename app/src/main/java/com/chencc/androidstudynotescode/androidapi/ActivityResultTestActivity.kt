@@ -11,14 +11,13 @@ import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
-import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
 import com.chencc.androidstudynotescode.R
 import com.chencc.androidstudynotescode.databinding.ActivityActivityResultSecondTestBinding
 import com.chencc.androidstudynotescode.databinding.ActivityActivityResultTestBinding
 import com.chencc.androidstudynotescode.utils.UriUtils
+import com.jessi.arouter_annotation_java.ARouter
 import java.io.File
-import java.net.URI
 
 /**
  *
@@ -27,6 +26,8 @@ import java.net.URI
  *
  */
 private const val TAG = "ActivityResultActivity"
+
+@ARouter(path = "/result/ActivityResultTestActivity", group = "result")
 class ActivityResultTestActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

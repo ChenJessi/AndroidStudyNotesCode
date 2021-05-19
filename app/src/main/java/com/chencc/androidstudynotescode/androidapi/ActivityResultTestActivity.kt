@@ -17,6 +17,8 @@ import com.chencc.androidstudynotescode.databinding.ActivityActivityResultSecond
 import com.chencc.androidstudynotescode.databinding.ActivityActivityResultTestBinding
 import com.chencc.androidstudynotescode.utils.UriUtils
 import com.jessi.arouter_annotation_java.ARouter
+import com.jessi.arouter_annotation_java.Parameter
+import com.jessi.arouter_api_java.ParameterManager
 import java.io.File
 
 /**
@@ -29,9 +31,22 @@ private const val TAG = "ActivityResultActivity"
 
 @ARouter(path = "/result/ActivityResultTestActivity", group = "result")
 class ActivityResultTestActivity : AppCompatActivity() {
+
+    @JvmField
+    @Parameter
+    var stringKey = ""
+    @JvmField
+    @Parameter
+    public var intKey = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil.setContentView<ActivityActivityResultTestBinding>(this , R.layout.activity_activity_result_test)
+        ParameterManager.getInstance().loadParameter(this)
+
+//        val str = intent.getStringExtra("StringKey")
+//        val i = intent.getIntExtra("intKey", 0)
+        Log.e(TAG, "intent test:   $stringKey  $intKey" )
+
         binding.button.setOnClickListener {
 //            takePicturePreview()      // 拍照，返回 bitmap
 //            requestPermission()       // 单个权限请求

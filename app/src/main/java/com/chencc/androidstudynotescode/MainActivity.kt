@@ -52,18 +52,16 @@ class MainActivity : AppCompatActivity() {
 
         AsyncLayoutInflater(this).inflate(
             R.layout.activity_main,
-            null,
-            object : AsyncLayoutInflater.OnInflateFinishedListener {
-                override fun onInflateFinished(view: View, resid: Int, parent: ViewGroup?) {
-                    Log.e("MainActivity", "setContentView")
-                    setContentView(view)
-                    initListener()
-                }
-            })
+            null
+        ) { view, resid, parent ->
+            Log.e("MainActivity", "setContentView")
+            setContentView(view)
+            initListener()
+        }
 
 
-        Log.e("MainActivity", "Activity.class 由： + ${Activity::class.java.classLoader} + 加载")
-        Log.e("MainActivity", "MainActivity.class 由： + $classLoader + 加载")
+//        Log.e("MainActivity", "Activity.class 由： + ${Activity::class.java.classLoader} + 加载")
+//        Log.e("MainActivity", "MainActivity.class 由： + $classLoader + 加载")
 
 //        Test.test()
 //        test1()
@@ -134,19 +132,23 @@ class MainActivity : AppCompatActivity() {
          */
         button5.setOnClickListener {
 //            startActivity(Intent(this@MainActivity, ActivityResultTestActivity::class.java))
-            RouterManager.getInstance().build("/result/ActivityResultTestActivity").navigation(this@MainActivity)
+            RouterManager.getInstance().build("/result/ActivityResultTestActivity")
+                .withInt("intKey", 1)
+                .withString("stringKey", "test")
+                .navigation(this@MainActivity)
         }
 
         /**
          * Battary 电量优化
          */
         button7.setOnClickListener {
-//            startActivity(Intent(this@MainActivity, BatteryActivity::class.java))
-            RouterManager.getInstance().build("/optimization/ActivityResultTestActivity").navigation(this@MainActivity)
+            startActivity(Intent(this@MainActivity, BatteryActivity::class.java))
+            RouterManager.getInstance().build("/optimization/BatteryActivity")
+                .navigation(this@MainActivity)
 
 //            CrashReport.testNativeCrash()
         }
-        Log.e(TAG, "onCreate: ${getExternalFilesDir("")?.absolutePath}")
+//        Log.e(TAG, "onCreate: ${getExternalFilesDir("")?.absolutePath}")
 
     }
 

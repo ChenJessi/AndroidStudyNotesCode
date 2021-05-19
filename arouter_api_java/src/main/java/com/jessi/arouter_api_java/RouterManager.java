@@ -2,6 +2,7 @@ package com.jessi.arouter_api_java;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.LruCache;
@@ -28,6 +29,9 @@ public class RouterManager {
     private final static String FILE_GROUP_NAME = "ARouter$$Group$$";
 
     private static RouterManager instance;
+
+    private Bundle bundle = new Bundle();
+
 
     public static RouterManager getInstance(){
         if (instance == null){
@@ -59,6 +63,16 @@ public class RouterManager {
         this.path = path;
         this.group = finalGroup;
 
+        return this;
+    }
+
+    public RouterManager withInt(String key , int value){
+        bundle.putInt(key, value);
+        return this;
+    }
+
+    public RouterManager withString(String key , String value){
+        bundle.putString(key, value);
         return this;
     }
 
@@ -99,7 +113,8 @@ public class RouterManager {
                     switch (routerBean.getTypeEnum()){
                         case ACTIVITY:
                             Intent intent = new Intent(context, routerBean.getMyClass());
-                            context.startActivity(intent);
+                            intent.putExtras(bundle);
+                            context.startActivity(intent, bundle);
                             break;
                     }
                 }

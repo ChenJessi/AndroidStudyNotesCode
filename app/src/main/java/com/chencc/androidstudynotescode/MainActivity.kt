@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.asynclayoutinflater.view.AsyncLayoutInflater
 import androidx.core.content.FileProvider
+import com.chen.order.OrderDrawableImpl
 import com.chencc.androidstudynotescode.androidapi.ActivityResultTestActivity
 import com.chencc.androidstudynotescode.binder.binder.client.ClientActivity
 import com.chencc.androidstudynotescode.binder.mmap.MmapTestActivity
@@ -26,8 +27,13 @@ import com.chencc.androidstudynotescode.utils.*
 import com.chencc.androidstudynotescode.utils.battery.BatteryActivity
 import com.chencc.androidstudynotescode.view_dispatch.ViewDispatchActivity
 import com.jessi.arouter_annotation_java.ARouter
+import com.jessi.arouter_annotation_java.Parameter
 import com.jessi.arouter_api_java.ARouterGroup
+import com.jessi.arouter_api_java.ParameterManager
 import com.jessi.arouter_api_java.RouterManager
+import com.jessi.common.OrderDrawable
+import com.jessi.common.user.BaseUser
+import com.jessi.common.user.IUser
 
 import com.jessi.crash.CrashReport
 import dalvik.system.PathClassLoader
@@ -46,10 +52,18 @@ private const val TAG = "MainActivity"
 @ARouter(path = "/app/MainActivity", group = "app")
 class MainActivity : AppCompatActivity() {
 
+    @JvmField
+    @Parameter(name = "/order/getDrawable")
+    var orderDrawable : OrderDrawable? = null
+
+    @JvmField
+    @Parameter(name = "/order/getUserInfo")
+    var user : IUser? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_main)
-
+        ParameterManager.getInstance().loadParameter(this)
         AsyncLayoutInflater(this).inflate(
             R.layout.activity_main,
             null
@@ -132,9 +146,10 @@ class MainActivity : AppCompatActivity() {
          */
         button5.setOnClickListener {
 //            startActivity(Intent(this@MainActivity, ActivityResultTestActivity::class.java))
-            RouterManager.getInstance().build("/result/ActivityResultTestActivity")
+            RouterManager.getInstance().build("/app/result/ActivityResultTestActivity")
                 .withInt("intKey", 1)
                 .withString("stringKey", "test")
+                .withParcelable("user", BaseUser("app", "app", 19))
                 .navigation(this@MainActivity)
         }
 
@@ -142,14 +157,23 @@ class MainActivity : AppCompatActivity() {
          * Battary 电量优化
          */
         button7.setOnClickListener {
-            startActivity(Intent(this@MainActivity, BatteryActivity::class.java))
-            RouterManager.getInstance().build("/optimization/BatteryActivity")
+//            startActivity(Intent(this@MainActivity, BatteryActivity::class.java))
+            RouterManager.getInstance().build("/app/optimization/BatteryActivity")
                 .navigation(this@MainActivity)
+        }
 
-//            CrashReport.testNativeCrash()
+        button8.setOnClickListener {
+//            RouterManager.getInstance().build("/optimization/BatteryActivity")
+//                .navigation(this@MainActivity)
+
+            orderDrawable?.drawable?.let { it1 -> imageView.setBackgroundResource(it1) }
+            user?.userInfo.let { it1 -> tvTest.text = it1.toString() }
+            Log.e(TAG, "initListener:   ${orderDrawable} ${orderDrawable?.drawable}" )
+            Log.e(TAG, "initListener:   ${user} ${user?.userInfo?.toString()}" )
         }
 //        Log.e(TAG, "onCreate: ${getExternalFilesDir("")?.absolutePath}")
 
+//        CrashReport.testNativeCrash()
     }
 
 

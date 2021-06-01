@@ -13,3 +13,5 @@ include ':buildmodel'
 include ':mylibrary'
 include ':app'
 rootProject.name = "AndroidStudyNotesCode"
+include ':order'
+include ':common'

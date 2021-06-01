@@ -66,4 +66,10 @@ public interface ProcessorConfig {
 
     // String全类名
     public static final String STRING = "java.lang.String";
+
+    // ARouter api 的 Call 高层标准
+    String CALL = AROUTER_API_PACKAGE + ".Call";
+
+    // RouterManager类名
+    String ROUTER_MANAGER = "RouterManager";
 }

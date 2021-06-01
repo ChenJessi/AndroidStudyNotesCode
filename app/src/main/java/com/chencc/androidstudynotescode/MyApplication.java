@@ -16,6 +16,8 @@ import com.jessi.crash.CrashReport;
 
 import java.io.File;
 
+import kotlinx.android.parcel.Parcelize;
+
 public class MyApplication extends Application {
     private static final String TAG = "MyApplication";
 
@@ -49,14 +51,14 @@ public class MyApplication extends Application {
         if (BuildConfig.DEBUG){
             // //线程检测策略
             StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
-                    .detectDiskReads()   //读、写操作
-                    .detectDiskWrites()
-                    .detectNetwork()        // or .detectAll() for all detectable problems
+//                    .detectDiskReads()   //读、写操作
+//                    .detectDiskWrites()
+//                    .detectNetwork()        // or .detectAll() for all detectable problems
                     .penaltyLog()
                     .build());
             StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
-                    .detectLeakedSqlLiteObjects()   // sqlite 對象洩漏
-                    .detectLeakedClosableObjects()  //未关闭的Closable对象泄露
+//                    .detectLeakedSqlLiteObjects()   // sqlite 對象洩漏
+//                    .detectLeakedClosableObjects()  //未关闭的Closable对象泄露
                     .penaltyLog()       // 违规打印日志
                     .penaltyDeath()     // 违规崩溃
                     .build());

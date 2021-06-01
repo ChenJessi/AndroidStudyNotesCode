@@ -19,6 +19,8 @@ import com.chencc.androidstudynotescode.utils.UriUtils
 import com.jessi.arouter_annotation_java.ARouter
 import com.jessi.arouter_annotation_java.Parameter
 import com.jessi.arouter_api_java.ParameterManager
+import com.jessi.common.user.BaseUser
+import com.jessi.common.user.IUser
 import java.io.File
 
 /**
@@ -29,7 +31,7 @@ import java.io.File
  */
 private const val TAG = "ActivityResultActivity"
 
-@ARouter(path = "/result/ActivityResultTestActivity", group = "result")
+@ARouter(path = "/app/result/ActivityResultTestActivity", group = "app")
 class ActivityResultTestActivity : AppCompatActivity() {
 
     @JvmField
@@ -38,6 +40,10 @@ class ActivityResultTestActivity : AppCompatActivity() {
     @JvmField
     @Parameter
     public var intKey = 0
+
+    @JvmField
+    @Parameter
+    var user : BaseUser? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val binding = DataBindingUtil.setContentView<ActivityActivityResultTestBinding>(this , R.layout.activity_activity_result_test)
@@ -45,7 +51,7 @@ class ActivityResultTestActivity : AppCompatActivity() {
 
 //        val str = intent.getStringExtra("StringKey")
 //        val i = intent.getIntExtra("intKey", 0)
-        Log.e(TAG, "intent test:   $stringKey  $intKey" )
+        Log.e(TAG, "intent test:   $stringKey  $intKey  ${user?.toString()}" )
 
         binding.button.setOnClickListener {
 //            takePicturePreview()      // 拍照，返回 bitmap

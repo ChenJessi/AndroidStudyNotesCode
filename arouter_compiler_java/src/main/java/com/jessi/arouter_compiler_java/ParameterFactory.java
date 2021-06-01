@@ -6,14 +6,19 @@ import com.jessi.arouter_compiler_java.utils.ProcessorUtils;
 import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.ParameterSpec;
+import com.squareup.javapoet.TypeName;
 
 import javax.annotation.processing.Messager;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.Modifier;
+import javax.lang.model.element.TypeElement;
 import javax.lang.model.type.TypeKind;
 import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.Elements;
+import javax.lang.model.util.Types;
 import javax.tools.Diagnostic;
+
+import jdk.vm.ci.code.site.Call;
 
 /**
  * @author Created by CHEN on 2021/5/18
@@ -35,9 +40,16 @@ public class ParameterFactory {
 
     private Messager messager;
 
+    //获取元素接口信息，（生成类文件需要接口实现类）
+    private TypeMirror callMirror;
+    // type(类信息)工具类 包含用于操作 typeMirror 的工具方法
+    private Types typeUtils;
+
+
     private ParameterFactory(Builder builder){
         messager = builder.messager;
         className = builder.className;
+        typeUtils = builder.typeUtils;
 
         // 通过此方法
         // 通过方法参数体构建方法体
@@ -45,6 +57,9 @@ public class ParameterFactory {
                 .addModifiers(Modifier.PUBLIC)
                 .addAnnotation(Override.class)
                 .addParameter(builder.parameterSpec);
+
+        callMirror = builder.elementUtils.getTypeElement(ProcessorConfig.CALL)
+                .asType();
     }
 
     /**
@@ -94,9 +109,28 @@ public class ParameterFactory {
             if (typeMirror.toString().equalsIgnoreCase(ProcessorConfig.STRING)){
                 // string 类型
                 methodContent += "getStringExtra($S)";
+            }else if (typeUtils.isSubtype(typeMirror, callMirror)){
+
+                // 如果属性是实现了Call接口
+                // t.orderDrawable = (OrderDrawable) RouterManager.getInstance().build("/order/getDrawable").navigation(t);
+                methodContent = finalValue + " = ($T)$T.getInstance().build($S).navigation(t)";
+
+                method.addStatement(methodContent,
+                        TypeName.get(typeMirror),
+                        ClassName.get(ProcessorConfig.AROUTER_API_PACKAGE, ProcessorConfig.ROUTER_MANAGER),
+                        annotationValue);
+                messager.printMessage(Diagnostic.Kind.WARNING, " 检测到 @Parameter注解  >>>>>>>>>  333333333 ");
+
+                return;
+            }else {
+                // t.s = getIntent().getParcelableExtra("name")
+                methodContent = "t.getIntent().getParcelableExtra($S)";
             }
         }
-        if (methodContent.endsWith(")")){
+        if (methodContent.contains("Parcelable")){
+            // Parcelable 需要强转 t.userinfo = (UserInfo)t.getIntent().getParcelableExtra("user");
+            method.addStatement(finalValue + " = ($T)"+methodContent, ClassName.get(element.asType()), fieldName);
+        } else if (methodContent.endsWith(")")){
             // t.age = t.getIntent().getBooleanExtra("age", t.age ==  9);
             method.addStatement(methodContent, annotationValue);
         }else {
@@ -114,6 +148,10 @@ public class ParameterFactory {
         private ClassName className;
         // 方法参数体
         private ParameterSpec parameterSpec;
+        // 操作 elements 工具类，（类，函数，属性都是Element）
+        private Elements elementUtils;
+        // type(类信息)工具类 包含用于操作 typeMirror 的工具方法
+        private Types typeUtils;
 
         public Builder(ParameterSpec parameterSpec){
             this.parameterSpec = parameterSpec;
@@ -126,6 +164,16 @@ public class ParameterFactory {
 
         public Builder setClassName(ClassName className){
             this.className = className;
+            return this;
+        }
+
+        public Builder setTypeUtils(Types typeUtils){
+            this.typeUtils = typeUtils;
+            return this;
+        }
+
+        public Builder setElementUtils(Elements elementUtils){
+            this.elementUtils = elementUtils;
             return this;
         }
 

@@ -119,8 +119,11 @@ public class ParameterProcessor extends AbstractProcessor {
                     // 生成方法
                     ParameterFactory factory = new ParameterFactory.Builder(parameterSpec)
                             .setMessager(messager)
+                            .setElementUtils(elementUtils)
+                            .setTypeUtils(typeUtils)
                             .setClassName(className)
                             .build();
+
                     // 添加第一行
                     // Personal_MainActivity t = (Personal_MainActivity) targetParameter;
                     factory.addFirstStatement();
@@ -129,6 +132,7 @@ public class ParameterProcessor extends AbstractProcessor {
                     for (Element element : entry.getValue()){
                         factory.buildStatement(element);
                     }
+                    messager.printMessage(Diagnostic.Kind.WARNING, " 检测到 @Parameter注解  >>>>>>>>>  22222222222 ");
 
                     // 最终生成的类文件名 (类名$$Parameter)
                     String finalClassName = typeElement.getSimpleName() + ProcessorConfig.PARAMETER_FILE_NAME;

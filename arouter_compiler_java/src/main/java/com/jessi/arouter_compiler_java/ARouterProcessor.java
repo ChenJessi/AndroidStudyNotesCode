@@ -117,8 +117,10 @@ public class ARouterProcessor extends AbstractProcessor {
 
         // 通过 element工具类，获取Activity Callback 类型
         TypeElement activityType = elementTool.getTypeElement(ProcessorConfig.ACTIVITY_PACKAGE);
+        TypeElement callType = elementTool.getTypeElement(ProcessorConfig.CALL);
         // 显示类信息，（获取被注解的节点，类节点）也叫自描述
         TypeMirror activityMirror = activityType.asType();
+        TypeMirror callMirror = callType.asType();
 
         // 遍历所有类节点
         for (Element element : elements){
@@ -154,7 +156,11 @@ public class ARouterProcessor extends AbstractProcessor {
                 // 是activity
                 routerBean.setTypeEnum(RouterBean.TypeEnum.ACTIVITY);
                 messager.printMessage(Diagnostic.Kind.WARNING, ">>>>>>>>>>>>>> s是   activity" ); // 打印出 就证明APT没有问题
-            }else {
+            }else if (typeTool.isSubtype(typeMirror, callMirror)){
+                routerBean.setTypeEnum(RouterBean.TypeEnum.CALL);
+                messager.printMessage(Diagnostic.Kind.WARNING, ">>>>>>>>>>>>>> s是   call" ); // 打印出 就证明APT没有问题
+
+            } else {
                 // 不匹配抛出异常
                 messager.printMessage(Diagnostic.Kind.WARNING, ">>>>>>>>>>>>>> s是  ================ activity" ); // 打印出 就证明APT没有问题
 

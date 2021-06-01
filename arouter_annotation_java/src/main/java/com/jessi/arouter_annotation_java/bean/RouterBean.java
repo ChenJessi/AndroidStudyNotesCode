@@ -5,7 +5,8 @@ import javax.lang.model.element.Element;
 public class RouterBean {
     // 为了以后的发展
     public enum TypeEnum {
-        ACTIVITY
+        ACTIVITY,
+        CALL
     }
 
 

@@ -19,7 +19,7 @@ private const val TAG = "BatteryActivity"
 /**
  * 电量优化
  */
-@ARouter(path = "/optimization/BatteryActivity", group = "optimization")
+@ARouter(path = "/app/optimization/BatteryActivity", group = "app")
 class BatteryActivity : AppCompatActivity() , CoroutineScope by MainScope() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

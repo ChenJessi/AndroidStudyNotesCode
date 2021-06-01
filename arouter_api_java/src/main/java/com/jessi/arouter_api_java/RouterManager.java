@@ -3,6 +3,7 @@ package com.jessi.arouter_api_java;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.LruCache;
@@ -76,11 +77,15 @@ public class RouterManager {
         return this;
     }
 
+    public RouterManager withParcelable(String key, Parcelable value){
+        bundle.putParcelable(key, value);
+        return this;
+    }
     // 导航的方法
-    public void navigation(Context context){
+    public Object navigation(Context context){
         // 测试demo 没有使用多个 model ，实际上要遵守 model == group
-//        String groupClassName = context.getPackageName() + "." + FILE_GROUP_NAME + group;
-        String groupClassName = context.getPackageName() + "." + FILE_GROUP_NAME + "app";
+        String groupClassName = context.getPackageName() + "." + FILE_GROUP_NAME + group;
+//        String groupClassName = context.getPackageName() + "." + FILE_GROUP_NAME + "app";
 
         try {
             // 从缓存里获取 ARouerGroup
@@ -116,15 +121,20 @@ public class RouterManager {
                             intent.putExtras(bundle);
                             context.startActivity(intent, bundle);
                             break;
+                        case CALL:
+                            // OrderAddressImpl.class  OrderBean getOrderBean
+                            // 直接 new 一个 OrderAddressImpl 对象
+                            Class<?> clazz = routerBean.getMyClass();
+                            Call call = (Call) clazz.newInstance();
+                            return call;
                     }
                 }
-
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-
+        return null;
     }
 
 
